@@ -3,6 +3,7 @@
     x:Class="DanhGiaThucTap.View.LenhDieuKienPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     BackgroundColor="White">
     <StackLayout
         Margin="0"
@@ -23,7 +24,6 @@
         </Grid>
         <Frame
             Padding="10"
-            BorderColor="LightGray"
             HasShadow="True"
             HeightRequest="70">
             <Grid>
@@ -36,7 +36,7 @@
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="1.5*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackLayout
@@ -123,10 +123,7 @@
             Padding="0,10,0,0"
             HorizontalOptions="Center"
             Orientation="Horizontal">
-            <Label
-                x:Name="Xanh"
-                Text="75.23"
-                TextColor="Black" />
+            <Label Text="75.23%" TextColor="Black" />
             <Grid ColumnSpacing="0" WidthRequest="250">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="75.23*" />
@@ -143,10 +140,95 @@
                     HeightRequest="5"
                     VerticalOptions="Center" />
             </Grid>
-            <Label
-                x:Name="Do"
-                Text="24.77"
-                TextColor="Black" />
+            <Label Text="24.77%" TextColor="Black" />
         </StackLayout>
+        <Grid
+            Padding="10,10,10,0"
+            ColumnSpacing="3"
+            RowSpacing="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.Column="0"
+                HorizontalOptions="Start"
+                Text="Dư mua"
+                TextColor="Green" />
+            <Label
+                Grid.Column="1"
+                HorizontalOptions="Start"
+                Text="Dư bán"
+                TextColor="Red" />
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="#eef8ec" />
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="#fde8e9" />
+            <xct:Expander
+                x:Name="expander"
+                Grid.Row="2"
+                Grid.ColumnSpan="2">
+                <xct:Expander.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            HeightRequest="25"
+                            HorizontalOptions="Center"
+                            Source="icondown.png"
+                            VerticalOptions="End"
+                            WidthRequest="25">
+                            <Image.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
+                                    TargetType="Image"
+                                    Value="True">
+                                    <Setter Property="Source" Value="iconup.png" />
+                                    <Setter Property="Grid.Row" Value="3" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                    </Grid>
+                </xct:Expander.Header>
+                <xct:Expander.ContentTemplate>
+                    <DataTemplate>
+                        <Grid ColumnSpacing="3" RowSpacing="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <BoxView BackgroundColor="#eef8ec" />
+                            <BoxView
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                BackgroundColor="#fde8e9" />
+                            <BoxView
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                BackgroundColor="#eef8ec" />
+                            <BoxView
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                BackgroundColor="#fde8e9" />
+                        </Grid>
+                    </DataTemplate>
+                </xct:Expander.ContentTemplate>
+            </xct:Expander>
+        </Grid>
+
     </StackLayout>
 </ContentPage>

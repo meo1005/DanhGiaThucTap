@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DanhGiaThucTap.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace DanhGiaThucTap.View
         public LenhDieuKienPage()
         {
             InitializeComponent();
+            BindingContext = new LenhDieuKienViewModel();
         }
     }
 }

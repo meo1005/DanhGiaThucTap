@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DanhGiaThucTap.View;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace DanhGiaThucTap
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new FlyOutMainPage());
+            MainPage = new NavigationPage(new LenhDieuKienPage());
         }
 
         protected override void OnStart()
