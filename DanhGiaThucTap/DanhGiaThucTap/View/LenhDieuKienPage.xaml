@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DanhGiaThucTap.View.LenhDieuKienPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White">
+    <StackLayout
+        Margin="0"
+        Padding="0"
+        Spacing="0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.Column="1"
+                BackgroundColor="#3aac32"
+                HeightRequest="0.8"
+                IsVisible="True"
+                VerticalOptions="Start" />
+        </Grid>
+        <Frame
+            Padding="10"
+            BorderColor="LightGray"
+            HasShadow="True"
+            HeightRequest="70">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout
+                    Grid.RowSpan="2"
+                    Orientation="Horizontal"
+                    VerticalOptions="Center">
+                    <Image
+                        HeightRequest="20"
+                        HorizontalOptions="Start"
+                        Source="hinhvuong.png"
+                        VerticalOptions="Center"
+                        WidthRequest="20" />
+                    <Label
+                        FontSize="20"
+                        HorizontalOptions="End"
+                        Text="1,188.6"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <Label
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Text="-0.2 (-0.02%)"
+                    TextColor="Orange" />
+                <Label
+                    Grid.Column="1"
+                    Text="Mở cửa"
+                    TextColor="Black" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Cao"
+                    TextColor="Black" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="Thấp"
+                    TextColor="Black" />
+                <Label
+                    Grid.Column="2"
+                    HorizontalTextAlignment="End"
+                    Text="1.191"
+                    TextColor="Green" />
+                <Label
+                    Grid.Column="2"
+                    HorizontalTextAlignment="End"
+                    Text="1.191"
+                    TextColor="Green" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    HorizontalTextAlignment="End"
+                    Text="1.191"
+                    TextColor="Green" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    HorizontalTextAlignment="End"
+                    Text="1188.2"
+                    TextColor="Red" />
+                <Label
+                    Grid.Column="3"
+                    Text="Tổng(HĐ)"
+                    TextColor="Black" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Text="KL Mở(OI)"
+                    TextColor="Black" />
+                <Label
+                    Grid.Column="4"
+                    HorizontalTextAlignment="End"
+                    Text="20,822"
+                    TextColor="Black" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    HorizontalOptions="End"
+                    Text="27,303"
+                    TextColor="Black" />
+            </Grid>
+        </Frame>
+        <StackLayout
+            Padding="0,10,0,0"
+            HorizontalOptions="Center"
+            Orientation="Horizontal">
+            <Label
+                x:Name="Xanh"
+                Text="75.23"
+                TextColor="Black" />
+            <Grid ColumnSpacing="0" WidthRequest="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75.23*" />
+                    <ColumnDefinition Width="24.77*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout
+                    Grid.Column="0"
+                    BackgroundColor="Green"
+                    HeightRequest="5"
+                    VerticalOptions="Center" />
+                <StackLayout
+                    Grid.Column="1"
+                    BackgroundColor="Red"
+                    HeightRequest="5"
+                    VerticalOptions="Center" />
+            </Grid>
+            <Label
+                x:Name="Do"
+                Text="24.77"
+                TextColor="Black" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
