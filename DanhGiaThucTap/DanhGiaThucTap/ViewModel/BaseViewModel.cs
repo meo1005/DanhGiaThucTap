@@ -9,7 +9,7 @@ namespace DanhGiaThucTap.ViewModel
     class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        public bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (Object.Equals(storage, value))
                 return false;
