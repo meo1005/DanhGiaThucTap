@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DanhGiaThucTap.Custom;
+using DanhGiaThucTap.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,8 @@ namespace DanhGiaThucTap.View
         public DetailPage()
         {
             InitializeComponent();
+            BindingContext = new DetailViewModel();
+            
         }
     }
 }

@@ -2,11 +2,52 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
-
 namespace DanhGiaThucTap.ViewModel
 {
-    class LenhDieuKienViewModel : BaseViewModel
+    public class LenhDieuKienViewModel : BaseViewModel
     {
+        public Command ClickShowPass { get; }
+        private bool _isPass;
+
+        public bool IsPass
+        {
+            get { return _isPass; }
+            set { SetProperty(ref _isPass, value);}
+        }
+
+        private bool _lbKhoangLai;
+        public bool LbKhoangLai
+        {
+            get { return _lbKhoangLai; }
+            set { SetProperty(ref _lbKhoangLai, value); }
+        }
+        private bool _lbGiaDK;
+        public bool LbGiaDK
+        {
+            get { return _lbGiaDK; }
+            set { SetProperty(ref _lbGiaDK, value); }
+        }
+        public List<string> ListDK { get; set; }
+        private bool _giaIsVisible;
+
+        public bool GiaIsVisible
+        {
+            get { return _giaIsVisible; }
+            set { SetProperty(ref _giaIsVisible, value); }
+        }
+        private Color _backgroundBtnXacNhan;
+        public Color BackgroundBtnXacNhan
+        {
+            get { return _backgroundBtnXacNhan; }
+            set { SetProperty(ref _backgroundBtnXacNhan, value); }
+        }
+
+        private string _textBtnXacNhan;
+        public string TextBtnXacNhan
+        {
+            get { return _textBtnXacNhan; }
+            set { SetProperty(ref _textBtnXacNhan, value); }
+        }
         public Command<bool> CollapsedList { get; }
         public Command<string> ClickTab { get; }
         private FontAttributes _fontFmMua;
@@ -25,14 +66,35 @@ namespace DanhGiaThucTap.ViewModel
         public bool IsExpand
         {
             get { return _isExpand; }
-            set {SetProperty(ref _isExpand, value); }
+            set { SetProperty(ref _isExpand, value); }
         }
         public LenhDieuKienViewModel()
         {
+            ClickShowPass = new Command(OnClickShowPass);
+            IsPass = true;
+            ListDK = new List<string>();
+            ListDK.Add("Lệnh UP");
+            ListDK.Add("Lệnh DOWN");
+            ListDK.Add("Lệnh OCO");
+            ListDK.Add("Lệnh B&B");
             CollapsedList = new Command<bool>(ClickCollapsedList);
             ClickTab = new Command<string>(OnClickTab);
             FontFmMua = FontAttributes.Bold;
             FontFmBan = FontAttributes.None;
+            TextBtnXacNhan = "XÁC NHẬN MUA";
+            BackgroundBtnXacNhan = Color.FromHex("#c9c9c9");
+        }
+
+        private void OnClickShowPass()
+        {
+            if (IsPass)
+            {
+                IsPass = false;
+            }
+            else
+            {
+                IsPass = true;
+            }
         }
 
         private void OnClickTab(string key)
@@ -41,18 +103,40 @@ namespace DanhGiaThucTap.ViewModel
             {
                 FontFmMua = FontAttributes.Bold;
                 FontFmBan = FontAttributes.None;
+                TextBtnXacNhan = "XÁC NHẬN MUA";
             }
             if (key.Equals("2"))
             {
                 FontFmMua = FontAttributes.None;
                 FontFmBan = FontAttributes.Bold;
+                TextBtnXacNhan = "XÁC NHẬN BÁN";
             }
-            
+
         }
         private void ClickCollapsedList(bool key)
         {
-            if(key)
-            IsExpand = false;
+            if (key)
+                IsExpand = false;
+        }
+        public void ItemSelect(int index)
+        {
+            if(index==0 || index == 1)
+            {
+                GiaIsVisible = false;
+                LbGiaDK = false;
+                LbKhoangLai = false;
+            }
+            else if(index == 2)
+            {
+                GiaIsVisible = true;
+                LbKhoangLai = false;
+                LbGiaDK = false;
+            }else if(index == 3)
+            {
+                GiaIsVisible = true;
+                LbKhoangLai = true;
+                LbGiaDK = true;
+            }
         }
     }
 }

@@ -13,20 +13,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView Margin="0" Padding="0">
-        <StackLayout>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <BoxView
-                    Grid.Column="1"
-                    BackgroundColor="#3aac32"
-                    HeightRequest="0.8"
-                    IsVisible="True"
-                    VerticalOptions="Start" />
-            </Grid>
+        <StackLayout Padding="0,0,0,10" Margin="0" Spacing="0">
             <Frame
                 Padding="10"
                 HasShadow="True"
@@ -244,7 +231,7 @@
                             </Grid.RowDefinitions>
                             <Image
                                 HeightRequest="25"
-                                HorizontalOptions="Center"
+                                HorizontalOptions="Fill"
                                 IsVisible="True"
                                 Source="icondown.png"
                                 VerticalOptions="End"
@@ -254,7 +241,6 @@
                                         Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
                                         TargetType="Image"
                                         Value="True">
-                                        <Setter Property="Source" Value="iconup.png" />
                                         <Setter Property="IsVisible" Value="False" />
                                     </DataTrigger>
                                 </Image.Triggers>
@@ -401,7 +387,6 @@
                                             Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
                                             TargetType="Image"
                                             Value="True">
-                                            <Setter Property="Source" Value="iconup.png" />
                                             <Setter Property="IsVisible" Value="True" />
                                         </DataTrigger>
                                     </Image.Triggers>
@@ -488,6 +473,7 @@
                         <custom:DropDownList
                             x:Name="dropdown"
                             HorizontalOptions="FillAndExpand"
+                            ItemsSource="{Binding ListDK}"
                             VerticalOptions="Center" />
                     </StackLayout>
                 </Frame>
@@ -549,7 +535,11 @@
                     Padding="0"
                     BorderColor="LightGray"
                     HasShadow="False">
-                    <StackLayout Orientation="Horizontal" Spacing="10">
+                    <StackLayout
+                        x:Name="FrameGia"
+                        IsVisible="{Binding GiaIsVisible}"
+                        Orientation="Horizontal"
+                        Spacing="10">
                         <ImageButton
                             Margin="10"
                             BackgroundColor="White"
@@ -570,6 +560,13 @@
                             Source="plus.png"
                             WidthRequest="20" />
                     </StackLayout>
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" 
+                                     Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
+                                     Value="False">
+                            <Setter Property="BackgroundColor" Value="#c9c9c9"/>
+                        </DataTrigger>
+                    </Frame.Triggers>
                 </Frame>
                 <!--  dong  -->
                 <StackLayout
@@ -598,6 +595,7 @@
             </Grid>
             <!--  frame chốt lãi  -->
             <Frame
+                IsVisible="{Binding GiaIsVisible}"
                 Margin="10,0,10,0"
                 Padding="7"
                 BorderColor="LightGray"
@@ -657,7 +655,8 @@
                 </Grid>
             </Frame>
             <Label
-                Margin="25,-90,0,90"
+                IsVisible="{Binding GiaIsVisible}"
+                Margin="25,-83,0,90"
                 Padding="0"
                 BackgroundColor="White"
                 HorizontalOptions="Start"
@@ -772,6 +771,13 @@
                     </Frame>
                 </Grid>
             </Frame>
+            <!--<Label
+                Margin="25,-150,0,10"
+                Padding="0"
+                BackgroundColor="White"
+                HorizontalOptions="Start"
+                Text="Chốt lãi"
+                TextColor="Black" />-->
             <!--  mật khẩu  -->
             <Grid Margin="10" RowDefinitions="35">
                 <Grid.ColumnDefinitions>
@@ -787,15 +793,38 @@
                     Padding="0,0,10,0"
                     BorderColor="LightGray"
                     HasShadow="False">
-                    <ImageButton
-                        BackgroundColor="White"
-                        HeightRequest="20"
-                        HorizontalOptions="End"
-                        Source="hide.png"
-                        VerticalOptions="Center"
-                        WidthRequest="20" />
+                    <StackLayout Orientation="Horizontal">
+                        <custom:CustomEntry
+                            x:Name="EntryPass"
+                            FontSize="13"
+                            HorizontalOptions="FillAndExpand"
+                            IsPassword="{Binding IsPass}" />
+                        <ImageButton
+                            BackgroundColor="White"
+                            Command="{Binding ClickShowPass}"
+                            HeightRequest="20"
+                            HorizontalOptions="End"
+                            Source="hide.png"
+                            VerticalOptions="Center"
+                            WidthRequest="20">
+                            <ImageButton.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference EntryPass}, Path=IsPassword}"
+                                    TargetType="ImageButton"
+                                    Value="False">
+                                    <Setter Property="Source" Value="clearpass.png" />
+                                </DataTrigger>
+                            </ImageButton.Triggers>
+                        </ImageButton>
+                    </StackLayout>
                 </Frame>
             </Grid>
+            <Button
+                CornerRadius="20"
+                HorizontalOptions="Center"
+                Text="{Binding TextBtnXacNhan}"
+                TextColor="White"
+                WidthRequest="160" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

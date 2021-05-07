@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace DanhGiaThucTap.ViewModel
 {
-    class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)

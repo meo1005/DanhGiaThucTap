@@ -42,7 +42,7 @@
     <EmbeddedResource Update="View\HuySuaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\LenhDieuKienPage.xaml">
+    <EmbeddedResource Update="View\LenhDieuKhienPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\LenhTheoMauPage.xaml">

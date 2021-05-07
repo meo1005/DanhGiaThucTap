@@ -11,7 +11,7 @@ namespace DanhGiaThucTap
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LenhDieuKienPage());
+            MainPage = new NavigationPage(new FlyOutMainPage());
         }
 
         protected override void OnStart()

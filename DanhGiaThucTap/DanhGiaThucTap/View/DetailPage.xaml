@@ -4,14 +4,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:custom="clr-namespace:DanhGiaThucTap.Custom"
     xmlns:local="clr-namespace:DanhGiaThucTap.View"
     Title="detail"
-    SelectedTabColor="#3aac32"
-    UnselectedTabColor="Gray"
     android:TabbedPage.IsSwipePagingEnabled="False"
     android:TabbedPage.ToolbarPlacement="Bottom"
     BarBackgroundColor="#fafafa"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    SelectedTabColor="#3aac32"
+    UnselectedTabColor="Gray">
     <NavigationPage
         Title="Thị trường"
         BarBackgroundColor="#3aac32"
@@ -33,7 +34,7 @@
         BarBackgroundColor="#3aac32"
         IconImageSource="iconlaw.png">
         <x:Arguments>
-            <local:DatLenhPage Title="Đặt lệnh" />
+            <local:DatLenhPage />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage
