@@ -34,13 +34,25 @@
         BarBackgroundColor="#3aac32"
         IconImageSource="iconlaw.png">
         <x:Arguments>
-            <local:DatLenhPage />
+            <local:LenhDieuKienPage>
+                <NavigationPage.TitleView>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontSize="20"
+                            Text="{Binding ItemListNavigation}"         
+                            TextColor="White" />
+                        <Image
+                            HeightRequest="25"
+                            HorizontalOptions="Start"
+                            Source="sortdown.png"
+                            WidthRequest="25" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ClickListOnNavigation}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </NavigationPage.TitleView>
+            </local:LenhDieuKienPage>
         </x:Arguments>
-        <NavigationPage.TitleView>
-            <StackLayout>
-                <Label Text="ASGDFVSDFG"/>
-            </StackLayout>
-        </NavigationPage.TitleView>
     </NavigationPage>
     <NavigationPage
         Title="Hủy/Sửa"

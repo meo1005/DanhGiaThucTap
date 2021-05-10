@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="FlyOutMainPage.xaml.cs">
       <DependentUpon>FlyOutMainPage.xaml</DependentUpon>
     </Compile>

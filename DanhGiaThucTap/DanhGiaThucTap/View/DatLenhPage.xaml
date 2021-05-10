@@ -22,8 +22,7 @@
                 VerticalOptions="Start" />
         </Grid>
     </local:LenhThuongPage>
-    <local:LenhDieuKienPage Title="LỆNH ĐIỀU KIỆN">
-    </local:LenhDieuKienPage>
+    <local:LenhDieuKienPage Title="LỆNH ĐIỀU KIỆN" />
     <local:LenhTheoMauPage Title="LỆNH THEO MẪU">
         <Grid>
             <Grid.ColumnDefinitions>

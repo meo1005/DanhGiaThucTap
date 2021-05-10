@@ -22,7 +22,7 @@ namespace DanhGiaThucTap.View
         {
             InitializeComponent();
             viewModel = new LenhDieuKienViewModel();
-            BindingContext = new LenhDieuKienViewModel();           
+          //  BindingContext = new LenhDieuKienViewModel();           
             dropdown.SelectedIndex = 0;
             dropdown.ItemSelected += OnDropdownSelected;
         }
@@ -55,5 +55,6 @@ namespace DanhGiaThucTap.View
             await x.ChangeBackgroundColorTo(color, 150, Easing.CubicOut);
             await x.ChangeBackgroundColorTo(actuacolor, 150, Easing.CubicOut);
         }
+
     }
 }

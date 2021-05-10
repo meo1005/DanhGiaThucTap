@@ -12,435 +12,366 @@
             <conver:TabMuaBanConverter x:Key="focus" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout
-        Margin="0"
-        Padding="0"
-        Spacing="0">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <BoxView
-                Grid.Column="1"
-                BackgroundColor="Green"
-                HeightRequest="2"
-                VerticalOptions="Start" />
-        </Grid>
-        <ScrollView
-            Margin="10,0,10,2"
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="chart.png" />
+        <ToolbarItem IconImageSource="expand.png" />
+    </ContentPage.ToolbarItems>
+    <RelativeLayout>
+        <StackLayout
+            Margin="0"
             Padding="0"
-            VerticalOptions="FillAndExpand"
-            VerticalScrollBarVisibility="Never">
-            <StackLayout
-                Margin="0"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height,
+                                                                   Factor=1}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=1}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0}"
+            Spacing="0">
+            <!--  tab  -->
+            <Grid
+                BackgroundColor="LightGray"
+                ColumnSpacing="0"
+                RowDefinitions="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--  tab lệnh thường  -->
+                <Label
+                    x:Name="Tab1"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    Text="LỆNH THƯỜNG"
+                    TextColor="{Binding Tab1Color}"
+                    VerticalOptions="CenterAndExpand" />
+                <BoxView
+                    BackgroundColor="Green"
+                    HeightRequest="2"
+                    IsVisible="False"
+                    VerticalOptions="End">
+                    <BoxView.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Source={x:Reference Tab1}, Path=TextColor}"
+                            TargetType="BoxView"
+                            Value="Green">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+                <!--  tab lệnh điều kiện  -->
+                <Label
+                    x:Name="Tab2"
+                    Grid.Column="1"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    Text="LỆNH ĐIỀU KIỆN"
+                    TextColor="{Binding Tab2Color}"
+                    VerticalOptions="CenterAndExpand" />
+                <BoxView
+                    x:Name="Tab2Isvisible"
+                    Grid.Column="1"
+                    BackgroundColor="Green"
+                    HeightRequest="2"
+                    IsVisible="False"
+                    VerticalOptions="End">
+                    <BoxView.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Source={x:Reference Tab2}, Path=TextColor}"
+                            TargetType="BoxView"
+                            Value="Green">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+                <!--  tab lệnh theo mẫu  -->
+                <Label
+                    x:Name="Tab3"
+                    Grid.Column="2"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    Text="LỆNH THEO MẪU"
+                    TextColor="{Binding Tab3Color}"
+                    VerticalOptions="CenterAndExpand" />
+                <BoxView
+                    Grid.Column="2"
+                    BackgroundColor="Green"
+                    HeightRequest="2"
+                    IsVisible="False"
+                    VerticalOptions="End">
+                    <BoxView.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Source={x:Reference Tab3}, Path=TextColor}"
+                            TargetType="BoxView"
+                            Value="Green">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+                <ContentView BackgroundColor="Transparent">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClickSelectTab}" CommandParameter="Tab1" />
+                    </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView Grid.Column="1" BackgroundColor="Transparent">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClickSelectTab}" CommandParameter="Tab2" />
+                    </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView Grid.Column="2" BackgroundColor="Transparent">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClickSelectTab}" CommandParameter="Tab3" />
+                    </ContentView.GestureRecognizers>
+                </ContentView>
+            </Grid>
+            <!--  tab lệnh điều kiện  -->
+
+            <ScrollView
+                Margin="10,0,10,2"
                 Padding="0"
-                Spacing="0">
-                <Frame HasShadow="True" HeightRequest="70">
-                    <Grid>
+                IsVisible="{Binding Source={x:Reference Tab2Isvisible}, Path=IsVisible}"
+                VerticalOptions="FillAndExpand"
+                VerticalScrollBarVisibility="Never">
+                <StackLayout
+                    Margin="0"
+                    Padding="0"
+                    Spacing="0">
+                    <Frame HasShadow="True" HeightRequest="70">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1.5*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                Grid.RowSpan="2"
+                                Orientation="Horizontal"
+                                VerticalOptions="Center">
+                                <Image
+                                    HeightRequest="20"
+                                    HorizontalOptions="Start"
+                                    Source="hinhvuong.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="20" />
+                                <Label
+                                    FontSize="20"
+                                    HorizontalOptions="End"
+                                    Text="1,188.6"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                            <Label
+                                Grid.Row="2"
+                                HorizontalOptions="Center"
+                                Text="-0.2 (-0.02%)"
+                                TextColor="Orange" />
+                            <Label
+                                Grid.Column="1"
+                                Text="Mở cửa"
+                                TextColor="Black" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="Cao"
+                                TextColor="Black" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="Thấp"
+                                TextColor="Black" />
+                            <Label
+                                Grid.Column="2"
+                                HorizontalTextAlignment="End"
+                                Text="1.191"
+                                TextColor="Green" />
+                            <Label
+                                Grid.Column="2"
+                                HorizontalTextAlignment="End"
+                                Text="1.191"
+                                TextColor="Green" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalTextAlignment="End"
+                                Text="1.191"
+                                TextColor="Green" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                HorizontalTextAlignment="End"
+                                Text="1188.2"
+                                TextColor="Red" />
+                            <Label
+                                Grid.Column="3"
+                                Text="Tổng(HĐ)"
+                                TextColor="Black" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                Text="KL Mở(OI)"
+                                TextColor="Black" />
+                            <Label
+                                Grid.Column="4"
+                                HorizontalTextAlignment="End"
+                                Text="20,822"
+                                TextColor="Black" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="4"
+                                HorizontalOptions="End"
+                                Text="27,303"
+                                TextColor="Black" />
+                        </Grid>
+                    </Frame>
+                    <StackLayout
+                        Padding="0,10,0,0"
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal">
+                        <Label Text="75.23%" TextColor="Black" />
+                        <Grid ColumnSpacing="0" WidthRequest="250">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75.23*" />
+                                <ColumnDefinition Width="24.77*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                Grid.Column="0"
+                                BackgroundColor="Green"
+                                HeightRequest="5"
+                                VerticalOptions="Center" />
+                            <StackLayout
+                                Grid.Column="1"
+                                BackgroundColor="Red"
+                                HeightRequest="5"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <Label Text="24.77%" TextColor="Black" />
+                    </StackLayout>
+                    <!--  phan expander  -->
+                    <Grid ColumnSpacing="3" RowSpacing="3">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="20" />
-                            <RowDefinition Height="20" />
-                            <RowDefinition Height="20" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="1.5*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <StackLayout
-                            Grid.RowSpan="2"
-                            Orientation="Horizontal"
-                            VerticalOptions="Center">
-                            <Image
-                                HeightRequest="20"
-                                HorizontalOptions="Start"
-                                Source="hinhvuong.png"
-                                VerticalOptions="Center"
-                                WidthRequest="20" />
-                            <Label
-                                FontSize="20"
-                                HorizontalOptions="End"
-                                Text="1,188.6"
-                                TextColor="Black"
-                                VerticalOptions="Center" />
-                        </StackLayout>
                         <Label
-                            Grid.Row="2"
-                            HorizontalOptions="Center"
-                            Text="-0.2 (-0.02%)"
-                            TextColor="Orange" />
-                        <Label
-                            Grid.Column="1"
-                            Text="Mở cửa"
-                            TextColor="Black" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Text="Cao"
-                            TextColor="Black" />
-                        <Label
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Text="Thấp"
-                            TextColor="Black" />
-                        <Label
-                            Grid.Column="2"
-                            HorizontalTextAlignment="End"
-                            Text="1.191"
-                            TextColor="Green" />
-                        <Label
-                            Grid.Column="2"
-                            HorizontalTextAlignment="End"
-                            Text="1.191"
-                            TextColor="Green" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            HorizontalTextAlignment="End"
-                            Text="1.191"
-                            TextColor="Green" />
-                        <Label
-                            Grid.Row="2"
-                            Grid.Column="2"
-                            HorizontalTextAlignment="End"
-                            Text="1188.2"
-                            TextColor="Red" />
-                        <Label
-                            Grid.Column="3"
-                            Text="Tổng(HĐ)"
-                            TextColor="Black" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="3"
-                            Text="KL Mở(OI)"
-                            TextColor="Black" />
-                        <Label
-                            Grid.Column="4"
-                            HorizontalTextAlignment="End"
-                            Text="20,822"
-                            TextColor="Black" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="4"
-                            HorizontalOptions="End"
-                            Text="27,303"
-                            TextColor="Black" />
-                    </Grid>
-                </Frame>
-                <StackLayout
-                    Padding="0,10,0,0"
-                    HorizontalOptions="Center"
-                    Orientation="Horizontal">
-                    <Label Text="75.23%" TextColor="Black" />
-                    <Grid ColumnSpacing="0" WidthRequest="250">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75.23*" />
-                            <ColumnDefinition Width="24.77*" />
-                        </Grid.ColumnDefinitions>
-                        <StackLayout
                             Grid.Column="0"
-                            BackgroundColor="Green"
-                            HeightRequest="5"
-                            VerticalOptions="Center" />
-                        <StackLayout
+                            HorizontalOptions="Start"
+                            Text="Dư mua"
+                            TextColor="Green" />
+                        <Label
                             Grid.Column="1"
-                            BackgroundColor="Red"
-                            HeightRequest="5"
-                            VerticalOptions="Center" />
-                    </Grid>
-                    <Label Text="24.77%" TextColor="Black" />
-                </StackLayout>
-                <!--  phan expander  -->
-                <Grid ColumnSpacing="3" RowSpacing="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="0"
-                        HorizontalOptions="Start"
-                        Text="Dư mua"
-                        TextColor="Green" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalOptions="Start"
-                        Text="Dư bán"
-                        TextColor="Red" />
-                    <!--  frame du mua du ban  -->
-                    <StackLayout
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Padding="10"
-                        BackgroundColor="#eef8ec"
-                        Orientation="Horizontal">
-                        <Frame
-                            Padding="0"
-                            BackgroundColor="Green"
-                            HasShadow="False"
-                            HeightRequest="15"
                             HorizontalOptions="Start"
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="15">
-                            <Label
-                                FontSize="10"
-                                HorizontalOptions="Center"
-                                Text="1"
-                                TextColor="White"
-                                VerticalTextAlignment="Center" />
-                        </Frame>
-                        <Label
-                            FontSize="15"
-                            Text="1,188.7"
-                            TextColor="Green" />
-                        <Label
-                            HorizontalOptions="EndAndExpand"
-                            Text="9"
-                            TextColor="Green" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding ClickTranfer}"
-                                CommandParameter="00"
-                                Tapped="TapSideMua" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    <StackLayout
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Padding="10"
-                        BackgroundColor="#fde8e9"
-                        Orientation="Horizontal">
-                        <Frame
-                            Padding="0"
-                            BackgroundColor="Red"
-                            HasShadow="False"
-                            HeightRequest="15"
-                            HorizontalOptions="Start"
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="15">
-                            <Label
-                                FontSize="10"
-                                HorizontalOptions="Center"
-                                Text="1"
-                                TextColor="White"
-                                VerticalTextAlignment="Center" />
-                        </Frame>
-                        <Label
-                            FontSize="15"
-                            Text="1,188.8"
+                            Text="Dư bán"
                             TextColor="Red" />
-                        <Label
-                            HorizontalOptions="EndAndExpand"
-                            Text="27"
-                            TextColor="Red" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding ClickTranfer}"
-                                CommandParameter="01"
-                                Tapped="TapSideBan" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    <!--  expander  -->
+                        <!--  frame du mua du ban  -->
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Padding="10"
+                            BackgroundColor="#eef8ec"
+                            Orientation="Horizontal">
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="Green"
+                                HasShadow="False"
+                                HeightRequest="15"
+                                HorizontalOptions="Start"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="15">
+                                <Label
+                                    FontSize="10"
+                                    HorizontalOptions="Center"
+                                    Text="1"
+                                    TextColor="White"
+                                    VerticalTextAlignment="Center" />
+                            </Frame>
+                            <Label
+                                FontSize="15"
+                                Text="1,188.7"
+                                TextColor="Green" />
+                            <Label
+                                HorizontalOptions="EndAndExpand"
+                                Text="9"
+                                TextColor="Green" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ClickTranfer}"
+                                    CommandParameter="00"
+                                    Tapped="TapSideMua" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Padding="10"
+                            BackgroundColor="#fde8e9"
+                            Orientation="Horizontal">
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="Red"
+                                HasShadow="False"
+                                HeightRequest="15"
+                                HorizontalOptions="Start"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="15">
+                                <Label
+                                    FontSize="10"
+                                    HorizontalOptions="Center"
+                                    Text="1"
+                                    TextColor="White"
+                                    VerticalTextAlignment="Center" />
+                            </Frame>
+                            <Label
+                                FontSize="15"
+                                Text="1,188.8"
+                                TextColor="Red" />
+                            <Label
+                                HorizontalOptions="EndAndExpand"
+                                Text="27"
+                                TextColor="Red" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ClickTranfer}"
+                                    CommandParameter="01"
+                                    Tapped="TapSideBan" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <!--  expander  -->
 
-                    <xct:Expander
-                        x:Name="expander"
-                        Grid.Row="2"
-                        Grid.ColumnSpan="2"
-                        CollapseAnimationLength="500"
-                        ExpandAnimationLength="500"
-                        IsExpanded="{Binding IsExpand}">
-                        <xct:Expander.Header>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Image
-                                    HeightRequest="25"
-                                    HorizontalOptions="Fill"
-                                    IsVisible="True"
-                                    Source="icondown.png"
-                                    VerticalOptions="End"
-                                    WidthRequest="25">
-                                    <Image.Triggers>
-                                        <DataTrigger
-                                            Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
-                                            TargetType="Image"
-                                            Value="True">
-                                            <Setter Property="IsVisible" Value="False" />
-                                        </DataTrigger>
-                                    </Image.Triggers>
-                                </Image>
-                            </Grid>
-                        </xct:Expander.Header>
-                        <xct:Expander.ContentTemplate>
-                            <DataTemplate>
-                                <Grid ColumnSpacing="3" RowSpacing="3">
+                        <xct:Expander
+                            x:Name="expander"
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            CollapseAnimationLength="500"
+                            ExpandAnimationLength="500"
+                            IsExpanded="{Binding IsExpand}">
+                            <xct:Expander.Header>
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout
-                                        Padding="10"
-                                        BackgroundColor="#eef8ec"
-                                        Orientation="Horizontal">
-                                        <Frame
-                                            Padding="0"
-                                            BackgroundColor="Green"
-                                            HasShadow="False"
-                                            HeightRequest="15"
-                                            HorizontalOptions="Start"
-                                            VerticalOptions="CenterAndExpand"
-                                            WidthRequest="15">
-                                            <Label
-                                                FontSize="10"
-                                                HorizontalOptions="Center"
-                                                Text="2"
-                                                TextColor="White"
-                                                VerticalTextAlignment="Center" />
-                                        </Frame>
-                                        <Label
-                                            FontSize="15"
-                                            Text="1,326.4"
-                                            TextColor="Green" />
-                                        <Label
-                                            HorizontalOptions="EndAndExpand"
-                                            Text="1"
-                                            TextColor="Green" />
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding ClickTranfer}"
-                                                CommandParameter="10"
-                                                Tapped="TapSideMua" />
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
-                                    <StackLayout
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Padding="10"
-                                        BackgroundColor="#fde8e9"
-                                        Orientation="Horizontal">
-                                        <Frame
-                                            Padding="0"
-                                            BackgroundColor="Red"
-                                            HasShadow="False"
-                                            HeightRequest="15"
-                                            HorizontalOptions="Start"
-                                            VerticalOptions="CenterAndExpand"
-                                            WidthRequest="15">
-                                            <Label
-                                                FontSize="10"
-                                                HorizontalOptions="Center"
-                                                Text="2"
-                                                TextColor="White"
-                                                VerticalTextAlignment="Center" />
-                                        </Frame>
-                                        <Label
-                                            FontSize="15"
-                                            Text="1,327.2"
-                                            TextColor="Red" />
-                                        <Label
-                                            HorizontalOptions="EndAndExpand"
-                                            Text="1"
-                                            TextColor="Red" />
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding ClickTranfer}"
-                                                CommandParameter="11"
-                                                Tapped="TapSideBan" />
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
-                                    <StackLayout
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Padding="10"
-                                        BackgroundColor="#eef8ec"
-                                        Orientation="Horizontal">
-                                        <Frame
-                                            Padding="0"
-                                            BackgroundColor="Green"
-                                            HasShadow="False"
-                                            HeightRequest="15"
-                                            HorizontalOptions="Start"
-                                            VerticalOptions="CenterAndExpand"
-                                            WidthRequest="15">
-                                            <Label
-                                                FontSize="10"
-                                                HorizontalOptions="Center"
-                                                Text="3"
-                                                TextColor="White"
-                                                VerticalTextAlignment="Center" />
-                                        </Frame>
-                                        <Label
-                                            FontSize="15"
-                                            Text="1,188.8"
-                                            TextColor="Green" />
-                                        <Label
-                                            HorizontalOptions="EndAndExpand"
-                                            Text="27"
-                                            TextColor="Green" />
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding ClickTranfer}"
-                                                CommandParameter="20"
-                                                Tapped="TapSideMua" />
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
-                                    <StackLayout
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Padding="10"
-                                        BackgroundColor="#fde8e9"
-                                        Orientation="Horizontal">
-                                        <Frame
-                                            Padding="0"
-                                            BackgroundColor="Red"
-                                            HasShadow="False"
-                                            HeightRequest="15"
-                                            HorizontalOptions="Start"
-                                            VerticalOptions="CenterAndExpand"
-                                            WidthRequest="15">
-                                            <Label
-                                                FontSize="10"
-                                                HorizontalOptions="Center"
-                                                Text="3"
-                                                TextColor="White"
-                                                VerticalTextAlignment="Center" />
-                                        </Frame>
-                                        <Label
-                                            FontSize="15"
-                                            Text="1,188.8"
-                                            TextColor="Red" />
-                                        <Label
-                                            HorizontalOptions="EndAndExpand"
-                                            Text="27"
-                                            TextColor="Red" />
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding ClickTranfer}"
-                                                CommandParameter="21"
-                                                Tapped="TapSideBan" />
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
                                     <Image
-                                        Grid.Row="2"
-                                        Grid.ColumnSpan="2"
                                         HeightRequest="25"
-                                        HorizontalOptions="FillAndExpand"
-                                        IsVisible="False"
-                                        Source="iconup.png"
+                                        HorizontalOptions="Fill"
+                                        IsVisible="True"
+                                        Source="icondown.png"
                                         VerticalOptions="End"
                                         WidthRequest="25">
                                         <Image.Triggers>
@@ -448,492 +379,707 @@
                                                 Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
                                                 TargetType="Image"
                                                 Value="True">
-                                                <Setter Property="IsVisible" Value="True" />
+                                                <Setter Property="IsVisible" Value="False" />
                                             </DataTrigger>
                                         </Image.Triggers>
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding CollapsedList}" CommandParameter="{Binding Source={x:Reference expander}, Path=IsExpanded}" />
-                                        </Image.GestureRecognizers>
                                     </Image>
                                 </Grid>
-                            </DataTemplate>
-                        </xct:Expander.ContentTemplate>
-                    </xct:Expander>
-                </Grid>
-                <!--  phan mua ban  -->
-                <Grid ColumnSpacing="3" RowSpacing="15">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackLayout
-                        x:Name="TabMua"
-                        Grid.Column="0"
-                        BackgroundColor="#f2f2f2">
-                        <Label
-                            x:Name="LbMua"
-                            FontAttributes="{Binding FontFmMua}"
-                            FontSize="20"
-                            HorizontalTextAlignment="Center"
-                            Text="MUA"
-                            TextColor="Green"
-                            VerticalOptions="CenterAndExpand" />
-                        <BoxView
-                            BackgroundColor="Green"
-                            HeightRequest="1.5"
-                            IsVisible="{Binding Source={x:Reference LbMua}, Path=FontAttributes, Converter={StaticResource focus}}"
-                            VerticalOptions="End" />
-                    </StackLayout>
-                    <StackLayout
-                        x:Name="TabBan"
-                        Grid.Column="1"
-                        BackgroundColor="#f2f2f2">
-                        <Label
-                            x:Name="LbBan"
-                            FontAttributes="{Binding FontFmBan}"
-                            FontSize="20"
-                            HorizontalTextAlignment="Center"
-                            Text="BÁN"
-                            TextColor="Red"
-                            VerticalOptions="CenterAndExpand" />
-                        <BoxView
-                            BackgroundColor="Red"
-                            HeightRequest="1.5"
-                            IsVisible="{Binding Source={x:Reference LbBan}, Path=FontAttributes, Converter={StaticResource focus}}"
-                            VerticalOptions="End" />
-                    </StackLayout>
-                    <ContentView Grid.Column="0" BackgroundColor="Transparent">
-                        <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ClickTab}" CommandParameter="1" />
-                        </ContentView.GestureRecognizers>
-                    </ContentView>
-                    <ContentView Grid.Column="1" BackgroundColor="Transparent">
-                        <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ClickTab}" CommandParameter="2" />
-                        </ContentView.GestureRecognizers>
-                    </ContentView>
-                    <!--  dong loai dieu kien  -->
-                    <Label
-                        Grid.Row="1"
-                        HorizontalOptions="Start"
-                        Text="Loại điều kiện"
-                        TextColor="Black"
-                        VerticalOptions="Center" />
-                    <Frame
-                        x:Name="FrameLenh"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Padding="0"
-                        BorderColor="LightGray"
-                        HasShadow="False">
-                        <StackLayout>
-                            <custom:DropDownList
-                                x:Name="dropdown"
-                                HorizontalOptions="FillAndExpand"
-                                ItemsSource="{Binding ListDK}"
-                                VerticalOptions="Center" />
+                            </xct:Expander.Header>
+                            <xct:Expander.ContentTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnSpacing="3" RowSpacing="3">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout
+                                            Padding="10"
+                                            BackgroundColor="#eef8ec"
+                                            Orientation="Horizontal">
+                                            <Frame
+                                                Padding="0"
+                                                BackgroundColor="Green"
+                                                HasShadow="False"
+                                                HeightRequest="15"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="CenterAndExpand"
+                                                WidthRequest="15">
+                                                <Label
+                                                    FontSize="10"
+                                                    HorizontalOptions="Center"
+                                                    Text="2"
+                                                    TextColor="White"
+                                                    VerticalTextAlignment="Center" />
+                                            </Frame>
+                                            <Label
+                                                FontSize="15"
+                                                Text="1,326.4"
+                                                TextColor="Green" />
+                                            <Label
+                                                HorizontalOptions="EndAndExpand"
+                                                Text="1"
+                                                TextColor="Green" />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ClickTranfer}"
+                                                    CommandParameter="10"
+                                                    Tapped="TapSideMua" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Padding="10"
+                                            BackgroundColor="#fde8e9"
+                                            Orientation="Horizontal">
+                                            <Frame
+                                                Padding="0"
+                                                BackgroundColor="Red"
+                                                HasShadow="False"
+                                                HeightRequest="15"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="CenterAndExpand"
+                                                WidthRequest="15">
+                                                <Label
+                                                    FontSize="10"
+                                                    HorizontalOptions="Center"
+                                                    Text="2"
+                                                    TextColor="White"
+                                                    VerticalTextAlignment="Center" />
+                                            </Frame>
+                                            <Label
+                                                FontSize="15"
+                                                Text="1,327.2"
+                                                TextColor="Red" />
+                                            <Label
+                                                HorizontalOptions="EndAndExpand"
+                                                Text="1"
+                                                TextColor="Red" />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ClickTranfer}"
+                                                    CommandParameter="11"
+                                                    Tapped="TapSideBan" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Padding="10"
+                                            BackgroundColor="#eef8ec"
+                                            Orientation="Horizontal">
+                                            <Frame
+                                                Padding="0"
+                                                BackgroundColor="Green"
+                                                HasShadow="False"
+                                                HeightRequest="15"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="CenterAndExpand"
+                                                WidthRequest="15">
+                                                <Label
+                                                    FontSize="10"
+                                                    HorizontalOptions="Center"
+                                                    Text="3"
+                                                    TextColor="White"
+                                                    VerticalTextAlignment="Center" />
+                                            </Frame>
+                                            <Label
+                                                FontSize="15"
+                                                Text="1,188.8"
+                                                TextColor="Green" />
+                                            <Label
+                                                HorizontalOptions="EndAndExpand"
+                                                Text="27"
+                                                TextColor="Green" />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ClickTranfer}"
+                                                    CommandParameter="20"
+                                                    Tapped="TapSideMua" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Padding="10"
+                                            BackgroundColor="#fde8e9"
+                                            Orientation="Horizontal">
+                                            <Frame
+                                                Padding="0"
+                                                BackgroundColor="Red"
+                                                HasShadow="False"
+                                                HeightRequest="15"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="CenterAndExpand"
+                                                WidthRequest="15">
+                                                <Label
+                                                    FontSize="10"
+                                                    HorizontalOptions="Center"
+                                                    Text="3"
+                                                    TextColor="White"
+                                                    VerticalTextAlignment="Center" />
+                                            </Frame>
+                                            <Label
+                                                FontSize="15"
+                                                Text="1,188.8"
+                                                TextColor="Red" />
+                                            <Label
+                                                HorizontalOptions="EndAndExpand"
+                                                Text="27"
+                                                TextColor="Red" />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ClickTranfer}"
+                                                    CommandParameter="21"
+                                                    Tapped="TapSideBan" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                        <Image
+                                            Grid.Row="2"
+                                            Grid.ColumnSpan="2"
+                                            HeightRequest="25"
+                                            HorizontalOptions="FillAndExpand"
+                                            IsVisible="False"
+                                            Source="iconup.png"
+                                            VerticalOptions="End"
+                                            WidthRequest="25">
+                                            <Image.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
+                                                    TargetType="Image"
+                                                    Value="True">
+                                                    <Setter Property="IsVisible" Value="True" />
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CollapsedList}" CommandParameter="{Binding Source={x:Reference expander}, Path=IsExpanded}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Grid>
+                                </DataTemplate>
+                            </xct:Expander.ContentTemplate>
+                        </xct:Expander>
+                    </Grid>
+                    <!--  phan mua ban  -->
+                    <Grid ColumnSpacing="3" RowSpacing="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
+                            x:Name="TabMua"
+                            Grid.Column="0"
+                            BackgroundColor="#f2f2f2">
+                            <Label
+                                x:Name="LbMua"
+                                FontAttributes="{Binding FontFmMua}"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Text="MUA"
+                                TextColor="Green"
+                                VerticalOptions="CenterAndExpand" />
+                            <BoxView
+                                BackgroundColor="Green"
+                                HeightRequest="1.5"
+                                IsVisible="{Binding Source={x:Reference LbMua}, Path=FontAttributes, Converter={StaticResource focus}}"
+                                VerticalOptions="End" />
                         </StackLayout>
-                    </Frame>
-                    <!--  dong khoi luong  -->
-                    <StackLayout Grid.Row="2" Orientation="Horizontal">
+                        <StackLayout
+                            x:Name="TabBan"
+                            Grid.Column="1"
+                            BackgroundColor="#f2f2f2">
+                            <Label
+                                x:Name="LbBan"
+                                FontAttributes="{Binding FontFmBan}"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Text="BÁN"
+                                TextColor="Red"
+                                VerticalOptions="CenterAndExpand" />
+                            <BoxView
+                                BackgroundColor="Red"
+                                HeightRequest="1.5"
+                                IsVisible="{Binding Source={x:Reference LbBan}, Path=FontAttributes, Converter={StaticResource focus}}"
+                                VerticalOptions="End" />
+                        </StackLayout>
+                        <ContentView Grid.Column="0" BackgroundColor="Transparent">
+                            <ContentView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickTab}" CommandParameter="1" />
+                            </ContentView.GestureRecognizers>
+                        </ContentView>
+                        <ContentView Grid.Column="1" BackgroundColor="Transparent">
+                            <ContentView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickTab}" CommandParameter="2" />
+                            </ContentView.GestureRecognizers>
+                        </ContentView>
+                        <!--  dong loai dieu kien  -->
                         <Label
+                            Grid.Row="1"
                             HorizontalOptions="Start"
-                            Text="Khối lượng"
+                            Text="Loại điều kiện"
                             TextColor="Black"
                             VerticalOptions="Center" />
                         <Frame
-                            Margin="3"
-                            Padding="5"
-                            BackgroundColor="#818181"
+                            x:Name="FrameLenh"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Padding="0"
+                            BorderColor="LightGray"
                             HasShadow="False">
-                            <Label
-                                Text="max 0"
-                                TextColor="White"
-                                VerticalOptions="Center" />
+                            <StackLayout>
+                                <custom:DropDownList
+                                    x:Name="dropdown"
+                                    HorizontalOptions="FillAndExpand"
+                                    ItemsSource="{Binding ListDK}"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
                         </Frame>
-                    </StackLayout>
-                    <Frame
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Padding="0"
-                        BorderColor="LightGray"
-                        HasShadow="False">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <ImageButton
-                                Margin="10"
-                                BackgroundColor="White"
-                                HeightRequest="20"
+                        <!--  dong khoi luong  -->
+                        <StackLayout Grid.Row="2" Orientation="Horizontal">
+                            <Label
                                 HorizontalOptions="Start"
-                                Source="minus.png"
-                                WidthRequest="20" />
-                            <custom:CustomEntry
-                                FontSize="13"
-                                HorizontalOptions="FillAndExpand"
-                                HorizontalTextAlignment="Center"
-                                Keyboard="Numeric" />
-                            <ImageButton
-                                Margin="10"
-                                BackgroundColor="White"
-                                HeightRequest="20"
-                                HorizontalOptions="End"
-                                Source="plus.png"
-                                WidthRequest="20" />
+                                Text="Khối lượng"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                            <Frame
+                                Margin="3"
+                                Padding="5"
+                                BackgroundColor="#818181"
+                                HasShadow="False">
+                                <Label
+                                    Text="max 0"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                            </Frame>
                         </StackLayout>
-                    </Frame>
-                    <!--  dong Gia  -->
-                    <Label
-                        Grid.Row="3"
-                        Text="Giá"
-                        TextColor="Black"
-                        VerticalOptions="Center" />
-                    <Frame
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        Padding="0"
-                        BorderColor="LightGray"
-                        HasShadow="False">
+                        <Frame
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Padding="0"
+                            BorderColor="LightGray"
+                            HasShadow="False">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <ImageButton
+                                    Margin="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="20"
+                                    HorizontalOptions="Start"
+                                    Source="minus.png"
+                                    WidthRequest="20" />
+                                <custom:CustomEntry
+                                    FontSize="13"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    Keyboard="Numeric" />
+                                <ImageButton
+                                    Margin="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="20"
+                                    HorizontalOptions="End"
+                                    Source="plus.png"
+                                    WidthRequest="20" />
+                            </StackLayout>
+                        </Frame>
+                        <!--  dong Gia  -->
+                        <Label
+                            Grid.Row="3"
+                            Text="Giá"
+                            TextColor="Black"
+                            VerticalOptions="Center" />
+                        <Frame
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Padding="0"
+                            BorderColor="LightGray"
+                            HasShadow="False">
+                            <StackLayout
+                                x:Name="FrameGia"
+                                IsVisible="{Binding GiaIsVisible}"
+                                Orientation="Horizontal"
+                                Spacing="10">
+                                <ImageButton
+                                    Margin="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="20"
+                                    HorizontalOptions="Start"
+                                    Source="minus.png"
+                                    WidthRequest="20" />
+                                <custom:CustomEntry
+                                    FontSize="13"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    Keyboard="Numeric" />
+                                <ImageButton
+                                    Margin="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="20"
+                                    HorizontalOptions="End"
+                                    Source="plus.png"
+                                    WidthRequest="20" />
+                            </StackLayout>
+                            <Frame.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
+                                    TargetType="Frame"
+                                    Value="False">
+                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference TabBan}, Path=BackgroundColor}"
+                                    TargetType="Frame"
+                                    Value="#c9c9c9">
+                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference TabMua}, Path=BackgroundColor}"
+                                    TargetType="Frame"
+                                    Value="#c9c9c9">
+                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+                        </Frame>
+                        <!--  dong  -->
                         <StackLayout
-                            x:Name="FrameGia"
-                            IsVisible="{Binding GiaIsVisible}"
-                            Orientation="Horizontal"
-                            Spacing="10">
-                            <ImageButton
-                                Margin="10"
-                                BackgroundColor="White"
-                                HeightRequest="20"
-                                HorizontalOptions="Start"
-                                Source="minus.png"
-                                WidthRequest="20" />
-                            <custom:CustomEntry
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Margin="0,-7,0,10"
+                            Orientation="Horizontal">
+                            <Label
                                 FontSize="13"
-                                HorizontalOptions="FillAndExpand"
-                                HorizontalTextAlignment="Center"
-                                Keyboard="Numeric" />
-                            <ImageButton
-                                Margin="10"
-                                BackgroundColor="White"
-                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Text="1,409"
+                                TextColor="#d586c0" />
+                            <Label
+                                Grid.Column="1"
+                                FontSize="13"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="1,316.9"
+                                TextColor="#d89869" />
+                            <Label
+                                Grid.Column="2"
+                                FontSize="13"
                                 HorizontalOptions="End"
-                                Source="plus.png"
-                                WidthRequest="20" />
+                                Text="1,224.8"
+                                TextColor="#70c9e2" />
                         </StackLayout>
-                        <Frame.Triggers>
+                    </Grid>
+                    <!--  frame chốt lãi  -->
+                    <Frame
+                        Padding="7"
+                        BorderColor="LightGray"
+                        HasShadow="False"
+                        IsVisible="{Binding GiaIsVisible}">
+                        <Grid RowSpacing="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="35" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                IsVisible="{Binding LbKhoangLai}"
+                                Text="Khoảng lãi"
+                                TextColor="Black" />
+                            <Label
+                                Grid.Column="1"
+                                Text="Giá chốt lãi"
+                                TextColor="Black" />
+                            <Frame
+                                Grid.Row="1"
+                                Padding="0"
+                                BorderColor="LightGray"
+                                HasShadow="False"
+                                IsVisible="{Binding LbKhoangLai}">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <ImageButton
+                                        Margin="10"
+                                        BackgroundColor="White"
+                                        HeightRequest="20"
+                                        HorizontalOptions="Start"
+                                        Source="minus.png"
+                                        WidthRequest="20" />
+                                    <custom:CustomEntry
+                                        FontSize="13"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Keyboard="Numeric" />
+                                    <ImageButton
+                                        Margin="10"
+                                        BackgroundColor="White"
+                                        HeightRequest="20"
+                                        HorizontalOptions="End"
+                                        Source="plus.png"
+                                        WidthRequest="20" />
+                                </StackLayout>
+                            </Frame>
+                            <Frame
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Padding="0"
+                                BackgroundColor="#c9c9c9"
+                                HasShadow="False">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="asddfasd"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                    <Label
+                        Margin="25,-83,0,90"
+                        Padding="0"
+                        BackgroundColor="White"
+                        HorizontalOptions="Start"
+                        IsVisible="{Binding GiaIsVisible}"
+                        Text="Chốt lãi"
+                        TextColor="Black" />
+                    <!--  frame cắt lỗ  -->
+                    <Frame
+                        Padding="7"
+                        BorderColor="LightGray"
+                        HasShadow="False">
+                        <Grid RowSpacing="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="35" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Giá điều kiện" TextColor="Black">
+                                <Label.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding LbGiaDK}"
+                                        TargetType="Label"
+                                        Value="True">
+                                        <Setter Property="Text" Value="Khoảng lỗ" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label
+                                Grid.Column="1"
+                                Text="Biên trượt"
+                                TextColor="Black" />
+                            <Frame
+                                Grid.Row="1"
+                                Padding="0"
+                                BorderColor="LightGray"
+                                HasShadow="False">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <ImageButton
+                                        Margin="10"
+                                        BackgroundColor="White"
+                                        HeightRequest="20"
+                                        HorizontalOptions="Start"
+                                        Source="minus.png"
+                                        WidthRequest="20" />
+                                    <custom:CustomEntry
+                                        FontSize="13"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Keyboard="Numeric" />
+                                    <ImageButton
+                                        Margin="10"
+                                        BackgroundColor="White"
+                                        HeightRequest="20"
+                                        HorizontalOptions="End"
+                                        Source="plus.png"
+                                        WidthRequest="20" />
+                                </StackLayout>
+                            </Frame>
+                            <Frame
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Padding="0"
+                                BorderColor="LightGray"
+                                HasShadow="False">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <ImageButton
+                                        Margin="10"
+                                        BackgroundColor="White"
+                                        HeightRequest="20"
+                                        HorizontalOptions="Start"
+                                        Source="minus.png"
+                                        WidthRequest="20" />
+                                    <custom:CustomEntry
+                                        FontSize="13"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Keyboard="Numeric" />
+                                    <ImageButton
+                                        Margin="10"
+                                        BackgroundColor="White"
+                                        HeightRequest="20"
+                                        HorizontalOptions="End"
+                                        Source="plus.png"
+                                        WidthRequest="20" />
+                                </StackLayout>
+                            </Frame>
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="Giá đặt điều chỉnh"
+                                TextColor="Black" />
+                            <Frame
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Padding="0"
+                                BackgroundColor="#c9c9c9"
+                                HasShadow="False">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="sdfasf"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                            <Label
+                                Grid.Row="2"
+                                IsVisible="{Binding LbGiaDK}"
+                                Text="Giá điều kiện"
+                                TextColor="Black" />
+                            <Frame
+                                Grid.Row="3"
+                                Padding="0"
+                                BackgroundColor="#c9c9c9"
+                                HasShadow="False"
+                                IsVisible="{Binding LbGiaDK}">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="sdfasf"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                    <Label
+                        Margin="25,-147,0,10"
+                        Padding="0"
+                        BackgroundColor="White"
+                        HorizontalOptions="Start"
+                        Text="Cắt lỗ"
+                        TextColor="Black">
+                        <Label.Triggers>
                             <DataTrigger
                                 Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
-                                TargetType="Frame"
+                                TargetType="Label"
                                 Value="False">
-                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                <Setter Property="Text" Value="Kích hoạt" />
                             </DataTrigger>
-                            <DataTrigger
-                                Binding="{Binding Source={x:Reference TabBan}, Path=BackgroundColor}"
-                                TargetType="Frame"
-                                Value="#c9c9c9">
-                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
-                            </DataTrigger>
-                            <DataTrigger
-                                Binding="{Binding Source={x:Reference TabMua}, Path=BackgroundColor}"
-                                TargetType="Frame"
-                                Value="#c9c9c9">
-                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
-                            </DataTrigger>
-                        </Frame.Triggers>
-                    </Frame>
-                    <!--  dong  -->
-                    <StackLayout
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        Margin="0,-7,0,10"
-                        Orientation="Horizontal">
-                        <Label
-                            FontSize="13"
-                            HorizontalOptions="Start"
-                            Text="1,409"
-                            TextColor="#d586c0" />
-                        <Label
-                            Grid.Column="1"
-                            FontSize="13"
-                            HorizontalOptions="CenterAndExpand"
-                            Text="1,316.9"
-                            TextColor="#d89869" />
-                        <Label
-                            Grid.Column="2"
-                            FontSize="13"
-                            HorizontalOptions="End"
-                            Text="1,224.8"
-                            TextColor="#70c9e2" />
-                    </StackLayout>
-                </Grid>
-                <!--  frame chốt lãi  -->
-                <Frame
-                    Padding="7"
-                    BorderColor="LightGray"
-                    HasShadow="False"
-                    IsVisible="{Binding GiaIsVisible}">
-                    <Grid RowSpacing="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
+                        </Label.Triggers>
+                    </Label>
+                    <!--  mật khẩu  -->
+                    <Grid
+                        Margin="0,130,0,10"
+                        Padding="0,0,0,10"
+                        RowDefinitions="35">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label
-                            IsVisible="{Binding LbKhoangLai}"
-                            Text="Khoảng lãi"
-                            TextColor="Black" />
-                        <Label
-                            Grid.Column="1"
-                            Text="Giá chốt lãi"
-                            TextColor="Black" />
+                            Text="Mật khẩu giao dịch"
+                            TextColor="Black"
+                            VerticalOptions="Center" />
                         <Frame
-                            Grid.Row="1"
-                            Padding="0"
+                            Grid.Column="1"
+                            Padding="0,0,10,0"
                             BorderColor="LightGray"
-                            HasShadow="False"
-                            IsVisible="{Binding LbKhoangLai}">
-                            <StackLayout Orientation="Horizontal" Spacing="10">
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    HeightRequest="20"
-                                    HorizontalOptions="Start"
-                                    Source="minus.png"
-                                    WidthRequest="20" />
+                            HasShadow="False">
+                            <StackLayout Orientation="Horizontal">
                                 <custom:CustomEntry
+                                    x:Name="EntryPass"
                                     FontSize="13"
                                     HorizontalOptions="FillAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Keyboard="Numeric" />
+                                    IsPassword="{Binding IsPass}" />
                                 <ImageButton
-                                    Margin="10"
                                     BackgroundColor="White"
+                                    Command="{Binding ClickShowPass}"
                                     HeightRequest="20"
                                     HorizontalOptions="End"
-                                    Source="plus.png"
-                                    WidthRequest="20" />
+                                    Source="hide.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="20">
+                                    <ImageButton.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding Source={x:Reference EntryPass}, Path=IsPassword}"
+                                            TargetType="ImageButton"
+                                            Value="False">
+                                            <Setter Property="Source" Value="clearpass.png" />
+                                        </DataTrigger>
+                                    </ImageButton.Triggers>
+                                </ImageButton>
                             </StackLayout>
-                        </Frame>
-                        <Frame
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Padding="0"
-                            BackgroundColor="#c9c9c9"
-                            HasShadow="False">
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="asddfasd"
-                                VerticalOptions="Center" />
                         </Frame>
                     </Grid>
-                </Frame>
-                <Label
-                    Margin="25,-83,0,90"
-                    Padding="0"
-                    BackgroundColor="White"
-                    HorizontalOptions="Start"
-                    IsVisible="{Binding GiaIsVisible}"
-                    Text="Chốt lãi"
-                    TextColor="Black" />
-                <!--  frame cắt lỗ  -->
-                <Frame
-                    Padding="7"
-                    BorderColor="LightGray"
-                    HasShadow="False">
-                    <Grid RowSpacing="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Giá điều kiện" TextColor="Black">
-                            <Label.Triggers>
-                                <DataTrigger
-                                    Binding="{Binding LbGiaDK}"
-                                    TargetType="Label"
-                                    Value="True">
-                                    <Setter Property="Text" Value="Khoảng lỗ" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-                        <Label
-                            Grid.Column="1"
-                            Text="Biên trượt"
-                            TextColor="Black" />
-                        <Frame
-                            Grid.Row="1"
-                            Padding="0"
-                            BorderColor="LightGray"
-                            HasShadow="False">
-                            <StackLayout Orientation="Horizontal" Spacing="10">
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    HeightRequest="20"
-                                    HorizontalOptions="Start"
-                                    Source="minus.png"
-                                    WidthRequest="20" />
-                                <custom:CustomEntry
-                                    FontSize="13"
-                                    HorizontalOptions="FillAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Keyboard="Numeric" />
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    HeightRequest="20"
-                                    HorizontalOptions="End"
-                                    Source="plus.png"
-                                    WidthRequest="20" />
-                            </StackLayout>
-                        </Frame>
-                        <Frame
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Padding="0"
-                            BorderColor="LightGray"
-                            HasShadow="False">
-                            <StackLayout Orientation="Horizontal" Spacing="10">
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    HeightRequest="20"
-                                    HorizontalOptions="Start"
-                                    Source="minus.png"
-                                    WidthRequest="20" />
-                                <custom:CustomEntry
-                                    FontSize="13"
-                                    HorizontalOptions="FillAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Keyboard="Numeric" />
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    HeightRequest="20"
-                                    HorizontalOptions="End"
-                                    Source="plus.png"
-                                    WidthRequest="20" />
-                            </StackLayout>
-                        </Frame>
-                        <Label
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Text="Giá đặt điều chỉnh"
-                            TextColor="Black" />
-                        <Frame
-                            Grid.Row="3"
-                            Grid.Column="1"
-                            Padding="0"
-                            BackgroundColor="#c9c9c9"
-                            HasShadow="False">
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="sdfasf"
-                                VerticalOptions="Center" />
-                        </Frame>
-                        <Label
-                            Grid.Row="2"
-                            IsVisible="{Binding LbGiaDK}"
-                            Text="Giá điều kiện"
-                            TextColor="Black" />
-                        <Frame
-                            Grid.Row="3"
-                            Padding="0"
-                            BackgroundColor="#c9c9c9"
-                            HasShadow="False"
-                            IsVisible="{Binding LbGiaDK}">
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="sdfasf"
-                                VerticalOptions="Center" />
-                        </Frame>
-                    </Grid>
-                </Frame>
-                <Label
-                    Margin="25,-147,0,10"
-                    Padding="0"
-                    BackgroundColor="White"
-                    HorizontalOptions="Start"
-                    Text="Cắt lỗ"
-                    TextColor="Black">
-                    <Label.Triggers>
-                        <DataTrigger
-                            Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
-                            TargetType="Label"
-                            Value="False">
-                            <Setter Property="Text" Value="Kích hoạt" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-                <!--  mật khẩu  -->
-                <Grid
-                    Margin="0,130,0,10"
-                    Padding="0,0,0,10"
-                    RowDefinitions="35">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Text="Mật khẩu giao dịch"
-                        TextColor="Black"
-                        VerticalOptions="Center" />
-                    <Frame
-                        Grid.Column="1"
-                        Padding="0,0,10,0"
-                        BorderColor="LightGray"
-                        HasShadow="False">
-                        <StackLayout Orientation="Horizontal">
-                            <custom:CustomEntry
-                                x:Name="EntryPass"
-                                FontSize="13"
-                                HorizontalOptions="FillAndExpand"
-                                IsPassword="{Binding IsPass}" />
-                            <ImageButton
-                                BackgroundColor="White"
-                                Command="{Binding ClickShowPass}"
-                                HeightRequest="20"
-                                HorizontalOptions="End"
-                                Source="hide.png"
-                                VerticalOptions="Center"
-                                WidthRequest="20">
-                                <ImageButton.Triggers>
-                                    <DataTrigger
-                                        Binding="{Binding Source={x:Reference EntryPass}, Path=IsPassword}"
-                                        TargetType="ImageButton"
-                                        Value="False">
-                                        <Setter Property="Source" Value="clearpass.png" />
-                                    </DataTrigger>
-                                </ImageButton.Triggers>
-                            </ImageButton>
-                        </StackLayout>
-                    </Frame>
-                </Grid>
-                <Button
-                    CornerRadius="20"
-                    HorizontalOptions="Center"
-                    Text="{Binding TextBtnXacNhan}"
-                    TextColor="White"
-                    WidthRequest="160" />
-            </StackLayout>
-        </ScrollView>
+                    <Button
+                        CornerRadius="20"
+                        HorizontalOptions="Center"
+                        Text="{Binding TextBtnXacNhan}"
+                        TextColor="White"
+                        WidthRequest="160" />
+                </StackLayout>
+            </ScrollView>
+            <Frame
+                Margin="10,0,10,-30"
+                BorderColor="LightGray"
+                CornerRadius="10"
+                HasShadow="False"
+                HeightRequest="60"
+                IsVisible="{Binding Source={x:Reference Tab2Isvisible}, Path=IsVisible}" />
+        </StackLayout>
         <Frame
-            Margin="10,0,10,-30"
-            BorderColor="LightGray"
-            CornerRadius="10"
-            HasShadow="False"
-            HeightRequest="60" />
-    </StackLayout>
+            Padding="0"
+            CornerRadius="5"
+            IsVisible="{Binding ListOnNavigationIsVisible}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height,
+                                                                   Factor=0.3}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.4}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Width,
+                                                              Factor=0.1}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=0}">
+            <ListView
+                x:Name="ListNavigation"
+                ItemsSource="{Binding ListOnNavigation}"
+                RowHeight="40">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label
+                                    Padding="10,0,0,0"
+                                    FontSize="16"
+                                    Text="{Binding Ma}"
+                                    TextColor="Black"
+                                    VerticalOptions="CenterAndExpand" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.ClickItemOnNavigationList, Source={x:Reference Name=ListNavigation}}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
+    </RelativeLayout>
 </ContentPage>
