@@ -209,7 +209,7 @@
                             <TapGestureRecognizer
                                 Command="{Binding ClickTranfer}"
                                 CommandParameter="00"
-                                Tapped="Tap00" />
+                                Tapped="TapSideMua" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <StackLayout
@@ -245,7 +245,7 @@
                             <TapGestureRecognizer
                                 Command="{Binding ClickTranfer}"
                                 CommandParameter="01"
-                                Tapped="Tap01" />
+                                Tapped="TapSideBan" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <!--  expander  -->
@@ -323,7 +323,7 @@
                                             <TapGestureRecognizer
                                                 Command="{Binding ClickTranfer}"
                                                 CommandParameter="10"
-                                                Tapped="Tap10" />
+                                                Tapped="TapSideMua" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <StackLayout
@@ -359,7 +359,7 @@
                                             <TapGestureRecognizer
                                                 Command="{Binding ClickTranfer}"
                                                 CommandParameter="11"
-                                                Tapped="Tap11" />
+                                                Tapped="TapSideBan" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <StackLayout
@@ -395,7 +395,7 @@
                                             <TapGestureRecognizer
                                                 Command="{Binding ClickTranfer}"
                                                 CommandParameter="20"
-                                                Tapped="Tap20" />
+                                                Tapped="TapSideMua" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <StackLayout
@@ -431,7 +431,7 @@
                                             <TapGestureRecognizer
                                                 Command="{Binding ClickTranfer}"
                                                 CommandParameter="21"
-                                                Tapped="Tap21" />
+                                                Tapped="TapSideBan" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <Image
@@ -629,6 +629,18 @@
                                 Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
                                 TargetType="Frame"
                                 Value="False">
+                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding Source={x:Reference TabBan}, Path=BackgroundColor}"
+                                TargetType="Frame"
+                                Value="#c9c9c9">
+                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding Source={x:Reference TabMua}, Path=BackgroundColor}"
+                                TargetType="Frame"
+                                Value="#c9c9c9">
                                 <Setter Property="BackgroundColor" Value="#c9c9c9" />
                             </DataTrigger>
                         </Frame.Triggers>
