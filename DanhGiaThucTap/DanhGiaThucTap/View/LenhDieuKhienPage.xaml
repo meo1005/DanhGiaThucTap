@@ -13,7 +13,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView Margin="0" Padding="0">
-        <StackLayout Padding="0,0,0,10" Margin="0" Spacing="0">
+        <StackLayout
+            Margin="0"
+            Padding="0,0,0,10"
+            Spacing="0">
             <Frame
                 Padding="10"
                 HasShadow="True"
@@ -561,10 +564,11 @@
                             WidthRequest="20" />
                     </StackLayout>
                     <Frame.Triggers>
-                        <DataTrigger TargetType="Frame" 
-                                     Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
-                                     Value="False">
-                            <Setter Property="BackgroundColor" Value="#c9c9c9"/>
+                        <DataTrigger
+                            Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
+                            TargetType="Frame"
+                            Value="False">
+                            <Setter Property="BackgroundColor" Value="#c9c9c9" />
                         </DataTrigger>
                     </Frame.Triggers>
                 </Frame>
@@ -595,11 +599,11 @@
             </Grid>
             <!--  frame chốt lãi  -->
             <Frame
-                IsVisible="{Binding GiaIsVisible}"
                 Margin="10,0,10,0"
                 Padding="7"
                 BorderColor="LightGray"
-                HasShadow="False">
+                HasShadow="False"
+                IsVisible="{Binding GiaIsVisible}">
                 <Grid RowSpacing="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -609,7 +613,10 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Khoảng lãi" TextColor="Black" />
+                    <Label
+                        IsVisible="{Binding LbKhoangLai}"
+                        Text="Khoảng lãi"
+                        TextColor="Black" />
                     <Label
                         Grid.Column="1"
                         Text="Giá chốt lãi"
@@ -618,7 +625,8 @@
                         Grid.Row="1"
                         Padding="0"
                         BorderColor="LightGray"
-                        HasShadow="False">
+                        HasShadow="False"
+                        IsVisible="{Binding LbKhoangLai}">
                         <StackLayout Orientation="Horizontal" Spacing="10">
                             <ImageButton
                                 Margin="10"
@@ -655,11 +663,11 @@
                 </Grid>
             </Frame>
             <Label
-                IsVisible="{Binding GiaIsVisible}"
                 Margin="25,-83,0,90"
                 Padding="0"
                 BackgroundColor="White"
                 HorizontalOptions="Start"
+                IsVisible="{Binding GiaIsVisible}"
                 Text="Chốt lãi"
                 TextColor="Black" />
             <!--  frame cắt lỗ  -->
@@ -679,7 +687,14 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Giá điều kiện" TextColor="Black" />
+                    <Label Text="Giá điều kiện" TextColor="Black">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding LbGiaDK}"
+                                         Value="True">
+                                <Setter Property="Text" Value="Khoảng lỗ"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
                     <Label
                         Grid.Column="1"
                         Text="Biên trượt"
@@ -757,13 +772,15 @@
                     </Frame>
                     <Label
                         Grid.Row="2"
+                        IsVisible="{Binding LbGiaDK}"
                         Text="Giá điều kiện"
                         TextColor="Black" />
                     <Frame
                         Grid.Row="3"
                         Padding="0"
                         BackgroundColor="#c9c9c9"
-                        HasShadow="False">
+                        HasShadow="False"
+                        IsVisible="{Binding LbGiaDK}">
                         <Label
                             HorizontalOptions="Center"
                             Text="sdfasf"
@@ -771,15 +788,24 @@
                     </Frame>
                 </Grid>
             </Frame>
-            <!--<Label
-                Margin="25,-150,0,10"
+            <Label
+                Margin="25,-147,0,10"
                 Padding="0"
                 BackgroundColor="White"
                 HorizontalOptions="Start"
-                Text="Chốt lãi"
-                TextColor="Black" />-->
+                Text="Cắt lỗ"
+                TextColor="Black">
+                <Label.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
+                        TargetType="Label"
+                        Value="False">
+                        <Setter Property="Text" Value="Kích hoạt" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
             <!--  mật khẩu  -->
-            <Grid Margin="10" RowDefinitions="35">
+            <Grid Padding="10,130,10,10" RowDefinitions="35">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

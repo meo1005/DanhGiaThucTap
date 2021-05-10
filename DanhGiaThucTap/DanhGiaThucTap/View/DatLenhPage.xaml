@@ -9,7 +9,33 @@
     BarBackgroundColor="#f3f3f3"
     SelectedTabColor="#3aac32"
     UnselectedTabColor="Gray">
-    <local:LenhThuongPage Title="LỆNH THƯỜNG" />
-    <local:LenhDieuKienPage Title="LỆNH ĐIỀU KIỆN" />
-    <local:LenhTheoMauPage Title="LỆNH THEO MẪU" />
+    <local:LenhThuongPage Title="LỆNH THƯỜNG">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView
+                BackgroundColor="Green"
+                HeightRequest="2"
+                VerticalOptions="Start" />
+        </Grid>
+    </local:LenhThuongPage>
+    <local:LenhDieuKienPage Title="LỆNH ĐIỀU KIỆN">
+    </local:LenhDieuKienPage>
+    <local:LenhTheoMauPage Title="LỆNH THEO MẪU">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.Column="2"
+                BackgroundColor="Green"
+                HeightRequest="2"
+                VerticalOptions="Start" />
+        </Grid>
+    </local:LenhTheoMauPage>
 </TabbedPage>
