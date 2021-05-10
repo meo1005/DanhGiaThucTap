@@ -36,6 +36,11 @@
         <x:Arguments>
             <local:DatLenhPage />
         </x:Arguments>
+        <NavigationPage.TitleView>
+            <StackLayout>
+                <Label Text="ASGDFVSDFG"/>
+            </StackLayout>
+        </NavigationPage.TitleView>
     </NavigationPage>
     <NavigationPage
         Title="Hủy/Sửa"

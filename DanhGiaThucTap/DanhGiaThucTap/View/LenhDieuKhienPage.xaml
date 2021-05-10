@@ -12,7 +12,10 @@
             <conver:TabMuaBanConverter x:Key="focus" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Padding="0" Margin="0" Spacing="0">
+    <StackLayout
+        Margin="0"
+        Padding="0"
+        Spacing="0">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -26,7 +29,7 @@
                 VerticalOptions="Start" />
         </Grid>
         <ScrollView
-            Margin="10,0,10,10"
+            Margin="10,0,10,2"
             Padding="0"
             VerticalOptions="FillAndExpand"
             VerticalScrollBarVisibility="Never">
@@ -172,6 +175,7 @@
                         HorizontalOptions="Start"
                         Text="Dư bán"
                         TextColor="Red" />
+                    <!--  frame du mua du ban  -->
                     <StackLayout
                         Grid.Row="1"
                         Grid.Column="0"
@@ -181,6 +185,7 @@
                         <Frame
                             Padding="0"
                             BackgroundColor="Green"
+                            HasShadow="False"
                             HeightRequest="15"
                             HorizontalOptions="Start"
                             VerticalOptions="CenterAndExpand"
@@ -200,6 +205,12 @@
                             HorizontalOptions="EndAndExpand"
                             Text="9"
                             TextColor="Green" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding ClickTranfer}"
+                                CommandParameter="00"
+                                Tapped="Tap00" />
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <StackLayout
                         Grid.Row="1"
@@ -210,6 +221,7 @@
                         <Frame
                             Padding="0"
                             BackgroundColor="Red"
+                            HasShadow="False"
                             HeightRequest="15"
                             HorizontalOptions="Start"
                             VerticalOptions="CenterAndExpand"
@@ -229,14 +241,21 @@
                             HorizontalOptions="EndAndExpand"
                             Text="27"
                             TextColor="Red" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding ClickTranfer}"
+                                CommandParameter="01"
+                                Tapped="Tap01" />
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
-
                     <!--  expander  -->
 
                     <xct:Expander
                         x:Name="expander"
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
+                        CollapseAnimationLength="500"
+                        ExpandAnimationLength="500"
                         IsExpanded="{Binding IsExpand}">
                         <xct:Expander.Header>
                             <Grid>
@@ -280,6 +299,7 @@
                                         <Frame
                                             Padding="0"
                                             BackgroundColor="Green"
+                                            HasShadow="False"
                                             HeightRequest="15"
                                             HorizontalOptions="Start"
                                             VerticalOptions="CenterAndExpand"
@@ -299,6 +319,12 @@
                                             HorizontalOptions="EndAndExpand"
                                             Text="1"
                                             TextColor="Green" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickTranfer}"
+                                                CommandParameter="10"
+                                                Tapped="Tap10" />
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <StackLayout
                                         Grid.Row="0"
@@ -309,6 +335,7 @@
                                         <Frame
                                             Padding="0"
                                             BackgroundColor="Red"
+                                            HasShadow="False"
                                             HeightRequest="15"
                                             HorizontalOptions="Start"
                                             VerticalOptions="CenterAndExpand"
@@ -328,6 +355,12 @@
                                             HorizontalOptions="EndAndExpand"
                                             Text="1"
                                             TextColor="Red" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickTranfer}"
+                                                CommandParameter="11"
+                                                Tapped="Tap11" />
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <StackLayout
                                         Grid.Row="1"
@@ -338,6 +371,7 @@
                                         <Frame
                                             Padding="0"
                                             BackgroundColor="Green"
+                                            HasShadow="False"
                                             HeightRequest="15"
                                             HorizontalOptions="Start"
                                             VerticalOptions="CenterAndExpand"
@@ -357,6 +391,12 @@
                                             HorizontalOptions="EndAndExpand"
                                             Text="27"
                                             TextColor="Green" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickTranfer}"
+                                                CommandParameter="20"
+                                                Tapped="Tap20" />
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <StackLayout
                                         Grid.Row="1"
@@ -367,6 +407,7 @@
                                         <Frame
                                             Padding="0"
                                             BackgroundColor="Red"
+                                            HasShadow="False"
                                             HeightRequest="15"
                                             HorizontalOptions="Start"
                                             VerticalOptions="CenterAndExpand"
@@ -386,12 +427,18 @@
                                             HorizontalOptions="EndAndExpand"
                                             Text="27"
                                             TextColor="Red" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickTranfer}"
+                                                CommandParameter="21"
+                                                Tapped="Tap21" />
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <Image
                                         Grid.Row="2"
                                         Grid.ColumnSpan="2"
                                         HeightRequest="25"
-                                        HorizontalOptions="Center"
+                                        HorizontalOptions="FillAndExpand"
                                         IsVisible="False"
                                         Source="iconup.png"
                                         VerticalOptions="End"
@@ -426,7 +473,10 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Column="0" BackgroundColor="#f2f2f2">
+                    <StackLayout
+                        x:Name="TabMua"
+                        Grid.Column="0"
+                        BackgroundColor="#f2f2f2">
                         <Label
                             x:Name="LbMua"
                             FontAttributes="{Binding FontFmMua}"
@@ -441,7 +491,10 @@
                             IsVisible="{Binding Source={x:Reference LbMua}, Path=FontAttributes, Converter={StaticResource focus}}"
                             VerticalOptions="End" />
                     </StackLayout>
-                    <StackLayout Grid.Column="1" BackgroundColor="#f2f2f2">
+                    <StackLayout
+                        x:Name="TabBan"
+                        Grid.Column="1"
+                        BackgroundColor="#f2f2f2">
                         <Label
                             x:Name="LbBan"
                             FontAttributes="{Binding FontFmBan}"
@@ -862,8 +915,13 @@
                     Text="{Binding TextBtnXacNhan}"
                     TextColor="White"
                     WidthRequest="160" />
-                <Frame HeightRequest="60" />
             </StackLayout>
         </ScrollView>
+        <Frame
+            Margin="10,0,10,-30"
+            BorderColor="LightGray"
+            CornerRadius="10"
+            HasShadow="False"
+            HeightRequest="60" />
     </StackLayout>
 </ContentPage>

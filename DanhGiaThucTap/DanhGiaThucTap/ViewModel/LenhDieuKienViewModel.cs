@@ -6,6 +6,7 @@ namespace DanhGiaThucTap.ViewModel
 {
     public class LenhDieuKienViewModel : BaseViewModel
     {
+        public Command<string> ClickTranfer { get; }
         public Command ClickShowPass { get; }
         private bool _isPass;
 
@@ -83,6 +84,24 @@ namespace DanhGiaThucTap.ViewModel
             FontFmBan = FontAttributes.None;
             TextBtnXacNhan = "XÁC NHẬN MUA";
             BackgroundBtnXacNhan = Color.FromHex("#c9c9c9");
+            ClickTranfer = new Command<string>(OnClickTranfer);
+        }
+
+        private void OnClickTranfer(string key)
+        {
+            if(key.Equals("00")|| key.Equals("10") || key.Equals("20"))
+            {
+
+                FontFmMua = FontAttributes.None;
+                FontFmBan = FontAttributes.Bold;
+                TextBtnXacNhan = "XÁC NHẬN BÁN";
+            }
+            if(key.Equals("01") || key.Equals("11") || key.Equals("21"))
+            {
+                FontFmMua = FontAttributes.Bold;
+                FontFmBan = FontAttributes.None;
+                TextBtnXacNhan = "XÁC NHẬN MUA";
+            }
         }
 
         private void OnClickShowPass()
