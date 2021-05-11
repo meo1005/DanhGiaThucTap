@@ -156,15 +156,7 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _kLMax, value); }
         }
 
-        private string _password;
-        public string Password
-        {
-            get { return _password; }
-            set { SetProperty(ref _password, value); }
-        }
 
-        private Color _btnAccept;
-        public Color BtnAccept { get { return _btnAccept; } set { SetProperty(ref _btnAccept, value); } }
         public LenhDieuKienViewModel()
         {
             EntryBienTruot = "0";
@@ -240,6 +232,7 @@ namespace DanhGiaThucTap.ViewModel
             else if (key.Equals("KLMinus"))
             {
                 KLMax = "0";
+                
             }
             Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
         }
@@ -343,10 +336,6 @@ namespace DanhGiaThucTap.ViewModel
                 FontFmBan = FontAttributes.None;
                 TextBtnXacNhan = "XÁC NHẬN MUA";
                 Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
-                if(KLMax!=null && Password.Length!=0)
-                {
-                    BtnAccept = Color.Green;
-                }
             }
             if (key.Equals("2"))
             {

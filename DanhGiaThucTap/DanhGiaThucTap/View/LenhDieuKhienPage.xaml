@@ -10,6 +10,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <conver:TabMuaBanConverter x:Key="focus" />
+            <conver:CheckNullConverter x:Key="checknull" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
@@ -142,6 +143,7 @@
                     Margin="0"
                     Padding="0"
                     Spacing="0">
+                    <!--  phần banner  -->
                     <Frame HasShadow="True" HeightRequest="70">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -231,6 +233,7 @@
                                 TextColor="Black" />
                         </Grid>
                     </Frame>
+                    <!--  phần chia tỉ lệ  -->
                     <StackLayout
                         Padding="0,10,0,0"
                         HorizontalOptions="Center"
@@ -254,7 +257,7 @@
                         </Grid>
                         <Label Text="24.77%" TextColor="Black" />
                     </StackLayout>
-                    <!--  phan expander  -->
+                    <!--  phần dư mua dư bán  -->
                     <Grid ColumnSpacing="3" RowSpacing="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -349,7 +352,6 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <!--  expander  -->
-
                         <xct:Expander
                             x:Name="expander"
                             Grid.Row="2"
@@ -560,7 +562,7 @@
                             </xct:Expander.ContentTemplate>
                         </xct:Expander>
                     </Grid>
-                    <!--  phan mua ban  -->
+                    <!--  2 tab mua bán  -->
                     <Grid ColumnSpacing="3" RowSpacing="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
@@ -641,7 +643,7 @@
                                     VerticalOptions="Center" />
                             </StackLayout>
                         </Frame>
-                        <!--  dong khoi luong  -->
+                        <!--  dong khối lượng  -->
                         <StackLayout Grid.Row="2" Orientation="Horizontal">
                             <Label
                                 HorizontalOptions="Start"
@@ -676,9 +678,11 @@
                                     Source="minus.png"
                                     WidthRequest="20" />
                                 <custom:CustomEntry
+                                    x:Name="EntryKL"
                                     FontSize="13"
                                     HorizontalOptions="FillAndExpand"
                                     HorizontalTextAlignment="Center"
+                                    IsReadOnly="True"
                                     Keyboard="Numeric"
                                     Text="{Binding KLMax}" />
                                 <ImageButton
@@ -692,7 +696,7 @@
                                     WidthRequest="20" />
                             </StackLayout>
                         </Frame>
-                        <!--  dong Gia  -->
+                        <!--  Giá  -->
                         <Label
                             Grid.Row="3"
                             Text="Giá"
@@ -750,7 +754,7 @@
                                 </DataTrigger>
                             </Frame.Triggers>
                         </Frame>
-                        <!--  dong  -->
+                        <!--  dong giá sàn  -->
                         <StackLayout
                             Grid.Row="4"
                             Grid.Column="1"
@@ -931,6 +935,7 @@
                                         FontSize="13"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
+                                        IsReadOnly="True"
                                         Keyboard="Numeric"
                                         Text="{Binding EntryBienTruot}" />
                                     <ImageButton
@@ -978,6 +983,7 @@
                             </Frame>
                         </Grid>
                     </Frame>
+                    <!--  Label cắt lỗ  -->
                     <Label
                         Margin="25,-147,0,10"
                         Padding="0"
@@ -1017,8 +1023,7 @@
                                     x:Name="EntryPass"
                                     FontSize="13"
                                     HorizontalOptions="FillAndExpand"
-                                    IsPassword="{Binding IsPass}"
-                                    Text="{Binding Password}" />
+                                    IsPassword="{Binding IsPass}" />
                                 <ImageButton
                                     BackgroundColor="White"
                                     Command="{Binding ClickShowPass}"
@@ -1039,13 +1044,38 @@
                             </StackLayout>
                         </Frame>
                     </Grid>
+                    <!--  Button xác nhận  -->
                     <Button
-                        BackgroundColor="{Binding BtnAccept}"
                         CornerRadius="20"
                         HorizontalOptions="Center"
                         Text="{Binding TextBtnXacNhan}"
                         TextColor="White"
-                        WidthRequest="160" />
+                        WidthRequest="160">
+                        <Button.Triggers>
+                            <MultiTrigger TargetType="Button">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding Source={x:Reference LbBan}, Path=FontAttributes}" Value="Bold" />
+                                    <BindingCondition Binding="{Binding Source={x:Reference EntryKL}, Path=Text, Converter={StaticResource checknull}}" Value="true" />
+                                    <BindingCondition Binding="{Binding Source={x:Reference EntryPass}, Path=Text, Converter={StaticResource checknull}}" Value="true" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </MultiTrigger>
+                            <MultiTrigger TargetType="Button">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding Source={x:Reference LbMua}, Path=FontAttributes}" Value="Bold" />
+                                    <BindingCondition Binding="{Binding Source={x:Reference EntryKL}, Path=Text, Converter={StaticResource checknull}}" Value="true" />
+                                    <BindingCondition Binding="{Binding Source={x:Reference EntryPass}, Path=Text, Converter={StaticResource checknull}}" Value="true" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="BackgroundColor" Value="Green" />
+                            </MultiTrigger>
+                            <DataTrigger
+                                Binding="{Binding Source={x:Reference EntryPass}, Path=Text, Converter={StaticResource checknull}}"
+                                TargetType="Button"
+                                Value="false">
+                                <Setter Property="BackgroundColor" Value="LightGray" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
                 </StackLayout>
             </ScrollView>
             <Frame
