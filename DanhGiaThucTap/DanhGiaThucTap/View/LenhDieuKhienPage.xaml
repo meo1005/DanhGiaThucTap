@@ -169,7 +169,7 @@
                                 <Label
                                     FontSize="20"
                                     HorizontalOptions="End"
-                                    Text="1,188.6"
+                                    Text="{Binding ItemGT.GTBannerGia}"
                                     TextColor="Black"
                                     VerticalOptions="Center" />
                             </StackLayout>
@@ -195,24 +195,19 @@
                             <Label
                                 Grid.Column="2"
                                 HorizontalTextAlignment="End"
-                                Text="1.191"
-                                TextColor="Green" />
-                            <Label
-                                Grid.Column="2"
-                                HorizontalTextAlignment="End"
-                                Text="1.191"
+                                Text="{Binding ItemGT.GTMoCua}"
                                 TextColor="Green" />
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 HorizontalTextAlignment="End"
-                                Text="1.191"
+                                Text="{Binding ItemGT.GTCao}"
                                 TextColor="Green" />
                             <Label
                                 Grid.Row="2"
                                 Grid.Column="2"
                                 HorizontalTextAlignment="End"
-                                Text="1188.2"
+                                Text="{Binding ItemGT.GTThap}"
                                 TextColor="Red" />
                             <Label
                                 Grid.Column="3"
@@ -226,13 +221,13 @@
                             <Label
                                 Grid.Column="4"
                                 HorizontalTextAlignment="End"
-                                Text="20,822"
+                                Text="{Binding ItemGT.GTTongHD}"
                                 TextColor="Black" />
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="4"
                                 HorizontalOptions="End"
-                                Text="27,303"
+                                Text="{Binding ItemGT.GTKLMo}"
                                 TextColor="Black" />
                         </Grid>
                     </Frame>
@@ -304,11 +299,11 @@
                             </Frame>
                             <Label
                                 FontSize="15"
-                                Text="1,188.7"
+                                Text="{Binding ItemGT.GT00}"
                                 TextColor="Green" />
                             <Label
                                 HorizontalOptions="EndAndExpand"
-                                Text="9"
+                                Text="{Binding ItemGT.GTDuMua00}"
                                 TextColor="Green" />
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -340,11 +335,11 @@
                             </Frame>
                             <Label
                                 FontSize="15"
-                                Text="1,188.8"
+                                Text="{Binding ItemGT.GT01}"
                                 TextColor="Red" />
                             <Label
                                 HorizontalOptions="EndAndExpand"
-                                Text="27"
+                                Text="{Binding ItemGT.GTDuBan01}"
                                 TextColor="Red" />
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -674,6 +669,8 @@
                                 <ImageButton
                                     Margin="10"
                                     BackgroundColor="White"
+                                    Command="{Binding BtnMinus}"
+                                    CommandParameter="KLMinus"
                                     HeightRequest="20"
                                     HorizontalOptions="Start"
                                     Source="minus.png"
@@ -682,10 +679,13 @@
                                     FontSize="13"
                                     HorizontalOptions="FillAndExpand"
                                     HorizontalTextAlignment="Center"
-                                    Keyboard="Numeric" />
+                                    Keyboard="Numeric"
+                                    Text="{Binding KLMax}" />
                                 <ImageButton
                                     Margin="10"
                                     BackgroundColor="White"
+                                    Command="{Binding BtnPlus}"
+                                    CommandParameter="KLPlus"
                                     HeightRequest="20"
                                     HorizontalOptions="End"
                                     Source="plus.png"
@@ -759,19 +759,19 @@
                             <Label
                                 FontSize="13"
                                 HorizontalOptions="Start"
-                                Text="1,409"
+                                Text="{Binding ItemGT.GTSan1}"
                                 TextColor="#d586c0" />
                             <Label
                                 Grid.Column="1"
                                 FontSize="13"
                                 HorizontalOptions="CenterAndExpand"
-                                Text="1,316.9"
+                                Text="{Binding ItemGT.GTSan2}"
                                 TextColor="#d89869" />
                             <Label
                                 Grid.Column="2"
                                 FontSize="13"
                                 HorizontalOptions="End"
-                                Text="1,224.8"
+                                Text="{Binding ItemGT.GTSan3}"
                                 TextColor="#70c9e2" />
                         </StackLayout>
                     </Grid>
@@ -877,6 +877,7 @@
                                 Grid.Column="1"
                                 Text="Biên trượt"
                                 TextColor="Black" />
+                            <!--  frame gia dieu kien  -->
                             <Frame
                                 Grid.Row="1"
                                 Padding="0"
@@ -886,6 +887,8 @@
                                     <ImageButton
                                         Margin="10"
                                         BackgroundColor="White"
+                                        Command="{Binding BtnMinus}"
+                                        CommandParameter="GiaDKMinus"
                                         HeightRequest="20"
                                         HorizontalOptions="Start"
                                         Source="minus.png"
@@ -894,16 +897,20 @@
                                         FontSize="13"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
-                                        Keyboard="Numeric" />
+                                        Keyboard="Numeric"
+                                        Text="{Binding EntryGiaDK}" />
                                     <ImageButton
                                         Margin="10"
                                         BackgroundColor="White"
+                                        Command="{Binding BtnPlus}"
+                                        CommandParameter="GiaDKPlus"
                                         HeightRequest="20"
                                         HorizontalOptions="End"
                                         Source="plus.png"
                                         WidthRequest="20" />
                                 </StackLayout>
                             </Frame>
+                            <!--  frame bien truot  -->
                             <Frame
                                 Grid.Row="1"
                                 Grid.Column="1"
@@ -914,6 +921,8 @@
                                     <ImageButton
                                         Margin="10"
                                         BackgroundColor="White"
+                                        Command="{Binding BtnMinus}"
+                                        CommandParameter="BientruotMinnus"
                                         HeightRequest="20"
                                         HorizontalOptions="Start"
                                         Source="minus.png"
@@ -922,10 +931,13 @@
                                         FontSize="13"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
-                                        Keyboard="Numeric" />
+                                        Keyboard="Numeric"
+                                        Text="{Binding EntryBienTruot}" />
                                     <ImageButton
                                         Margin="10"
                                         BackgroundColor="White"
+                                        Command="{Binding BtnPlus}"
+                                        CommandParameter="BientruotPlus"
                                         HeightRequest="20"
                                         HorizontalOptions="End"
                                         Source="plus.png"
@@ -945,7 +957,7 @@
                                 HasShadow="False">
                                 <Label
                                     HorizontalOptions="Center"
-                                    Text="sdfasf"
+                                    Text="{Binding Sum}"
                                     VerticalOptions="Center" />
                             </Frame>
                             <Label
@@ -1005,7 +1017,8 @@
                                     x:Name="EntryPass"
                                     FontSize="13"
                                     HorizontalOptions="FillAndExpand"
-                                    IsPassword="{Binding IsPass}" />
+                                    IsPassword="{Binding IsPass}"
+                                    Text="{Binding Password}" />
                                 <ImageButton
                                     BackgroundColor="White"
                                     Command="{Binding ClickShowPass}"
@@ -1027,6 +1040,7 @@
                         </Frame>
                     </Grid>
                     <Button
+                        BackgroundColor="{Binding BtnAccept}"
                         CornerRadius="20"
                         HorizontalOptions="Center"
                         Text="{Binding TextBtnXacNhan}"
@@ -1040,7 +1054,13 @@
                 CornerRadius="10"
                 HasShadow="False"
                 HeightRequest="60"
-                IsVisible="{Binding Source={x:Reference Tab2Isvisible}, Path=IsVisible}" />
+                IsVisible="{Binding Source={x:Reference Tab2Isvisible}, Path=IsVisible}">
+                <BoxView
+                    BackgroundColor="DarkGray"
+                    HeightRequest="4"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start" />
+            </Frame>
         </StackLayout>
         <Frame
             Padding="0"

@@ -39,7 +39,7 @@
                     <StackLayout Orientation="Horizontal">
                         <Label
                             FontSize="20"
-                            Text="{Binding ItemListNavigation}"         
+                            Text="{Binding ItemListNavigation}"          
                             TextColor="White" />
                         <Image
                             HeightRequest="25"

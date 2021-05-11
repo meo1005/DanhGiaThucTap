@@ -6,6 +6,7 @@ namespace DanhGiaThucTap.Model
 {
     public class ItemListNavi
     {
+        public int ID { get; set; }
         public string Ma { get; set; }
     }
 }

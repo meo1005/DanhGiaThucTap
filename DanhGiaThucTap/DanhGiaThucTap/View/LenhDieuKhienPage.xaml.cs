@@ -29,6 +29,7 @@ namespace DanhGiaThucTap.View
         private void OnDropdownSelected(object sender, ItemSelectedEventArgs e)
         {
             viewModel.ItemSelect(e.SelectedIndex);
+
         }
 
         private async void TapSideMua(object sender, EventArgs e)
