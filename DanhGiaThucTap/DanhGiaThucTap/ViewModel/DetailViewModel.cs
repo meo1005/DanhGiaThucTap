@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DanhGiaThucTap.Model
+namespace DanhGiaThucTap.ViewModel
 {
     class DetailViewModel
     {
