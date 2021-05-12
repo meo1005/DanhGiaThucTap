@@ -415,6 +415,10 @@ namespace DanhGiaThucTap.ViewModel
                     EntryGiaDK = (ItemGT.GTSan2 + 0.1).ToString();
                 }
             }
+            if (Index == 3)
+            {
+                EntryGia = ItemGT.GTSan2.ToString();
+            }
             Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
         }
 

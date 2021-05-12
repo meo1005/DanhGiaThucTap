@@ -16755,13 +16755,61 @@ namespace DanhGiaThucTap.Droid
 		{
 			
 			// aapt resource value: 0x7F0C0000
-			public const int icon = 2131492864;
+			public const int chart = 2131492864;
 			
 			// aapt resource value: 0x7F0C0001
-			public const int icon_round = 2131492865;
+			public const int clearpass = 2131492865;
 			
 			// aapt resource value: 0x7F0C0002
-			public const int launcher_foreground = 2131492866;
+			public const int expand = 2131492866;
+			
+			// aapt resource value: 0x7F0C0003
+			public const int hide = 2131492867;
+			
+			// aapt resource value: 0x7F0C0004
+			public const int hinhvuong = 2131492868;
+			
+			// aapt resource value: 0x7F0C0005
+			public const int icon = 2131492869;
+			
+			// aapt resource value: 0x7F0C0007
+			public const int icondown = 2131492871;
+			
+			// aapt resource value: 0x7F0C0008
+			public const int iconlaw = 2131492872;
+			
+			// aapt resource value: 0x7F0C0009
+			public const int iconmoneybag = 2131492873;
+			
+			// aapt resource value: 0x7F0C000A
+			public const int iconschart = 2131492874;
+			
+			// aapt resource value: 0x7F0C000B
+			public const int iconseditfile = 2131492875;
+			
+			// aapt resource value: 0x7F0C000C
+			public const int iconsinvestment = 2131492876;
+			
+			// aapt resource value: 0x7F0C000D
+			public const int iconup = 2131492877;
+			
+			// aapt resource value: 0x7F0C0006
+			public const int icon_round = 2131492870;
+			
+			// aapt resource value: 0x7F0C000E
+			public const int launcher_foreground = 2131492878;
+			
+			// aapt resource value: 0x7F0C000F
+			public const int minus = 2131492879;
+			
+			// aapt resource value: 0x7F0C0010
+			public const int plus = 2131492880;
+			
+			// aapt resource value: 0x7F0C0011
+			public const int sortdown = 2131492881;
+			
+			// aapt resource value: 0x7F0C0012
+			public const int sortdownblack = 2131492882;
 			
 			static Mipmap()
 			{

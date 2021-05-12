@@ -39,7 +39,7 @@
             <Grid
                 BackgroundColor="#f3f3f3"
                 ColumnSpacing="0"
-                RowDefinitions="50">
+                RowDefinitions="45">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -48,7 +48,7 @@
                 <!--  tab lệnh thường  -->
                 <Label
                     x:Name="Tab1"
-                    FontSize="16"
+                    FontSize="15"
                     HorizontalOptions="Center"
                     Text="LỆNH THƯỜNG"
                     TextColor="{Binding Tab1Color}"
@@ -71,7 +71,7 @@
                 <Label
                     x:Name="Tab2"
                     Grid.Column="1"
-                    FontSize="16"
+                    FontSize="15"
                     HorizontalOptions="Center"
                     Text="LỆNH ĐIỀU KIỆN"
                     TextColor="{Binding Tab2Color}"
@@ -96,7 +96,7 @@
                 <Label
                     x:Name="Tab3"
                     Grid.Column="2"
-                    FontSize="16"
+                    FontSize="15"
                     HorizontalOptions="Center"
                     Text="LỆNH THEO MẪU"
                     TextColor="{Binding Tab3Color}"
