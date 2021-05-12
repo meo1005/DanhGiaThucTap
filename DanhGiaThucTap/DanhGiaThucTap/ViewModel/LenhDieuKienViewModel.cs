@@ -245,9 +245,20 @@ namespace DanhGiaThucTap.ViewModel
             // dấu cộng trường giá điều kiện
             else if (key.Equals("GiaDKPlus"))
             {
-                if (Index == 1)
+                if (Index == 0)
                 {
-                    App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá thị trường", "OK");
+                    EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
+                }
+                else if (Index == 1)
+                {
+                    if (double.Parse(EntryGiaDK) >= ItemGT.GTBannerGia)
+                    {
+                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá thị trường", "OK");
+                    }
+                    else
+                    {
+                        EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
+                    }
                 }
                 //dấu cộng trường giá điều kiện với trường hợp mã OCO
                 else if (Index == 2)
@@ -285,11 +296,15 @@ namespace DanhGiaThucTap.ViewModel
                 FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
                 Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
             }
+            else if (Index == 2 || Index == 3)
+            {
+                SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+            }
             else
             {
                 Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             }
-            SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+            
         }
         // Command xử lý sự kiện dấu -
         private void OnClickBtnMinus(string key)
@@ -328,11 +343,22 @@ namespace DanhGiaThucTap.ViewModel
                 }
                 else
                 {
-                    if (Index == 0)
+                    if (Index == 1)
                     {
-                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá thị trường", "OK");
+                        EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
                     }
-                    // dấu cộng trường giá điều kiện khi lệnh OCO 
+                    else if (Index == 0)
+                    {
+                        if (double.Parse(EntryGiaDK) <= ItemGT.GTBannerGia)
+                        {
+                            App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá thị trường", "OK");
+                        }
+                        else
+                        {
+                            EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
+                        }
+                    }
+                    // dấu trừ trường giá điều kiện khi lệnh OCO 
                     else if (Index == 2)
                     {
                         if (SumLai != null)
@@ -369,11 +395,14 @@ namespace DanhGiaThucTap.ViewModel
                 FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
                 Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
             }
+            else if (Index == 2 || Index == 3)
+            {
+                SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+            }
             else
             {
                 Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             }
-            SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
         }
         // hàm bắt sự kiện click vào item của list trên navigation, xét các giá trị
         private void OnClickItemOnNavigationList(ItemListNavigationModel item)
@@ -423,7 +452,7 @@ namespace DanhGiaThucTap.ViewModel
             Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
         }
         //hàm bắt sự kiện click ẩn hiện list trên navigation
-        private void OnClickListOnNavigation()
+        public void OnClickListOnNavigation()
         {
             if (ListOnNavigationIsVisible)
             {
