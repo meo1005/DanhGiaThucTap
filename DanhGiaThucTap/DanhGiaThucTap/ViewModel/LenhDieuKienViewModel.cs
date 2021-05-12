@@ -17,7 +17,7 @@ namespace DanhGiaThucTap.ViewModel
         public Command<string> ClickSelectTab { get; }
         public Command<string> BtnPlus { get; }
         public Command<string> BtnMinus { get; }
-        
+
         private string _itemListNavigation;
         public string ItemListNavigation
         {
@@ -81,6 +81,13 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _lbGiaDK, value); }
         }
 
+        private int _index;
+        public int Index
+        {
+            get { return _index; }
+            set { SetProperty(ref _index, value); }
+        }
+
         public List<string> ListDK { get; set; }
 
         private bool _giaIsVisible;
@@ -125,6 +132,13 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _isExpand, value); }
         }
 
+        private string _entryKhoangLai;
+        public string EntryKhoangLai
+        {
+            get { return _entryKhoangLai; }
+            set { SetProperty(ref _entryKhoangLai, value); }
+        }
+
         private ItemGiaTri _itemGT;
         public ItemGiaTri ItemGT { get { return _itemGT; } set { SetProperty(ref _itemGT, value); } }
 
@@ -142,11 +156,32 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _entryGiaDK, value); }
         }
 
+        private string _frameGiaDK;
+        public string FrameGiaDK
+        {
+            get { return _frameGiaDK; }
+            set { SetProperty(ref _frameGiaDK, value); }
+        }
+
+        private string _entryGia;
+        public string EntryGia
+        {
+            get { return _entryGia; }
+            set { SetProperty(ref _entryGia, value); }
+        }
+
         private string _sum;
         public string Sum
         {
             get { return _sum; }
             set { SetProperty(ref _sum, value); }
+        }
+
+        private string _sumLai;
+        public string SumLai
+        {
+            get { return _sumLai; }
+            set { SetProperty(ref _sumLai, value); }
         }
 
         private string _kLMax;
@@ -158,8 +193,9 @@ namespace DanhGiaThucTap.ViewModel
 
 
         public LenhDieuKienViewModel()
-        {           
+        {
             EntryBienTruot = "0";
+            EntryKhoangLai = "0";
             IsPass = true;
             ListDK = new List<string>();
             ListOnNavigation = new List<ItemListNavi>();
@@ -175,6 +211,7 @@ namespace DanhGiaThucTap.ViewModel
             ItemGT = new ItemGiaTri(0, 1358.5, "1,191", "1,192", "1188.2", "20,82", "27,33", "12", "30", "1,181.9", "1,118.8", "1,272", "115,18", "1,115.6");
             ItemListNavigation = "VN30F2106";
             EntryGiaDK = ItemGT.GTBannerGia.ToString();
+            EntryGia = ItemGT.GTSan2;
             Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             ListOnNavigationIsVisible = false;
             ClickTranfer = new Command<string>(OnClickTranfer);
@@ -189,28 +226,74 @@ namespace DanhGiaThucTap.ViewModel
 
         }
 
+
+
+        // Command xử lý sự kiện dấu +
         private void OnClickBtnPlus(string key)
         {
+            // dấu cộng trường Biên trượt
             if (key.Equals("BientruotPlus"))
-            {                
-                EntryBienTruot = (double.Parse(EntryBienTruot) +  0.1).ToString();
+            {
+                EntryBienTruot = (double.Parse(EntryBienTruot) + 0.1).ToString();
             }
+            //dấu công trường khoảng lãi
+            else if (key.Equals("KhoangLaiPlus"))
+            {
+                EntryKhoangLai = (double.Parse(EntryKhoangLai) + 0.1).ToString();
+            }
+            // dấu cộng trường giá điều kiện
             else if (key.Equals("GiaDKPlus"))
             {
-                if (!GiaIsVisible)
+                if (Index == 1)
+                {
+                    App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá thị trường", "OK");
+                }
+
+                else if (Index == 2)
+                {
+                    if (SumLai != null)
+                    {
+                        if (double.Parse(EntryGiaDK) >= double.Parse(SumLai) && TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
+                        {
+                            App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá chốt lãi", "OK");
+                        }
+                        else
+                        {
+                            EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
+                        }
+                    }
+                }
+                else
                 {
                     EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
                 }
             }
+            //dấu cộng trường khối lượng
             else if (key.Equals("KLPlus"))
             {
                 KLMax = "0";
             }
-            Sum = (double.Parse(EntryGiaDK)+ double.Parse(EntryBienTruot)).ToString();
+            // dấu cộng trường Giá
+            else if (key.Equals("GiaPlus"))
+            {
+                EntryGia = (double.Parse(EntryGia) + 0.1).ToString();
+            }
+            //tính tổng trường giá điều kiện
+            if (Index == 3)
+            {
+                FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
+                Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+            }
+            else
+            {
+                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+            }
+            SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
         }
-
+        // Command xử lý sự kiện dấu -
         private void OnClickBtnMinus(string key)
-        {          
+        {
+            // dấu trừ trường biên trượt
             if (key.Equals("BientruotMinnus"))
             {
                 if (EntryBienTruot.Equals("0"))
@@ -219,23 +302,77 @@ namespace DanhGiaThucTap.ViewModel
                 }
                 else
                 {
-                    EntryBienTruot = (double.Parse(EntryBienTruot) - 0.1).ToString();   
+                    EntryBienTruot = (double.Parse(EntryBienTruot) - 0.1).ToString();
                 }
-                
+
             }
+            //dấu trừ trường khoảng lãi
+            else if (key.Equals("KhoangLaiMinus"))
+            {
+                if (EntryKhoangLai.Equals("0"))
+                {
+                    EntryKhoangLai = "0";
+                }
+                else
+                {
+                    EntryKhoangLai = (double.Parse(EntryKhoangLai) - 0.1).ToString();
+                }
+            }
+            //dấu trừ trường giá điều kiện
             else if (key.Equals("GiaDKMinus"))
             {
-                if (!GiaIsVisible)
+                if (EntryGiaDK.Equals("0"))
                 {
-                    EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
+                    EntryGiaDK = "0";
+                }
+                else
+                {
+                    if (Index == 0)
+                    {
+                        //
+                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá thị trường", "OK");
+                    }
+                    else if (Index == 2)
+                    {
+                        if (SumLai != null)
+                        {
+                            if (double.Parse(EntryGiaDK) <= double.Parse(SumLai) && TextBtnXacNhan.Equals("XÁC NHẬN MUA"))
+                            {
+                                App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá chốt lãi", "OK");
+                            }
+                            else
+                            {
+                                EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
+                    }
                 }
             }
+            //dấu trừ trường Khối lượng
             else if (key.Equals("KLMinus"))
             {
                 KLMax = "0";
-                
             }
-            Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+            // dấu trừ trường giá
+            else if (key.Equals("GiaMinus"))
+            {
+                EntryGia = (double.Parse(EntryGia) - 0.1).ToString();
+            }
+            // tính tổng ở trường giá đặt điều chỉnh
+            if (Index == 3)
+            {
+                FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
+                Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+            }
+            else
+            {
+                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+            }
+            SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
         }
 
         private void OnClickItemOnNavigationList(ItemListNavi item)
@@ -243,7 +380,7 @@ namespace DanhGiaThucTap.ViewModel
             ItemListNavigation = item.Ma;
             ListOnNavigationIsVisible = false;
             EntryGiaDK = ItemGT.GTBannerGia.ToString();
-            Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString(); 
+            Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             if (item.ID == 0)
             {
                 ItemGT = new ItemGiaTri(0, 1358.5, "1,191", "1,192", "1188.2", "20,82", "27,33", "12", "30", "1,181.9", "1,118.8", "1,272", "115,18", "1,115.6");
@@ -336,43 +473,93 @@ namespace DanhGiaThucTap.ViewModel
                 FontFmMua = FontAttributes.Bold;
                 FontFmBan = FontAttributes.None;
                 TextBtnXacNhan = "XÁC NHẬN MUA";
-                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                if (Index == 3)
+                {
+                    FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
+                    Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                }
+                else
+                {
+                    Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                }
             }
             if (key.Equals("2"))
             {
                 FontFmMua = FontAttributes.None;
                 FontFmBan = FontAttributes.Bold;
                 TextBtnXacNhan = "XÁC NHẬN BÁN";
-                Sum = (double.Parse(EntryGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                if (Index == 3)
+                {
+                    FrameGiaDK = (double.Parse(EntryGia) + double.Parse(EntryGiaDK)).ToString();
+                    Sum = (double.Parse(FrameGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                }
+                else
+                {
+                    Sum = (double.Parse(EntryGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                }  
             }
 
         }
+
         private void ClickCollapsedList(bool key)
         {
             if (key)
                 IsExpand = false;
         }
+
         public void ItemSelect(int index)
         {
-            if (index == 0 || index == 1)
+
+            if (index == 0)
             {
+                Index = 0;
                 GiaIsVisible = false;
                 LbGiaDK = false;
                 LbKhoangLai = false;
+                EntryGiaDK = ItemGT.GTBannerGia.ToString();
+                Sum = "";
+            }
+            else if (index == 1)
+            {
+                Index = 1;
+                GiaIsVisible = false;
+                LbGiaDK = false;
+                LbKhoangLai = false;
+                EntryGiaDK = ItemGT.GTBannerGia.ToString();
+                Sum = "";
             }
             else if (index == 2)
             {
+                Index = 2;
                 GiaIsVisible = true;
                 LbKhoangLai = false;
                 LbGiaDK = false;
+                EntryGiaDK = ItemGT.GTBannerGia.ToString();
+                Sum = "";
+                if (Index == 2)
+                {
+                    if(TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
+                    {
+                        EntryGiaDK = (double.Parse(ItemGT.GTSan2) - 0.1).ToString();
+                    }
+                    else
+                    {
+                        EntryGiaDK = (double.Parse(ItemGT.GTSan2) + 0.1).ToString();
+                    }
+                    
+                }
             }
             else if (index == 3)
             {
+                Index = 3;
                 GiaIsVisible = true;
                 LbKhoangLai = true;
                 LbGiaDK = true;
+                EntryGiaDK = "0";
+                Sum = "";
             }
         }
+
         private void AddDataListDK()
         {
             ListDK.Add("Lệnh UP");

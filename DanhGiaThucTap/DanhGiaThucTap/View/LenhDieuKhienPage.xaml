@@ -635,7 +635,7 @@
                             Padding="0"
                             BorderColor="LightGray"
                             HasShadow="False">
-                        <!-- list dropdown -->
+                            <!--  list dropdown  -->
                             <custom:DropDownList
                                 x:Name="dropdown"
                                 HorizontalOptions="FillAndExpand"
@@ -716,6 +716,8 @@
                                 <ImageButton
                                     Margin="10"
                                     BackgroundColor="White"
+                                    Command="{Binding BtnMinus}"
+                                    CommandParameter="GiaMinus"
                                     HeightRequest="20"
                                     HorizontalOptions="Start"
                                     Source="minus.png"
@@ -724,10 +726,13 @@
                                     FontSize="13"
                                     HorizontalOptions="FillAndExpand"
                                     HorizontalTextAlignment="Center"
-                                    Keyboard="Numeric" />
+                                    Keyboard="Numeric"
+                                    Text="{Binding EntryGia}" />
                                 <ImageButton
                                     Margin="10"
                                     BackgroundColor="White"
+                                    Command="{Binding BtnPlus}"
+                                    CommandParameter="GiaPlus"
                                     HeightRequest="20"
                                     HorizontalOptions="End"
                                     Source="plus.png"
@@ -812,11 +817,14 @@
                                     <ImageButton
                                         Margin="10"
                                         BackgroundColor="White"
+                                        Command="{Binding BtnMinus}"
+                                        CommandParameter="KhoangLaiMinus"
                                         HeightRequest="20"
                                         HorizontalOptions="Start"
                                         Source="minus.png"
                                         WidthRequest="20" />
                                     <custom:CustomEntry
+                                        Text="{Binding EntryKhoangLai}"
                                         FontSize="13"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
@@ -824,6 +832,8 @@
                                     <ImageButton
                                         Margin="10"
                                         BackgroundColor="White"
+                                        Command="{Binding BtnPlus}"
+                                        CommandParameter="KhoangLaiPlus"
                                         HeightRequest="20"
                                         HorizontalOptions="End"
                                         Source="plus.png"
@@ -838,7 +848,7 @@
                                 HasShadow="False">
                                 <Label
                                     HorizontalOptions="Center"
-                                    Text="asddfasd"
+                                    Text="{Binding SumLai}"
                                     VerticalOptions="Center" />
                             </Frame>
                         </Grid>
@@ -978,7 +988,7 @@
                                 IsVisible="{Binding LbGiaDK}">
                                 <Label
                                     HorizontalOptions="Center"
-                                    Text="sdfasf"
+                                    Text="{Binding FrameGiaDK}"
                                     VerticalOptions="Center" />
                             </Frame>
                         </Grid>
