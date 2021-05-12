@@ -11,12 +11,13 @@ namespace DanhGiaThucTap.ViewModel
         public Command<string> ClickTranfer { get; }
         public Command ClickShowPass { get; }
         public Command ClickListOnNavigation { get; }
-        public Command<ItemListNavi> ClickItemOnNavigationList { get; }
+        public Command<ItemListNavigationModel> ClickItemOnNavigationList { get; }
         public Command<bool> CollapsedList { get; }
         public Command<string> ClickTab { get; }
         public Command<string> ClickSelectTab { get; }
         public Command<string> BtnPlus { get; }
         public Command<string> BtnMinus { get; }
+        public Command CloseList { get; }
 
         private string _itemListNavigation;
         public string ItemListNavigation
@@ -32,8 +33,8 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _listOnNavigationIsVisible, value); }
         }
 
-        private List<ItemListNavi> _listOnNavigation;
-        public List<ItemListNavi> ListOnNavigation
+        private List<ItemListNavigationModel> _listOnNavigation;
+        public List<ItemListNavigationModel> ListOnNavigation
         {
             get { return _listOnNavigation; }
             set { SetProperty(ref _listOnNavigation, value); }
@@ -139,8 +140,8 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _entryKhoangLai, value); }
         }
 
-        private ItemGiaTri _itemGT;
-        public ItemGiaTri ItemGT { get { return _itemGT; } set { SetProperty(ref _itemGT, value); } }
+        private ItemGiaTriModel _itemGT;
+        public ItemGiaTriModel ItemGT { get { return _itemGT; } set { SetProperty(ref _itemGT, value); } }
 
         private string _entryBienTruot;
         public string EntryBienTruot
@@ -198,7 +199,7 @@ namespace DanhGiaThucTap.ViewModel
             EntryKhoangLai = "0";
             IsPass = true;
             ListDK = new List<string>();
-            ListOnNavigation = new List<ItemListNavi>();
+            ListOnNavigation = new List<ItemListNavigationModel>();
             AddDataListDK();
             AddDataListOnNavigation();
             FontFmMua = FontAttributes.Bold;
@@ -208,7 +209,7 @@ namespace DanhGiaThucTap.ViewModel
             Tab2Color = Color.Green;
             Tab1Color = Color.Gray;
             Tab3Color = Color.Gray;
-            ItemGT = new ItemGiaTri(0, 1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6,75.23,24.77);
+            ItemGT = new ItemGiaTriModel(0, 1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6, 75.23, 24.77);
             ItemListNavigation = "VN30F2106";
             EntryGiaDK = ItemGT.GTBannerGia.ToString();
             EntryGia = ItemGT.GTSan2.ToString();
@@ -216,17 +217,20 @@ namespace DanhGiaThucTap.ViewModel
             ListOnNavigationIsVisible = false;
             ClickTranfer = new Command<string>(OnClickTranfer);
             ClickSelectTab = new Command<string>(OnClickSelectTab);
-            ClickItemOnNavigationList = new Command<ItemListNavi>(OnClickItemOnNavigationList);
+            ClickItemOnNavigationList = new Command<ItemListNavigationModel>(OnClickItemOnNavigationList);
             CollapsedList = new Command<bool>(ClickCollapsedList);
             ClickTab = new Command<string>(OnClickTab);
             ClickListOnNavigation = new Command(OnClickListOnNavigation);
             ClickShowPass = new Command(OnClickShowPass);
             BtnMinus = new Command<string>(OnClickBtnMinus);
             BtnPlus = new Command<string>(OnClickBtnPlus);
-
+            CloseList = new Command(OnClickCloseList);
         }
 
-
+        private void OnClickCloseList()
+        {
+            ListOnNavigationIsVisible = false;
+        }
 
         // Command xử lý sự kiện dấu +
         private void OnClickBtnPlus(string key)
@@ -248,7 +252,7 @@ namespace DanhGiaThucTap.ViewModel
                 {
                     App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá thị trường", "OK");
                 }
-
+                //dấu cộng trường giá điều kiện với trường hợp mã OCO
                 else if (Index == 2)
                 {
                     if (SumLai != null)
@@ -278,7 +282,7 @@ namespace DanhGiaThucTap.ViewModel
             {
                 EntryGia = (double.Parse(EntryGia) + 0.1).ToString();
             }
-            //tính tổng trường giá điều kiện
+            //tính tổng tại trường giá đặt điều chỉnh, trường Giá chốt lãi
             if (Index == 3)
             {
                 FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
@@ -329,9 +333,9 @@ namespace DanhGiaThucTap.ViewModel
                 {
                     if (Index == 0)
                     {
-                        //
                         App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá thị trường", "OK");
                     }
+                    // dấu cộng trường giá điều kiện khi lệnh OCO 
                     else if (Index == 2)
                     {
                         if (SumLai != null)
@@ -362,7 +366,7 @@ namespace DanhGiaThucTap.ViewModel
             {
                 EntryGia = (double.Parse(EntryGia) - 0.1).ToString();
             }
-            // tính tổng ở trường giá đặt điều chỉnh
+            // tính tổng ở trường giá đặt điều chỉnh, giá chốt lãi
             if (Index == 3)
             {
                 FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
@@ -374,30 +378,30 @@ namespace DanhGiaThucTap.ViewModel
             }
             SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
         }
-
-        private void OnClickItemOnNavigationList(ItemListNavi item)
+        // hàm bắt sự kiện click vào item của list trên navigation
+        private void OnClickItemOnNavigationList(ItemListNavigationModel item)
         {
             ItemListNavigation = item.Ma;
             ListOnNavigationIsVisible = false;
             if (item.ID == 0)
             {
-                ItemGT = new ItemGiaTri(0, 1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6,23,77);
+                ItemGT = new ItemGiaTriModel(0, 1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6, 23, 77);
             }
             else if (item.ID == 1)
             {
-                ItemGT = new ItemGiaTri(1, 1399.1, 1.131, 1191, 1128.3, 20.242, 27.313, 7, 21, 188.3, 138.6, 1.479, 118.88, 135.6,50,50);
+                ItemGT = new ItemGiaTriModel(1, 1399.1, 1.131, 1191, 1128.3, 20.242, 27.313, 7, 21, 188.3, 138.6, 1.479, 118.88, 135.6, 50, 50);
             }
             else if (item.ID == 2)
             {
-                ItemGT = new ItemGiaTri(2, 1354.9, 1.191, 1.196, 1178.7, 20.832, 27.383, 3, 17, 118.8, 168.7, 111.214, 188.8, 106.6,59.26,40.74);
+                ItemGT = new ItemGiaTriModel(2, 1354.9, 1.191, 1.196, 1178.7, 20.832, 27.383, 3, 17, 118.8, 168.7, 111.214, 188.8, 106.6, 59.26, 40.74);
             }
             else if (item.ID == 3)
             {
-                ItemGT = new ItemGiaTri(3, 1289.3, 1.124, 1.199, 1198.8, 20.802, 27.393, 10, 27, 168.9, 178.1, 11.272, 112.269, 106.6,40,60);
+                ItemGT = new ItemGiaTriModel(3, 1289.3, 1.124, 1.199, 1198.8, 20.802, 27.393, 10, 27, 168.9, 178.1, 11.272, 112.269, 106.6, 40, 60);
             }
             else
             {
-                ItemGT = new ItemGiaTri(4, 1765.5, 1.196, 1.132, 128.1, 20.854, 27.333, 8, 47, 138.2, 185.7, 15.272, 188.8, 108.6,10,90);
+                ItemGT = new ItemGiaTriModel(4, 1765.5, 1.196, 1.132, 128.1, 20.854, 27.333, 8, 47, 138.2, 185.7, 15.272, 188.8, 108.6, 10, 90);
             }
             if (Index == 0 || Index == 1)
             {
@@ -421,7 +425,7 @@ namespace DanhGiaThucTap.ViewModel
             }
             Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
         }
-
+        //hàm bắt sự kiện click ẩn hiện list trên navigation
         private void OnClickListOnNavigation()
         {
             if (ListOnNavigationIsVisible)
@@ -433,7 +437,7 @@ namespace DanhGiaThucTap.ViewModel
                 ListOnNavigationIsVisible = true;
             }
         }
-
+        //hàm bắt sự kiện click vào 3 tab trên cùng
         private void OnClickSelectTab(string key)
         {
             if (key.Equals("Tab1"))
@@ -455,7 +459,7 @@ namespace DanhGiaThucTap.ViewModel
                 Tab1Color = Color.Gray;
             }
         }
-
+        //hàm bắt sự kiện click hiệu ứng nháy nháy
         private void OnClickTranfer(string key)
         {
             if (key.Equals("00") || key.Equals("10") || key.Equals("20"))
@@ -472,7 +476,7 @@ namespace DanhGiaThucTap.ViewModel
                 TextBtnXacNhan = "XÁC NHẬN MUA";
             }
         }
-
+        //hàm bắt sự kiện ẩn hiện password
         private void OnClickShowPass()
         {
             if (IsPass)
@@ -484,7 +488,7 @@ namespace DanhGiaThucTap.ViewModel
                 IsPass = true;
             }
         }
-
+        //hàm bắt sự kiện click vào 2 tab MUA và BÁN
         private void OnClickTab(string key)
         {
             if (key.Equals("1"))
@@ -519,13 +523,13 @@ namespace DanhGiaThucTap.ViewModel
             }
 
         }
-
+        //hàm bắt sự kiện cho expander
         private void ClickCollapsedList(bool key)
         {
             if (key)
                 IsExpand = false;
         }
-
+        //hàm bắt sự kiện khi click vào item của list các lệnh
         public void ItemSelect(int index)
         {
 
@@ -579,7 +583,7 @@ namespace DanhGiaThucTap.ViewModel
                 Sum = "";
             }
         }
-
+        // thêm dữ liệu vào List lệnh
         private void AddDataListDK()
         {
             ListDK.Add("Lệnh UP");
@@ -587,17 +591,17 @@ namespace DanhGiaThucTap.ViewModel
             ListDK.Add("Lệnh OCO");
             ListDK.Add("Lệnh B&B");
         }
-
+        //thêm dữ liệu vào List trên navigation
         private void AddDataListOnNavigation()
         {
-            ListOnNavigation.Add(new ItemListNavi { ID = 0, Ma = "VN30F2106" });
-            ListOnNavigation.Add(new ItemListNavi { ID = 1, Ma = "VN30F2105" });
-            ListOnNavigation.Add(new ItemListNavi { ID = 2, Ma = "VN30F2112" });
-            ListOnNavigation.Add(new ItemListNavi { ID = 3, Ma = "VN30F2109" });
-            ListOnNavigation.Add(new ItemListNavi { ID = 4, Ma = "GB05F2106" });
-            ListOnNavigation.Add(new ItemListNavi { ID = 5, Ma = "GB05F2109" });
-            ListOnNavigation.Add(new ItemListNavi { ID = 6, Ma = "GB10F2109" });
-            ListOnNavigation.Add(new ItemListNavi { ID = 7, Ma = "GB10F2106" });
+            ListOnNavigation.Add(new ItemListNavigationModel { ID = 0, Ma = "VN30F2106" });
+            ListOnNavigation.Add(new ItemListNavigationModel { ID = 1, Ma = "VN30F2105" });
+            ListOnNavigation.Add(new ItemListNavigationModel { ID = 2, Ma = "VN30F2112" });
+            ListOnNavigation.Add(new ItemListNavigationModel { ID = 3, Ma = "VN30F2109" });
+            ListOnNavigation.Add(new ItemListNavigationModel { ID = 4, Ma = "GB05F2106" });
+            ListOnNavigation.Add(new ItemListNavigationModel { ID = 5, Ma = "GB05F2109" });
+            ListOnNavigation.Add(new ItemListNavigationModel { ID = 6, Ma = "GB10F2109" });
+            ListOnNavigation.Add(new ItemListNavigationModel { ID = 7, Ma = "GB10F2106" });
         }
 
     }

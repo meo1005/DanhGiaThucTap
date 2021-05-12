@@ -15,7 +15,7 @@
     UnselectedTabColor="Gray">
     <NavigationPage
         Title="Thị trường"
-        BarBackgroundColor="#3aac32"
+        BarBackgroundColor="#51b749"
         IconImageSource="iconschart.png">
         <x:Arguments>
             <local:ThiTruongPage Title="EzMobile Futures" />
@@ -23,23 +23,23 @@
     </NavigationPage>
     <NavigationPage
         Title="Quản lý TK"
-        BarBackgroundColor="#3aac32"
+        BarBackgroundColor="#51b749"
         IconImageSource="iconsinvestment.png">
         <x:Arguments>
-            <local:QuanLyTKPage Title="Quản lý tài khoản" />
+            <local:TempPage Title="Quản lý tài khoản" />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage
         Title="Đặt lệnh"
-        BarBackgroundColor="#3aac32"
+        BarBackgroundColor="#51b749"
         IconImageSource="iconlaw.png">
         <x:Arguments>
             <local:LenhDieuKienPage>
                 <NavigationPage.TitleView>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                    <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
                         <Label
                             FontSize="20"
-                            Text="{Binding ItemListNavigation}"          
+                            Text="{Binding ItemListNavigation}"
                             TextColor="White" />
                         <Image
                             HeightRequest="25"
@@ -56,18 +56,18 @@
     </NavigationPage>
     <NavigationPage
         Title="Hủy/Sửa"
-        BarBackgroundColor="#3aac32"
+        BarBackgroundColor="#51b749"
         IconImageSource="iconseditfile.png">
         <x:Arguments>
-            <local:HuySuaPage Title="Hủy/Sửa" />
+            <local:TempPage Title="Hủy/Sửa" />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage
         Title="Chuyển tiền"
-        BarBackgroundColor="#3aac32"
+        BarBackgroundColor="#51b749"
         IconImageSource="iconmoneybag.png">
         <x:Arguments>
-            <local:ChuyenTienPage Title="Chuyển tiền" />
+            <local:TempPage Title="Chuyển tiền" />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

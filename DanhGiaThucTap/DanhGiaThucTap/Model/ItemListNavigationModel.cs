@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DanhGiaThucTap.Model
 {
-    public class ItemListNavi
+    public class ItemListNavigationModel
     {
         public int ID { get; set; }
         public string Ma { get; set; }

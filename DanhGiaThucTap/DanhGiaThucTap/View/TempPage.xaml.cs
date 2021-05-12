@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace DanhGiaThucTap.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class QuanLyTKPage : ContentPage
+    public partial class TempPage : ContentPage
     {
-        public QuanLyTKPage()
+        public TempPage()
         {
             InitializeComponent();
         }
