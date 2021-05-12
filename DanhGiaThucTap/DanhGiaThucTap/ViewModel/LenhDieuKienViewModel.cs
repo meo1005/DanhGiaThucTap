@@ -204,15 +204,13 @@ namespace DanhGiaThucTap.ViewModel
             AddDataListOnNavigation();
             FontFmMua = FontAttributes.Bold;
             FontFmBan = FontAttributes.None;
-            TextBtnXacNhan = "XÁC NHẬN MUA";
-            BackgroundBtnXacNhan = Color.FromHex("#c9c9c9");
+            TextBtnXacNhan = "XÁC NHẬN MUA";        
             Tab2Color = Color.Green;
             Tab1Color = Color.Gray;
             Tab3Color = Color.Gray;
-            ItemGT = new ItemGiaTriModel(0, 1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6, 75.23, 24.77);
+            ItemGT = new ItemGiaTriModel(1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6, 75.23, 24.77);
             ItemListNavigation = "VN30F2106";
             EntryGiaDK = ItemGT.GTBannerGia.ToString();
-            EntryGia = ItemGT.GTSan2.ToString();
             Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             ListOnNavigationIsVisible = false;
             ClickTranfer = new Command<string>(OnClickTranfer);
@@ -226,12 +224,11 @@ namespace DanhGiaThucTap.ViewModel
             BtnPlus = new Command<string>(OnClickBtnPlus);
             CloseList = new Command(OnClickCloseList);
         }
-
+        //hàm bắt sự kiện click vào background để tắt list navigation
         private void OnClickCloseList()
         {
             ListOnNavigationIsVisible = false;
         }
-
         // Command xử lý sự kiện dấu +
         private void OnClickBtnPlus(string key)
         {
@@ -378,30 +375,30 @@ namespace DanhGiaThucTap.ViewModel
             }
             SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
         }
-        // hàm bắt sự kiện click vào item của list trên navigation
+        // hàm bắt sự kiện click vào item của list trên navigation, xét các giá trị
         private void OnClickItemOnNavigationList(ItemListNavigationModel item)
         {
             ItemListNavigation = item.Ma;
             ListOnNavigationIsVisible = false;
             if (item.ID == 0)
             {
-                ItemGT = new ItemGiaTriModel(0, 1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6, 23, 77);
+                ItemGT = new ItemGiaTriModel(1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6, 23, 77);
             }
             else if (item.ID == 1)
             {
-                ItemGT = new ItemGiaTriModel(1, 1399.1, 1.131, 1191, 1128.3, 20.242, 27.313, 7, 21, 188.3, 138.6, 1.479, 118.88, 135.6, 50, 50);
+                ItemGT = new ItemGiaTriModel(1399.1, 1.131, 1191, 1128.3, 20.242, 27.313, 7, 21, 188.3, 138.6, 1.479, 118.88, 135.6, 50, 50);
             }
             else if (item.ID == 2)
             {
-                ItemGT = new ItemGiaTriModel(2, 1354.9, 1.191, 1.196, 1178.7, 20.832, 27.383, 3, 17, 118.8, 168.7, 111.214, 188.8, 106.6, 59.26, 40.74);
+                ItemGT = new ItemGiaTriModel(1354.9, 1.191, 1.196, 1178.7, 20.832, 27.383, 3, 17, 118.8, 168.7, 111.214, 188.8, 106.6, 59.26, 40.74);
             }
             else if (item.ID == 3)
             {
-                ItemGT = new ItemGiaTriModel(3, 1289.3, 1.124, 1.199, 1198.8, 20.802, 27.393, 10, 27, 168.9, 178.1, 11.272, 112.269, 106.6, 40, 60);
+                ItemGT = new ItemGiaTriModel(1289.3, 1.124, 1.199, 1198.8, 20.802, 27.393, 10, 27, 168.9, 178.1, 11.272, 112.269, 106.6, 40, 60);
             }
             else
             {
-                ItemGT = new ItemGiaTriModel(4, 1765.5, 1.196, 1.132, 128.1, 20.854, 27.333, 8, 47, 138.2, 185.7, 15.272, 188.8, 108.6, 10, 90);
+                ItemGT = new ItemGiaTriModel(1765.5, 1.196, 1.132, 128.1, 20.854, 27.333, 8, 47, 138.2, 185.7, 15.272, 188.8, 108.6, 10, 90);
             }
             if (Index == 0 || Index == 1)
             {
@@ -603,6 +600,5 @@ namespace DanhGiaThucTap.ViewModel
             ListOnNavigation.Add(new ItemListNavigationModel { ID = 6, Ma = "GB10F2109" });
             ListOnNavigation.Add(new ItemListNavigationModel { ID = 7, Ma = "GB10F2106" });
         }
-
     }
 }

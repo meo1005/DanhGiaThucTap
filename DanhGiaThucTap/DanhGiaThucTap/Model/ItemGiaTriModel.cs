@@ -6,9 +6,7 @@ using System.Text;
 namespace DanhGiaThucTap.Model
 {
     public class ItemGiaTriModel : BaseViewModel
-    {
-        private int _id;
-        public int ID { get { return _id; } set { SetProperty(ref _id, value); } }
+    {             
         public double GTBannerGia { get; set; }
         public double GTMoCua { get; set; }
         public double GTCao { get; set; }
@@ -24,9 +22,8 @@ namespace DanhGiaThucTap.Model
         public double GTSan3 { get; set; }
         public double TileMua { get; set; }
         public double TileBan { get; set; }
-        public ItemGiaTriModel(int iD, double gTBannerGia, double gTMoCua, double gTCao, double gTThap, double gTTongHD, double gTKLMo, double gTDuMua00, double gTDuBan01, double gT01, double gT00, double gTSan1, double gTSan2, double gTSan3, double tiLeMua, double tileBan)
+        public ItemGiaTriModel(double gTBannerGia, double gTMoCua, double gTCao, double gTThap, double gTTongHD, double gTKLMo, double gTDuMua00, double gTDuBan01, double gT01, double gT00, double gTSan1, double gTSan2, double gTSan3, double tiLeMua, double tileBan)
         {          
-            ID = iD;
             GTBannerGia = gTBannerGia;
             GTMoCua = gTMoCua;
             GTCao = gTCao;

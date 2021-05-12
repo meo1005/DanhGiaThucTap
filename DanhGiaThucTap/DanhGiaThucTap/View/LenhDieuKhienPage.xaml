@@ -1060,6 +1060,7 @@
                     <!--  Button xác nhận  -->
                     <Button
                         CornerRadius="20"
+                        BackgroundColor="#c9c9c9"
                         HorizontalOptions="Center"
                         Text="{Binding TextBtnXacNhan}"
                         TextColor="White"
@@ -1105,6 +1106,7 @@
                     VerticalOptions="Start" />
             </Frame>
         </StackLayout>
+        <!-- click to hide list on navigation -->
         <Frame
             BackgroundColor="Transparent"
             IsVisible="{Binding ListOnNavigationIsVisible}"

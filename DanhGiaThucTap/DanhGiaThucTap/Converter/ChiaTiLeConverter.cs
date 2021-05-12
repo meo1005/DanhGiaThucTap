@@ -10,6 +10,7 @@ namespace DanhGiaThucTap.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            //chuyển dữ liệu sang phần trăm
            return TiLe(double.Parse(value.ToString()));
         }
 
