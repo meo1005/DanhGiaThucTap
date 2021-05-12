@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <conver:TabMuaBanConverter x:Key="focus" />
             <conver:CheckNullConverter x:Key="checknull" />
+            <conver:ChiaTiLeConverter x:Key="tile" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
@@ -238,11 +239,12 @@
                         Padding="0,10,0,0"
                         HorizontalOptions="Center"
                         Orientation="Horizontal">
-                        <Label Text="75.23%" TextColor="Black" />
+                        <Label Text="{Binding ItemGT.TileMua}" TextColor="Black" />
+                        <Label Text="%" TextColor="Black" />
                         <Grid ColumnSpacing="0" WidthRequest="250">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="75.23*" />
-                                <ColumnDefinition Width="24.77*" />
+                                <ColumnDefinition Width="{Binding ItemGT.TileMua, Converter={StaticResource tile}}" />
+                                <ColumnDefinition Width="{Binding ItemGT.TileBan, Converter={StaticResource tile}}" />
                             </Grid.ColumnDefinitions>
                             <StackLayout
                                 Grid.Column="0"
@@ -255,7 +257,8 @@
                                 HeightRequest="5"
                                 VerticalOptions="Center" />
                         </Grid>
-                        <Label Text="24.77%" TextColor="Black" />
+                        <Label Text="{Binding ItemGT.TileBan}" TextColor="Black" />
+                        <Label Text="%" TextColor="Black" />
                     </StackLayout>
                     <!--  phần dư mua dư bán  -->
                     <Grid ColumnSpacing="3" RowSpacing="3">
@@ -824,11 +827,11 @@
                                         Source="minus.png"
                                         WidthRequest="20" />
                                     <custom:CustomEntry
-                                        Text="{Binding EntryKhoangLai}"
                                         FontSize="13"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
-                                        Keyboard="Numeric" />
+                                        Keyboard="Numeric"
+                                        Text="{Binding EntryKhoangLai}" />
                                     <ImageButton
                                         Margin="10"
                                         BackgroundColor="White"

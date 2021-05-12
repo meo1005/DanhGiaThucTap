@@ -208,10 +208,10 @@ namespace DanhGiaThucTap.ViewModel
             Tab2Color = Color.Green;
             Tab1Color = Color.Gray;
             Tab3Color = Color.Gray;
-            ItemGT = new ItemGiaTri(0, 1358.5, "1,191", "1,192", "1188.2", "20,82", "27,33", "12", "30", "1,181.9", "1,118.8", "1,272", "115,18", "1,115.6");
+            ItemGT = new ItemGiaTri(0, 1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6,75.23,24.77);
             ItemListNavigation = "VN30F2106";
             EntryGiaDK = ItemGT.GTBannerGia.ToString();
-            EntryGia = ItemGT.GTSan2;
+            EntryGia = ItemGT.GTSan2.ToString();
             Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             ListOnNavigationIsVisible = false;
             ClickTranfer = new Command<string>(OnClickTranfer);
@@ -379,28 +379,43 @@ namespace DanhGiaThucTap.ViewModel
         {
             ItemListNavigation = item.Ma;
             ListOnNavigationIsVisible = false;
-            EntryGiaDK = ItemGT.GTBannerGia.ToString();
-            Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             if (item.ID == 0)
             {
-                ItemGT = new ItemGiaTri(0, 1358.5, "1,191", "1,192", "1188.2", "20,82", "27,33", "12", "30", "1,181.9", "1,118.8", "1,272", "115,18", "1,115.6");
+                ItemGT = new ItemGiaTri(0, 1358.5, 1.191, 1.192, 1188.2, 20.82, 27.33, 12, 30, 181.9, 118.8, 1.272, 115.18, 115.6,23,77);
             }
             else if (item.ID == 1)
             {
-                ItemGT = new ItemGiaTri(1, 1399.1, "1,131", "1,191", "1128.3", "20,242", "27,313", "7", "21", "2,188.3", "1,138.6", "1,479", "118,88", "1,135.6");
+                ItemGT = new ItemGiaTri(1, 1399.1, 1.131, 1191, 1128.3, 20.242, 27.313, 7, 21, 188.3, 138.6, 1.479, 118.88, 135.6,50,50);
             }
             else if (item.ID == 2)
             {
-                ItemGT = new ItemGiaTri(2, 1354.9, "1,191", "1,196", "1178.7", "20,832", "27,383", "3", "17", "1,118.8", "1,168.7", "111,214", "1,188.8", "1,106.6");
+                ItemGT = new ItemGiaTri(2, 1354.9, 1.191, 1.196, 1178.7, 20.832, 27.383, 3, 17, 118.8, 168.7, 111.214, 188.8, 106.6,59.26,40.74);
             }
             else if (item.ID == 3)
             {
-                ItemGT = new ItemGiaTri(3, 1289.3, "1,124", "1,199", "1198.8", "20,802", "27,393", "10", "27", "1,168.9", "1,178.1", "11,272", "112,269", "1,106.6");
+                ItemGT = new ItemGiaTri(3, 1289.3, 1.124, 1.199, 1198.8, 20.802, 27.393, 10, 27, 168.9, 178.1, 11.272, 112.269, 106.6,40,60);
             }
             else
             {
-                ItemGT = new ItemGiaTri(4, 1765.5, "1,196", "1,132", "1128.1", "20,854", "27,333", "8", "47", "1,138.2", "1,185.7", "15,272", "1,188.8", "1,108.6");
+                ItemGT = new ItemGiaTri(4, 1765.5, 1.196, 1.132, 128.1, 20.854, 27.333, 8, 47, 138.2, 185.7, 15.272, 188.8, 108.6,10,90);
             }
+            if (Index == 0 || Index == 1)
+            {
+                EntryGiaDK = ItemGT.GTBannerGia.ToString();
+            }
+            if (Index == 2)
+            {
+                EntryGia = ItemGT.GTSan2.ToString();
+                if (TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
+                {
+                    EntryGiaDK = (ItemGT.GTSan2 - 0.1).ToString();
+                }
+                else
+                {
+                    EntryGiaDK = (ItemGT.GTSan2 + 0.1).ToString();
+                }
+            }
+            Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
         }
 
         private void OnClickListOnNavigation()
@@ -496,7 +511,7 @@ namespace DanhGiaThucTap.ViewModel
                 else
                 {
                     Sum = (double.Parse(EntryGiaDK) - double.Parse(EntryBienTruot)).ToString();
-                }  
+                }
             }
 
         }
@@ -538,15 +553,16 @@ namespace DanhGiaThucTap.ViewModel
                 Sum = "";
                 if (Index == 2)
                 {
-                    if(TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
+                    EntryGia = ItemGT.GTSan2.ToString();
+                    if (TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
                     {
-                        EntryGiaDK = (double.Parse(ItemGT.GTSan2) - 0.1).ToString();
+                        EntryGiaDK = (ItemGT.GTSan2 - 0.1).ToString();
                     }
                     else
                     {
-                        EntryGiaDK = (double.Parse(ItemGT.GTSan2) + 0.1).ToString();
+                        EntryGiaDK = (ItemGT.GTSan2 + 0.1).ToString();
                     }
-                    
+
                 }
             }
             else if (index == 3)
