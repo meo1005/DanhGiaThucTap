@@ -36,7 +36,7 @@
             Spacing="0">
             <!--  tab  -->
             <Grid
-                BackgroundColor="LightGray"
+                BackgroundColor="#f3f3f3"
                 ColumnSpacing="0"
                 RowDefinitions="50">
                 <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
                     TextColor="{Binding Tab1Color}"
                     VerticalOptions="CenterAndExpand" />
                 <BoxView
-                    BackgroundColor="Green"
+                    BackgroundColor="#39ac31"
                     HeightRequest="2"
                     IsVisible="False"
                     VerticalOptions="End">
@@ -78,7 +78,7 @@
                 <BoxView
                     x:Name="Tab2Isvisible"
                     Grid.Column="1"
-                    BackgroundColor="Green"
+                    BackgroundColor="#39ac31"
                     HeightRequest="2"
                     IsVisible="False"
                     VerticalOptions="End">
@@ -102,7 +102,7 @@
                     VerticalOptions="CenterAndExpand" />
                 <BoxView
                     Grid.Column="2"
-                    BackgroundColor="Green"
+                    BackgroundColor="#39ac31"
                     HeightRequest="2"
                     IsVisible="False"
                     VerticalOptions="End">
@@ -144,7 +144,7 @@
                     Padding="0"
                     Spacing="0">
                     <!--  phần banner  -->
-                    <Frame HasShadow="True" HeightRequest="70">
+                    <Frame Padding="10" HasShadow="True">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20" />
@@ -635,13 +635,13 @@
                             Padding="0"
                             BorderColor="LightGray"
                             HasShadow="False">
-                            <StackLayout>
-                                <custom:DropDownList
-                                    x:Name="dropdown"
-                                    HorizontalOptions="FillAndExpand"
-                                    ItemsSource="{Binding ListDK}"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
+                        <!-- list dropdown -->
+                            <custom:DropDownList
+                                x:Name="dropdown"
+                                HorizontalOptions="FillAndExpand"
+                                ItemsSource="{Binding ListDK}"
+                                VerticalOptions="Center" />
+
                         </Frame>
                         <!--  dong khối lượng  -->
                         <StackLayout Grid.Row="2" Orientation="Horizontal">

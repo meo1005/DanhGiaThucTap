@@ -17,7 +17,7 @@ namespace DanhGiaThucTap.ViewModel
         public Command<string> ClickSelectTab { get; }
         public Command<string> BtnPlus { get; }
         public Command<string> BtnMinus { get; }
-
+        
         private string _itemListNavigation;
         public string ItemListNavigation
         {
@@ -158,7 +158,7 @@ namespace DanhGiaThucTap.ViewModel
 
 
         public LenhDieuKienViewModel()
-        {
+        {           
             EntryBienTruot = "0";
             IsPass = true;
             ListDK = new List<string>();
@@ -186,6 +186,7 @@ namespace DanhGiaThucTap.ViewModel
             ClickShowPass = new Command(OnClickShowPass);
             BtnMinus = new Command<string>(OnClickBtnMinus);
             BtnPlus = new Command<string>(OnClickBtnPlus);
+
         }
 
         private void OnClickBtnPlus(string key)

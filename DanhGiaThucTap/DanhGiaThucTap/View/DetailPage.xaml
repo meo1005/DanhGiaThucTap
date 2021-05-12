@@ -36,7 +36,7 @@
         <x:Arguments>
             <local:LenhDieuKienPage>
                 <NavigationPage.TitleView>
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <Label
                             FontSize="20"
                             Text="{Binding ItemListNavigation}"          

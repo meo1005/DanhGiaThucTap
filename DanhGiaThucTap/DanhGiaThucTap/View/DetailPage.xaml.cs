@@ -18,7 +18,6 @@ namespace DanhGiaThucTap.View
         {
             InitializeComponent();
             viewModel = new LenhDieuKienViewModel();
-           // BindingContext = new LenhDieuKienViewModel();
         }
         public LenhDieuKienViewModel viewModel
         {

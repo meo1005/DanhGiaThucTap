@@ -18,18 +18,24 @@ namespace DanhGiaThucTap.View
             get { return BindingContext as LenhDieuKienViewModel; }
             set { BindingContext = value; }
         }
+        private int _iD;
+
+        public int ID
+        {
+            get { return _iD; }
+            set { _iD = value; }
+        }
         public LenhDieuKienPage()
         {
-            InitializeComponent();
-            viewModel = new LenhDieuKienViewModel();
-          //  BindingContext = new LenhDieuKienViewModel();           
+            InitializeComponent();           
+            viewModel = new LenhDieuKienViewModel();         
             dropdown.SelectedIndex = 0;
             dropdown.ItemSelected += OnDropdownSelected;
         }
         private void OnDropdownSelected(object sender, ItemSelectedEventArgs e)
         {
             viewModel.ItemSelect(e.SelectedIndex);
-
+            ID = e.SelectedIndex;
         }
 
         private async void TapSideMua(object sender, EventArgs e)
@@ -56,6 +62,5 @@ namespace DanhGiaThucTap.View
             await x.ChangeBackgroundColorTo(color, 150, Easing.CubicOut);
             await x.ChangeBackgroundColorTo(actuacolor, 150, Easing.CubicOut);
         }
-
     }
 }
