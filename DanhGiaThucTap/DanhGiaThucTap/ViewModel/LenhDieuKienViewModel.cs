@@ -297,7 +297,7 @@ namespace DanhGiaThucTap.ViewModel
                 Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
                 SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
             }
-            else if (Index == 2 || Index == 3)
+            else if (Index == 2)
             {
                 SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
                 Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
@@ -398,7 +398,7 @@ namespace DanhGiaThucTap.ViewModel
                 Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
                 SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
             }
-            else if (Index == 2 || Index == 3)
+            else if (Index == 2)
             {
                 SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
                 Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
@@ -453,7 +453,9 @@ namespace DanhGiaThucTap.ViewModel
             {
                 EntryGia = ItemGT.GTSan2.ToString();
             }
-            Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+            Sum = "";
+            FrameGiaDK = "";
+            SumLai = "";
         }
         //hàm bắt sự kiện click ẩn hiện list trên navigation
         public void OnClickListOnNavigation()
@@ -606,7 +608,7 @@ namespace DanhGiaThucTap.ViewModel
                     EntryGiaDK = (ItemGT.GTSan2 + 0.1).ToString();
                 }
 
-
+                SumLai = "";
             }
             ////////////////////////////////
             else if (index == 3)
@@ -617,6 +619,8 @@ namespace DanhGiaThucTap.ViewModel
                 LbGiaDK = true;
                 EntryGiaDK = "0";
                 Sum = "";
+                SumLai = "";
+                FrameGiaDK = "";
                 EntryGia = ItemGT.GTSan2.ToString();
 
             }
