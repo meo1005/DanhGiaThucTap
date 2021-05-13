@@ -566,7 +566,7 @@
                         </xct:Expander>
                     </Grid>
                     <!--  2 tab mua bán  -->
-                    <Grid ColumnSpacing="3" RowSpacing="15">
+                    <Grid ColumnSpacing="3" RowSpacing="6">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
                             <RowDefinition Height="35" />
@@ -1059,8 +1059,8 @@
                     </Grid>
                     <!--  Button xác nhận  -->
                     <Button
-                        CornerRadius="20"
                         BackgroundColor="#c9c9c9"
+                        CornerRadius="20"
                         HorizontalOptions="Center"
                         Text="{Binding TextBtnXacNhan}"
                         TextColor="White"
@@ -1100,13 +1100,13 @@
                 HeightRequest="60"
                 IsVisible="{Binding Source={x:Reference Tab2Isvisible}, Path=IsVisible}">
                 <BoxView
-                    BackgroundColor="DarkGray"
+                    BackgroundColor="Gray"
                     HeightRequest="4"
                     HorizontalOptions="Center"
                     VerticalOptions="Start" />
             </Frame>
         </StackLayout>
-        <!-- click to hide list on navigation -->
+        <!--  click to hide list on navigation  -->
         <Frame
             BackgroundColor="Transparent"
             IsVisible="{Binding ListOnNavigationIsVisible}"
