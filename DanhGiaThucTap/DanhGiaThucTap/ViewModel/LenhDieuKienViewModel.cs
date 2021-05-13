@@ -204,7 +204,7 @@ namespace DanhGiaThucTap.ViewModel
             AddDataListOnNavigation();
             FontFmMua = FontAttributes.Bold;
             FontFmBan = FontAttributes.None;
-            TextBtnXacNhan = "XÁC NHẬN MUA";        
+            TextBtnXacNhan = "XÁC NHẬN MUA";
             Tab2Color = Color.Green;
             Tab1Color = Color.Gray;
             Tab3Color = Color.Gray;
@@ -253,7 +253,7 @@ namespace DanhGiaThucTap.ViewModel
                 {
                     if (double.Parse(EntryGiaDK) >= ItemGT.GTBannerGia)
                     {
-                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá thị trường", "OK");
+                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá thị trường", "OK");
                     }
                     else
                     {
@@ -299,12 +299,13 @@ namespace DanhGiaThucTap.ViewModel
             else if (Index == 2 || Index == 3)
             {
                 SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             }
             else
             {
                 Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             }
-            
+
         }
         // Command xử lý sự kiện dấu -
         private void OnClickBtnMinus(string key)
@@ -351,7 +352,7 @@ namespace DanhGiaThucTap.ViewModel
                     {
                         if (double.Parse(EntryGiaDK) <= ItemGT.GTBannerGia)
                         {
-                            App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá thị trường", "OK");
+                            App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá thị trường", "OK");
                         }
                         else
                         {
@@ -398,6 +399,7 @@ namespace DanhGiaThucTap.ViewModel
             else if (Index == 2 || Index == 3)
             {
                 SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
             }
             else
             {

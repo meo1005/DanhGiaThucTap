@@ -17,7 +17,6 @@ namespace DanhGiaThucTap.View
         public DetailPage()
         {
             InitializeComponent();
-            BindingContext = new LenhDieuKienViewModel();
         }       
     }
 }
