@@ -295,6 +295,7 @@ namespace DanhGiaThucTap.ViewModel
             {
                 FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
                 Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
             }
             else if (Index == 2 || Index == 3)
             {
@@ -395,6 +396,7 @@ namespace DanhGiaThucTap.ViewModel
             {
                 FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
                 Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
             }
             else if (Index == 2 || Index == 3)
             {
@@ -526,8 +528,11 @@ namespace DanhGiaThucTap.ViewModel
                 TextBtnXacNhan = "XÁC NHẬN MUA";
                 if (Index == 3)
                 {
-                    FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
-                    Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                    if (FrameGiaDK != null)
+                    {
+                        FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
+                        Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                    }
                 }
                 else
                 {
@@ -541,8 +546,11 @@ namespace DanhGiaThucTap.ViewModel
                 TextBtnXacNhan = "XÁC NHẬN BÁN";
                 if (Index == 3)
                 {
-                    FrameGiaDK = (double.Parse(EntryGia) + double.Parse(EntryGiaDK)).ToString();
-                    Sum = (double.Parse(FrameGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                    if (FrameGiaDK != null)
+                    {
+                        FrameGiaDK = (double.Parse(EntryGia) + double.Parse(EntryGiaDK)).ToString();
+                        Sum = (double.Parse(FrameGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                    }
                 }
                 else
                 {
@@ -587,20 +595,20 @@ namespace DanhGiaThucTap.ViewModel
                 LbGiaDK = false;
                 EntryGiaDK = ItemGT.GTBannerGia.ToString();
                 Sum = "";
-                if (Index == 2)
+                EntryGia = ItemGT.GTSan2.ToString();
+                /////////////////
+                if (TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
                 {
-                    EntryGia = ItemGT.GTSan2.ToString();
-                    if (TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
-                    {
-                        EntryGiaDK = (ItemGT.GTSan2 - 0.1).ToString();
-                    }
-                    else
-                    {
-                        EntryGiaDK = (ItemGT.GTSan2 + 0.1).ToString();
-                    }
-
+                    EntryGiaDK = (ItemGT.GTSan2 - 0.1).ToString();
                 }
+                else
+                {
+                    EntryGiaDK = (ItemGT.GTSan2 + 0.1).ToString();
+                }
+
+
             }
+            ////////////////////////////////
             else if (index == 3)
             {
                 Index = 3;
@@ -609,6 +617,8 @@ namespace DanhGiaThucTap.ViewModel
                 LbGiaDK = true;
                 EntryGiaDK = "0";
                 Sum = "";
+                EntryGia = ItemGT.GTSan2.ToString();
+
             }
         }
         // thêm dữ liệu vào List lệnh

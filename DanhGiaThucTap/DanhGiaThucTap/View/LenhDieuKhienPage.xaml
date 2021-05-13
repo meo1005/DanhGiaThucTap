@@ -47,6 +47,7 @@
                 </Grid.ColumnDefinitions>
                 <!--  tab lệnh thường  -->
                 <Label
+                    FontAttributes="Bold"
                     x:Name="Tab1"
                     FontSize="15"
                     HorizontalOptions="Center"
@@ -55,7 +56,7 @@
                     VerticalOptions="CenterAndExpand" />
                 <BoxView
                     BackgroundColor="#39ac31"
-                    HeightRequest="2"
+                    HeightRequest="1.5"
                     IsVisible="False"
                     VerticalOptions="End">
                     <BoxView.Triggers>
@@ -69,6 +70,7 @@
                 </BoxView>
                 <!--  tab lệnh điều kiện  -->
                 <Label
+                    FontAttributes="Bold"
                     x:Name="Tab2"
                     Grid.Column="1"
                     FontSize="15"
@@ -80,7 +82,7 @@
                     x:Name="Tab2Isvisible"
                     Grid.Column="1"
                     BackgroundColor="#39ac31"
-                    HeightRequest="2"
+                    HeightRequest="1.5"
                     IsVisible="False"
                     VerticalOptions="End">
                     <BoxView.Triggers>
@@ -94,6 +96,7 @@
                 </BoxView>
                 <!--  tab lệnh theo mẫu  -->
                 <Label
+                    FontAttributes="Bold"
                     x:Name="Tab3"
                     Grid.Column="2"
                     FontSize="15"
@@ -104,7 +107,7 @@
                 <BoxView
                     Grid.Column="2"
                     BackgroundColor="#39ac31"
-                    HeightRequest="2"
+                    HeightRequest="1.5"
                     IsVisible="False"
                     VerticalOptions="End">
                     <BoxView.Triggers>
@@ -248,12 +251,12 @@
                             </Grid.ColumnDefinitions>
                             <StackLayout
                                 Grid.Column="0"
-                                BackgroundColor="Green"
+                                BackgroundColor="#50b74b"
                                 HeightRequest="5"
                                 VerticalOptions="Center" />
                             <StackLayout
                                 Grid.Column="1"
-                                BackgroundColor="Red"
+                                BackgroundColor="#d81a22"
                                 HeightRequest="5"
                                 VerticalOptions="Center" />
                         </Grid>
@@ -275,12 +278,12 @@
                             Grid.Column="0"
                             HorizontalOptions="Start"
                             Text="Dư mua"
-                            TextColor="Green" />
+                            TextColor="#50b74b" />
                         <Label
                             Grid.Column="1"
                             HorizontalOptions="Start"
                             Text="Dư bán"
-                            TextColor="Red" />
+                            TextColor="#d81a22" />
                         <!--  frame du mua du ban  -->
                         <StackLayout
                             Grid.Row="1"
@@ -290,7 +293,7 @@
                             Orientation="Horizontal">
                             <Frame
                                 Padding="0"
-                                BackgroundColor="Green"
+                                BackgroundColor="#50b74b"
                                 HasShadow="False"
                                 HeightRequest="15"
                                 HorizontalOptions="Start"
@@ -306,11 +309,11 @@
                             <Label
                                 FontSize="15"
                                 Text="{Binding ItemGT.GT00}"
-                                TextColor="Green" />
+                                TextColor="#50b74b" />
                             <Label
                                 HorizontalOptions="EndAndExpand"
                                 Text="{Binding ItemGT.GTDuMua00}"
-                                TextColor="Green" />
+                                TextColor="#50b74b" />
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding ClickTranfer}"
@@ -326,7 +329,7 @@
                             Orientation="Horizontal">
                             <Frame
                                 Padding="0"
-                                BackgroundColor="Red"
+                                BackgroundColor="#d81a22"
                                 HasShadow="False"
                                 HeightRequest="15"
                                 HorizontalOptions="Start"
@@ -342,11 +345,11 @@
                             <Label
                                 FontSize="15"
                                 Text="{Binding ItemGT.GT01}"
-                                TextColor="Red" />
+                                TextColor="#d81a22" />
                             <Label
                                 HorizontalOptions="EndAndExpand"
                                 Text="{Binding ItemGT.GTDuBan01}"
-                                TextColor="Red" />
+                                TextColor="#d81a22" />
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding ClickTranfer}"
@@ -403,7 +406,7 @@
                                             Orientation="Horizontal">
                                             <Frame
                                                 Padding="0"
-                                                BackgroundColor="Green"
+                                                BackgroundColor="#50b74b"
                                                 HasShadow="False"
                                                 HeightRequest="15"
                                                 HorizontalOptions="Start"
@@ -419,11 +422,11 @@
                                             <Label
                                                 FontSize="15"
                                                 Text="1,326.4"
-                                                TextColor="Green" />
+                                                TextColor="#50b74b" />
                                             <Label
                                                 HorizontalOptions="EndAndExpand"
                                                 Text="1"
-                                                TextColor="Green" />
+                                                TextColor="#50b74b" />
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer
                                                     Command="{Binding ClickTranfer}"
@@ -439,7 +442,7 @@
                                             Orientation="Horizontal">
                                             <Frame
                                                 Padding="0"
-                                                BackgroundColor="Red"
+                                                BackgroundColor="#d81a22"
                                                 HasShadow="False"
                                                 HeightRequest="15"
                                                 HorizontalOptions="Start"
@@ -455,11 +458,11 @@
                                             <Label
                                                 FontSize="15"
                                                 Text="1,327.2"
-                                                TextColor="Red" />
+                                                TextColor="#d81a22" />
                                             <Label
                                                 HorizontalOptions="EndAndExpand"
                                                 Text="1"
-                                                TextColor="Red" />
+                                                TextColor="#d81a22" />
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer
                                                     Command="{Binding ClickTranfer}"
@@ -475,7 +478,7 @@
                                             Orientation="Horizontal">
                                             <Frame
                                                 Padding="0"
-                                                BackgroundColor="Green"
+                                                BackgroundColor="#50b74b"
                                                 HasShadow="False"
                                                 HeightRequest="15"
                                                 HorizontalOptions="Start"
@@ -491,11 +494,11 @@
                                             <Label
                                                 FontSize="15"
                                                 Text="1,188.8"
-                                                TextColor="Green" />
+                                                TextColor="#50b74b" />
                                             <Label
                                                 HorizontalOptions="EndAndExpand"
                                                 Text="27"
-                                                TextColor="Green" />
+                                                TextColor="#50b74b" />
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer
                                                     Command="{Binding ClickTranfer}"
@@ -511,7 +514,7 @@
                                             Orientation="Horizontal">
                                             <Frame
                                                 Padding="0"
-                                                BackgroundColor="Red"
+                                                BackgroundColor="#d81a22"
                                                 HasShadow="False"
                                                 HeightRequest="15"
                                                 HorizontalOptions="Start"
@@ -527,11 +530,11 @@
                                             <Label
                                                 FontSize="15"
                                                 Text="1,188.8"
-                                                TextColor="Red" />
+                                                TextColor="#d81a22" />
                                             <Label
                                                 HorizontalOptions="EndAndExpand"
                                                 Text="27"
-                                                TextColor="Red" />
+                                                TextColor="#d81a22" />
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer
                                                     Command="{Binding ClickTranfer}"
@@ -588,10 +591,10 @@
                                 FontSize="20"
                                 HorizontalTextAlignment="Center"
                                 Text="MUA"
-                                TextColor="Green"
+                                TextColor="#50b74b"
                                 VerticalOptions="CenterAndExpand" />
                             <BoxView
-                                BackgroundColor="Green"
+                                BackgroundColor="#50b74b"
                                 HeightRequest="1.5"
                                 IsVisible="{Binding Source={x:Reference LbMua}, Path=FontAttributes, Converter={StaticResource focus}}"
                                 VerticalOptions="End" />
@@ -606,10 +609,10 @@
                                 FontSize="20"
                                 HorizontalTextAlignment="Center"
                                 Text="BÁN"
-                                TextColor="Red"
+                                TextColor="#d81a22"
                                 VerticalOptions="CenterAndExpand" />
                             <BoxView
-                                BackgroundColor="Red"
+                                BackgroundColor="#50b74b"
                                 HeightRequest="1.5"
                                 IsVisible="{Binding Source={x:Reference LbBan}, Path=FontAttributes, Converter={StaticResource focus}}"
                                 VerticalOptions="End" />
@@ -772,19 +775,19 @@
                                 FontSize="13"
                                 HorizontalOptions="Start"
                                 Text="{Binding ItemGT.GTSan1}"
-                                TextColor="#d586c0" />
+                                TextColor="#e441ac" />
                             <Label
                                 Grid.Column="1"
                                 FontSize="13"
                                 HorizontalOptions="CenterAndExpand"
                                 Text="{Binding ItemGT.GTSan2}"
-                                TextColor="#d89869" />
+                                TextColor="#f17220" />
                             <Label
                                 Grid.Column="2"
                                 FontSize="13"
                                 HorizontalOptions="End"
                                 Text="{Binding ItemGT.GTSan3}"
-                                TextColor="#70c9e2" />
+                                TextColor="#11b4e4" />
                         </StackLayout>
                     </Grid>
                     <!--  frame chốt lãi  -->
@@ -1072,7 +1075,7 @@
                                     <BindingCondition Binding="{Binding Source={x:Reference EntryKL}, Path=Text, Converter={StaticResource checknull}}" Value="true" />
                                     <BindingCondition Binding="{Binding Source={x:Reference EntryPass}, Path=Text, Converter={StaticResource checknull}}" Value="true" />
                                 </MultiTrigger.Conditions>
-                                <Setter Property="BackgroundColor" Value="Red" />
+                                <Setter Property="BackgroundColor" Value="#d81a22" />
                             </MultiTrigger>
                             <MultiTrigger TargetType="Button">
                                 <MultiTrigger.Conditions>
@@ -1080,13 +1083,13 @@
                                     <BindingCondition Binding="{Binding Source={x:Reference EntryKL}, Path=Text, Converter={StaticResource checknull}}" Value="true" />
                                     <BindingCondition Binding="{Binding Source={x:Reference EntryPass}, Path=Text, Converter={StaticResource checknull}}" Value="true" />
                                 </MultiTrigger.Conditions>
-                                <Setter Property="BackgroundColor" Value="Green" />
+                                <Setter Property="BackgroundColor" Value="#50b74b" />
                             </MultiTrigger>
                             <DataTrigger
                                 Binding="{Binding Source={x:Reference EntryPass}, Path=Text, Converter={StaticResource checknull}}"
                                 TargetType="Button"
                                 Value="false">
-                                <Setter Property="BackgroundColor" Value="LightGray" />
+                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
                             </DataTrigger>
                         </Button.Triggers>
                     </Button>
