@@ -47,8 +47,8 @@
                 </Grid.ColumnDefinitions>
                 <!--  tab lệnh thường  -->
                 <Label
-                    FontAttributes="Bold"
                     x:Name="Tab1"
+                    FontAttributes="Bold"
                     FontSize="15"
                     HorizontalOptions="Center"
                     Text="LỆNH THƯỜNG"
@@ -70,9 +70,9 @@
                 </BoxView>
                 <!--  tab lệnh điều kiện  -->
                 <Label
-                    FontAttributes="Bold"
                     x:Name="Tab2"
                     Grid.Column="1"
+                    FontAttributes="Bold"
                     FontSize="15"
                     HorizontalOptions="Center"
                     Text="LỆNH ĐIỀU KIỆN"
@@ -96,9 +96,9 @@
                 </BoxView>
                 <!--  tab lệnh theo mẫu  -->
                 <Label
-                    FontAttributes="Bold"
                     x:Name="Tab3"
                     Grid.Column="2"
+                    FontAttributes="Bold"
                     FontSize="15"
                     HorizontalOptions="Center"
                     Text="LỆNH THEO MẪU"
@@ -269,6 +269,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -357,37 +358,40 @@
                                     Tapped="TapSideBan" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
+                        <!--  header expander  -->
+                        <Image
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            HeightRequest="25"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start"
+                            WidthRequest="25">
+                            <Image.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
+                                    TargetType="Image"
+                                    Value="True">
+                                    <Setter Property="Source" Value="iconup.png" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
+                                    TargetType="Image"
+                                    Value="False">
+                                    <Setter Property="Source" Value="icondown.png" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowExpander}" />
+                            </Image.GestureRecognizers>
+                        </Image>
                         <!--  expander  -->
                         <xct:Expander
                             x:Name="expander"
                             Grid.Row="2"
                             Grid.ColumnSpan="2"
-                            CollapseAnimationLength="500"
-                            ExpandAnimationLength="500"
+                            CollapseAnimationLength="300"
+                            ExpandAnimationLength="300"
                             IsExpanded="{Binding IsExpand}">
-                            <xct:Expander.Header>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Image
-                                        HeightRequest="25"
-                                        HorizontalOptions="Fill"
-                                        IsVisible="True"
-                                        Source="icondown.png"
-                                        VerticalOptions="End"
-                                        WidthRequest="25">
-                                        <Image.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
-                                                TargetType="Image"
-                                                Value="True">
-                                                <Setter Property="IsVisible" Value="False" />
-                                            </DataTrigger>
-                                        </Image.Triggers>
-                                    </Image>
-                                </Grid>
-                            </xct:Expander.Header>
                             <xct:Expander.ContentTemplate>
                                 <DataTemplate>
                                     <Grid ColumnSpacing="3" RowSpacing="3">
@@ -542,27 +546,6 @@
                                                     Tapped="TapSideBan" />
                                             </StackLayout.GestureRecognizers>
                                         </StackLayout>
-                                        <Image
-                                            Grid.Row="2"
-                                            Grid.ColumnSpan="2"
-                                            HeightRequest="25"
-                                            HorizontalOptions="FillAndExpand"
-                                            IsVisible="False"
-                                            Source="iconup.png"
-                                            VerticalOptions="End"
-                                            WidthRequest="25">
-                                            <Image.Triggers>
-                                                <DataTrigger
-                                                    Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}"
-                                                    TargetType="Image"
-                                                    Value="True">
-                                                    <Setter Property="IsVisible" Value="True" />
-                                                </DataTrigger>
-                                            </Image.Triggers>
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding CollapsedList}" CommandParameter="{Binding Source={x:Reference expander}, Path=IsExpanded}" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
                                     </Grid>
                                 </DataTemplate>
                             </xct:Expander.ContentTemplate>

@@ -18,6 +18,7 @@ namespace DanhGiaThucTap.ViewModel
         public Command<string> BtnPlus { get; }
         public Command<string> BtnMinus { get; }
         public Command CloseList { get; }
+        public Command ShowExpander { get; }
 
         private string _itemListNavigation;
         public string ItemListNavigation
@@ -216,7 +217,22 @@ namespace DanhGiaThucTap.ViewModel
             BtnMinus = new Command<string>(OnClickBtnMinus);
             BtnPlus = new Command<string>(OnClickBtnPlus);
             CloseList = new Command(OnClickCloseList);
+            ShowExpander = new Command(OnClickShowExpander);
         }
+
+        private void OnClickShowExpander()
+        {
+            if (IsExpand)
+            {
+                IsExpand = false;
+            }
+            else
+            {
+                IsExpand = true;
+            }
+            
+        }
+
         //hàm bắt sự kiện click vào background để tắt list navigation
         private void OnClickCloseList()
         {
@@ -256,7 +272,7 @@ namespace DanhGiaThucTap.ViewModel
                 //dấu cộng trường giá điều kiện với trường hợp mã OCO
                 else if (Index == 2)
                 {
-                    if (SumLai != null)
+                    if (!SumLai.Equals(""))
                     {
                         if (double.Parse(EntryGiaDK) >= double.Parse(SumLai) && TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
                         {
@@ -356,7 +372,7 @@ namespace DanhGiaThucTap.ViewModel
                     // dấu trừ trường giá điều kiện khi lệnh OCO 
                     else if (Index == 2)
                     {
-                        if (SumLai != null)
+                        if (!SumLai.Equals(""))
                         {
                             if (double.Parse(EntryGiaDK) <= double.Parse(SumLai) && TextBtnXacNhan.Equals("XÁC NHẬN MUA"))
                             {
@@ -430,7 +446,7 @@ namespace DanhGiaThucTap.ViewModel
             {
                 EntryGiaDK = ItemGT.GTBannerGia.ToString();
             }
-            if (Index == 2)
+            if (Index == 2 || Index == 3)
             {
                 EntryGia = ItemGT.GTSan2.ToString();
                 if (TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
@@ -440,15 +456,16 @@ namespace DanhGiaThucTap.ViewModel
                 else
                 {
                     EntryGiaDK = (ItemGT.GTSan2 + 0.1).ToString();
-                }
+                }                
             }
             if (Index == 3)
             {
                 EntryGia = ItemGT.GTSan2.ToString();
+
             }
             Sum = "";
-            FrameGiaDK = "";
             SumLai = "";
+            FrameGiaDK = "";
         }
         //hàm bắt sự kiện click ẩn hiện list trên navigation
         public void OnClickListOnNavigation()

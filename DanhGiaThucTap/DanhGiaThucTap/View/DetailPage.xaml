@@ -18,7 +18,7 @@
         BarBackgroundColor="#51b749"
         IconImageSource="iconschart.png">
         <x:Arguments>
-            <local:ThiTruongPage Title="EzMobile Futures" />
+            <local:TempPage Title="EzMobile Futures" />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage
