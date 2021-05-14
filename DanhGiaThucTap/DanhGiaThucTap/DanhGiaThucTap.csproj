@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="FlyOutMainPage.xaml.cs">
-      <DependentUpon>FlyOutMainPage.xaml</DependentUpon>
+    <Compile Update="EzMobileMainPage.xaml.cs">
+      <DependentUpon>EzMobileMainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -33,9 +33,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\TempPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\ThiTruongPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

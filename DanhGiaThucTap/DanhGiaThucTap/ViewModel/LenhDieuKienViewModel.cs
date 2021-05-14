@@ -98,13 +98,6 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _giaIsVisible, value); }
         }
 
-        private Color _backgroundBtnXacNhan;
-        public Color BackgroundBtnXacNhan
-        {
-            get { return _backgroundBtnXacNhan; }
-            set { SetProperty(ref _backgroundBtnXacNhan, value); }
-        }
-
         private string _textBtnXacNhan;
         public string TextBtnXacNhan
         {

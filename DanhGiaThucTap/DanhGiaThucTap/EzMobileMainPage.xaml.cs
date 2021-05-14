@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace DanhGiaThucTap.View
+namespace DanhGiaThucTap
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ThiTruongPage : ContentPage
+    public partial class EzMobileMainPage : FlyoutPage
     {
-        public ThiTruongPage()
+        public EzMobileMainPage()
         {
             InitializeComponent();
         }
