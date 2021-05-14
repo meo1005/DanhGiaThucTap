@@ -34,11 +34,11 @@
         BarBackgroundColor="#51b749"
         IconImageSource="iconlaw.png">
         <x:Arguments>
-            <local:LenhDieuKienPage>
+            <local:LenhDieuKhienPage>
                 <NavigationPage.TitleView>
                     <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
                         <Label
-                            FontSize="20"
+                            FontSize="17"
                             Text="{Binding ItemListNavigation}"
                             TextColor="White" />
                         <Image
@@ -51,7 +51,7 @@
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </NavigationPage.TitleView>
-            </local:LenhDieuKienPage>
+            </local:LenhDieuKhienPage>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage

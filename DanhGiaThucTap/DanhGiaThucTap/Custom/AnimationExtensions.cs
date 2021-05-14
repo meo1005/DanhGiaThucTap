@@ -8,7 +8,7 @@ namespace DanhGiaThucTap.Custom
 {
     public static class AnimationExtensions
     {
-        public static Task<bool> ChangeBackgroundColorTo(this StackLayout self, Color newColor, uint length = 150, Easing easing = null)
+        public static Task<bool> ChangeBackgroundColorTo(this StackLayout self, Color newColor, uint length = 50, Easing easing = null)
         {
             Task<bool> ret = new Task<bool>(() => false);
 

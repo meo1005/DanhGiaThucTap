@@ -11,31 +11,23 @@ using Xamarin.Forms.Xaml;
 namespace DanhGiaThucTap.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LenhDieuKienPage : ContentPage
-    {       
-        public LenhDieuKienViewModel viewModel
+    public partial class LenhDieuKhienPage : ContentPage
+    {
+        public LenhDieuKhienPageViewModel viewModel
         {
-            get { return BindingContext as LenhDieuKienViewModel; }
+            get { return BindingContext as LenhDieuKhienPageViewModel; }
             set { BindingContext = value; }
         }
-        private int _iD;
-
-        public int ID
+        public LenhDieuKhienPage()
         {
-            get { return _iD; }
-            set { _iD = value; }
-        }
-        public LenhDieuKienPage()
-        {
-            InitializeComponent();           
-            viewModel = new LenhDieuKienViewModel();         
+            InitializeComponent();
+            viewModel = new LenhDieuKhienPageViewModel();
             dropdown.SelectedIndex = 0;
             dropdown.ItemSelected += OnDropdownSelected;
         }
         private void OnDropdownSelected(object sender, ItemSelectedEventArgs e)
         {
             viewModel.ItemSelect(e.SelectedIndex);
-            ID = e.SelectedIndex;
         }
 
         private async void TapSideMua(object sender, EventArgs e)
@@ -43,24 +35,24 @@ namespace DanhGiaThucTap.View
             flicker(sender, e);
             Color color = Color.FromHex("#c9c9c9");
             Color actuacolor = TabBan.BackgroundColor;
-            await TabBan.ChangeBackgroundColorTo(color, 150, Easing.CubicOut);
-            await TabBan.ChangeBackgroundColorTo(actuacolor, 150, Easing.CubicOut);
+            await TabBan.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
+            await TabBan.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
         }
         private async void TapSideBan(object sender, EventArgs e)
         {
             flicker(sender, e);
             Color color = Color.FromHex("#c9c9c9");
             Color actuacolor = TabMua.BackgroundColor;
-            await TabMua.ChangeBackgroundColorTo(color, 150, Easing.CubicOut);
-            await TabMua.ChangeBackgroundColorTo(actuacolor, 150, Easing.CubicOut);         
+            await TabMua.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
+            await TabMua.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
         }
-        private async void flicker (object sender, EventArgs e)
+        private async void flicker(object sender, EventArgs e)
         {
             var x = sender as StackLayout;
             Color color = Color.FromHex("#c9c9c9");
             Color actuacolor = x.BackgroundColor;
-            await x.ChangeBackgroundColorTo(color, 150, Easing.CubicOut);
-            await x.ChangeBackgroundColorTo(actuacolor, 150, Easing.CubicOut);
+            await x.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
+            await x.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
         }
     }
 }

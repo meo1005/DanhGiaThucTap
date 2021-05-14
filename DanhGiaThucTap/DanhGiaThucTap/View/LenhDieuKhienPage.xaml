@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="DanhGiaThucTap.View.LenhDieuKienPage"
+    x:Class="DanhGiaThucTap.View.LenhDieuKhienPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:conver="clr-namespace:DanhGiaThucTap.Converter"
@@ -49,11 +49,17 @@
                 <Label
                     x:Name="Tab1"
                     FontAttributes="Bold"
-                    FontSize="15"
+                    FontSize="13"
                     HorizontalOptions="Center"
                     Text="LỆNH THƯỜNG"
-                    TextColor="{Binding Tab1Color}"
-                    VerticalOptions="CenterAndExpand" />
+                    TextColor="Gray"
+                    VerticalOptions="CenterAndExpand">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Temp}, Path=Text}" Value="Tab1">
+                            <Setter Property="TextColor" Value="Green"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
                 <BoxView
                     BackgroundColor="#39ac31"
                     HeightRequest="1.5"
@@ -73,11 +79,17 @@
                     x:Name="Tab2"
                     Grid.Column="1"
                     FontAttributes="Bold"
-                    FontSize="15"
+                    FontSize="13"
                     HorizontalOptions="Center"
                     Text="LỆNH ĐIỀU KIỆN"
-                    TextColor="{Binding Tab2Color}"
-                    VerticalOptions="CenterAndExpand" />
+                    TextColor="Gray"
+                    VerticalOptions="CenterAndExpand">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Temp}, Path=Text}" Value="Tab2">
+                            <Setter Property="TextColor" Value="Green"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
                 <BoxView
                     x:Name="Tab2Isvisible"
                     Grid.Column="1"
@@ -99,11 +111,17 @@
                     x:Name="Tab3"
                     Grid.Column="2"
                     FontAttributes="Bold"
-                    FontSize="15"
+                    FontSize="13"
                     HorizontalOptions="Center"
                     Text="LỆNH THEO MẪU"
-                    TextColor="{Binding Tab3Color}"
-                    VerticalOptions="CenterAndExpand" />
+                    TextColor="Gray"
+                    VerticalOptions="CenterAndExpand">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Temp}, Path=Text}" Value="Tab3">
+                            <Setter Property="TextColor" Value="Green"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
                 <BoxView
                     Grid.Column="2"
                     BackgroundColor="#39ac31"
@@ -119,6 +137,7 @@
                         </DataTrigger>
                     </BoxView.Triggers>
                 </BoxView>
+                <Label TextColor="Transparent" Text="{Binding Temp}" x:Name="Temp"/>
                 <ContentView BackgroundColor="Transparent">
                     <ContentView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ClickSelectTab}" CommandParameter="Tab1" />
@@ -242,8 +261,16 @@
                         Padding="0,10,0,0"
                         HorizontalOptions="Center"
                         Orientation="Horizontal">
-                        <Label Text="{Binding ItemGT.TileMua}" TextColor="Black" />
-                        <Label Text="%" TextColor="Black" />
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <Label
+                                FontSize="15"
+                                Text="{Binding ItemGT.TileMua}"
+                                TextColor="Black" />
+                            <Label
+                                FontSize="15"
+                                Text="%"
+                                TextColor="Black" />
+                        </StackLayout>
                         <Grid ColumnSpacing="0" WidthRequest="250">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{Binding ItemGT.TileMua, Converter={StaticResource tile}}" />
@@ -260,8 +287,16 @@
                                 HeightRequest="5"
                                 VerticalOptions="Center" />
                         </Grid>
-                        <Label Text="{Binding ItemGT.TileBan}" TextColor="Black" />
-                        <Label Text="%" TextColor="Black" />
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <Label
+                                FontSize="15"
+                                Text="{Binding ItemGT.TileBan}"
+                                TextColor="Black" />
+                            <Label
+                                FontSize="15"
+                                Text="%"
+                                TextColor="Black" />
+                        </StackLayout>
                     </StackLayout>
                     <!--  phần dư mua dư bán  -->
                     <Grid ColumnSpacing="3" RowSpacing="3">
@@ -425,11 +460,11 @@
                                             </Frame>
                                             <Label
                                                 FontSize="15"
-                                                Text="1,326.4"
+                                                Text="{Binding ItemGT.GT10}"
                                                 TextColor="#50b74b" />
                                             <Label
                                                 HorizontalOptions="EndAndExpand"
-                                                Text="1"
+                                                Text="{Binding ItemGT.GTDuMua10}"
                                                 TextColor="#50b74b" />
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer
@@ -461,11 +496,11 @@
                                             </Frame>
                                             <Label
                                                 FontSize="15"
-                                                Text="1,327.2"
+                                                Text="{Binding ItemGT.GT11}"
                                                 TextColor="#d81a22" />
                                             <Label
                                                 HorizontalOptions="EndAndExpand"
-                                                Text="1"
+                                                Text="{Binding ItemGT.GTDuBan11}"
                                                 TextColor="#d81a22" />
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer
@@ -497,11 +532,11 @@
                                             </Frame>
                                             <Label
                                                 FontSize="15"
-                                                Text="1,188.8"
+                                                Text="{Binding ItemGT.GT20}"
                                                 TextColor="#50b74b" />
                                             <Label
                                                 HorizontalOptions="EndAndExpand"
-                                                Text="27"
+                                                Text="{Binding ItemGT.GTDuMua20}"
                                                 TextColor="#50b74b" />
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer
@@ -533,11 +568,11 @@
                                             </Frame>
                                             <Label
                                                 FontSize="15"
-                                                Text="1,188.8"
+                                                Text="{Binding ItemGT.GT21}"
                                                 TextColor="#d81a22" />
                                             <Label
                                                 HorizontalOptions="EndAndExpand"
-                                                Text="27"
+                                                Text="{Binding ItemGT.GTDuBan21}"
                                                 TextColor="#d81a22" />
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer
@@ -571,7 +606,7 @@
                             <Label
                                 x:Name="LbMua"
                                 FontAttributes="{Binding FontFmMua}"
-                                FontSize="20"
+                                FontSize="17"
                                 HorizontalTextAlignment="Center"
                                 Text="MUA"
                                 TextColor="#50b74b"
@@ -589,7 +624,7 @@
                             <Label
                                 x:Name="LbBan"
                                 FontAttributes="{Binding FontFmBan}"
-                                FontSize="20"
+                                FontSize="17"
                                 HorizontalTextAlignment="Center"
                                 Text="BÁN"
                                 TextColor="#d81a22"
@@ -644,45 +679,53 @@
                                 Padding="5"
                                 BackgroundColor="#818181"
                                 HasShadow="False">
-                                <Label
-                                    Text="max 0"
-                                    TextColor="White"
-                                    VerticalOptions="Center" />
+                                <StackLayout Orientation="Horizontal" Spacing="3">
+                                    <Label
+                                        Text="max"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="{Binding ItemGT.KLMax}"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
                             </Frame>
                         </StackLayout>
                         <Frame
                             Grid.Row="2"
                             Grid.Column="1"
-                            Padding="0"
+                            Padding="1"
                             BorderColor="LightGray"
                             HasShadow="False">
-                            <StackLayout Orientation="Horizontal" Spacing="10">
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    Command="{Binding BtnMinus}"
-                                    CommandParameter="KLMinus"
-                                    HeightRequest="20"
-                                    HorizontalOptions="Start"
-                                    Source="minus.png"
-                                    WidthRequest="20" />
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout HeightRequest="30" WidthRequest="30">
+                                    <ImageButton
+                                        Padding="7"
+                                        BackgroundColor="White"
+                                        Command="{Binding BtnMinus}"
+                                        CommandParameter="KLMinus"
+                                        HorizontalOptions="Center"
+                                        Source="minus.png"
+                                        VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
                                 <custom:CustomEntry
                                     x:Name="EntryKL"
-                                    FontSize="13"
+                                    FontSize="12"
                                     HorizontalOptions="FillAndExpand"
                                     HorizontalTextAlignment="Center"
-                                    IsReadOnly="True"
                                     Keyboard="Numeric"
-                                    Text="{Binding KLMax}" />
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    Command="{Binding BtnPlus}"
-                                    CommandParameter="KLPlus"
-                                    HeightRequest="20"
-                                    HorizontalOptions="End"
-                                    Source="plus.png"
-                                    WidthRequest="20" />
+                                    Text="{Binding KLMax}"
+                                    VerticalTextAlignment="Center" />
+                                <StackLayout HeightRequest="30" WidthRequest="30">
+                                    <ImageButton
+                                        Padding="7"
+                                        BackgroundColor="White"
+                                        Command="{Binding BtnPlus}"
+                                        CommandParameter="KLPlus"
+                                        HorizontalOptions="Center"
+                                        Source="plus.png"
+                                        VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
                             </StackLayout>
                         </Frame>
                         <!--  Giá  -->
@@ -692,40 +735,40 @@
                             TextColor="Black"
                             VerticalOptions="Center" />
                         <Frame
+                            x:Name="flickBackground"
                             Grid.Row="3"
                             Grid.Column="1"
-                            Padding="0"
+                            Padding="1"
                             BorderColor="LightGray"
                             HasShadow="False">
                             <StackLayout
                                 x:Name="FrameGia"
                                 IsVisible="{Binding GiaIsVisible}"
-                                Orientation="Horizontal"
-                                Spacing="10">
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    Command="{Binding BtnMinus}"
-                                    CommandParameter="GiaMinus"
-                                    HeightRequest="20"
-                                    HorizontalOptions="Start"
-                                    Source="minus.png"
-                                    WidthRequest="20" />
+                                Orientation="Horizontal">
+                                <StackLayout HeightRequest="30" WidthRequest="30">
+                                    <ImageButton
+                                        Padding="7"
+                                        BackgroundColor="{Binding Source={x:Reference flickBackground}, Path=BackgroundColor}"
+                                        Command="{Binding BtnMinus}"
+                                        CommandParameter="GiaMinus"
+                                        Source="minus.png"
+                                        VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
                                 <custom:CustomEntry
-                                    FontSize="13"
+                                    FontSize="12"
                                     HorizontalOptions="FillAndExpand"
                                     HorizontalTextAlignment="Center"
                                     Keyboard="Numeric"
                                     Text="{Binding EntryGia}" />
-                                <ImageButton
-                                    Margin="10"
-                                    BackgroundColor="White"
-                                    Command="{Binding BtnPlus}"
-                                    CommandParameter="GiaPlus"
-                                    HeightRequest="20"
-                                    HorizontalOptions="End"
-                                    Source="plus.png"
-                                    WidthRequest="20" />
+                                <StackLayout HeightRequest="30" WidthRequest="30">
+                                    <ImageButton
+                                        Padding="7"
+                                        BackgroundColor="{Binding Source={x:Reference flickBackground}, Path=BackgroundColor}"
+                                        Command="{Binding BtnPlus}"
+                                        CommandParameter="GiaPlus"
+                                        Source="plus.png"
+                                        VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
                             </StackLayout>
                             <Frame.Triggers>
                                 <DataTrigger
@@ -752,25 +795,37 @@
                         <StackLayout
                             Grid.Row="4"
                             Grid.Column="1"
-                            Margin="0,-7,0,10"
+                            Padding="0,0,0,5"
                             Orientation="Horizontal">
-                            <Label
-                                FontSize="13"
-                                HorizontalOptions="Start"
-                                Text="{Binding ItemGT.GTSan1}"
-                                TextColor="#e441ac" />
-                            <Label
-                                Grid.Column="1"
-                                FontSize="13"
-                                HorizontalOptions="CenterAndExpand"
-                                Text="{Binding ItemGT.GTSan2}"
-                                TextColor="#f17220" />
-                            <Label
-                                Grid.Column="2"
-                                FontSize="13"
-                                HorizontalOptions="End"
-                                Text="{Binding ItemGT.GTSan3}"
-                                TextColor="#11b4e4" />
+                            <StackLayout HorizontalOptions="Start">
+                                <Label
+                                    FontSize="13"
+                                    Text="{Binding ItemGT.GTTran}"
+                                    TextColor="#e441ac" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ClickGia}" CommandParameter="GiaTran" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Label
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Text="{Binding ItemGT.GTTB}"
+                                    TextColor="#f17220" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ClickGia}" CommandParameter="GiaTB" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="End">
+                                <Label
+                                    Grid.Column="2"
+                                    FontSize="13"
+                                    Text="{Binding ItemGT.GTSan}"
+                                    TextColor="#11b4e4" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ClickGia}" CommandParameter="GiaSan" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
                         </StackLayout>
                     </Grid>
                     <!--  frame chốt lãi  -->
@@ -798,35 +853,35 @@
                                 TextColor="Black" />
                             <Frame
                                 Grid.Row="1"
-                                Padding="0"
+                                Padding="1"
                                 BorderColor="LightGray"
                                 HasShadow="False"
                                 IsVisible="{Binding LbKhoangLai}">
-                                <StackLayout Orientation="Horizontal" Spacing="10">
-                                    <ImageButton
-                                        Margin="10"
-                                        BackgroundColor="White"
-                                        Command="{Binding BtnMinus}"
-                                        CommandParameter="KhoangLaiMinus"
-                                        HeightRequest="20"
-                                        HorizontalOptions="Start"
-                                        Source="minus.png"
-                                        WidthRequest="20" />
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout HeightRequest="30" WidthRequest="30">
+                                        <ImageButton
+                                            Padding="7"
+                                            BackgroundColor="White"
+                                            Command="{Binding BtnMinus}"
+                                            CommandParameter="KhoangLaiMinus"
+                                            Source="minus.png"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
                                     <custom:CustomEntry
-                                        FontSize="13"
+                                        FontSize="12"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
                                         Keyboard="Numeric"
                                         Text="{Binding EntryKhoangLai}" />
-                                    <ImageButton
-                                        Margin="10"
-                                        BackgroundColor="White"
-                                        Command="{Binding BtnPlus}"
-                                        CommandParameter="KhoangLaiPlus"
-                                        HeightRequest="20"
-                                        HorizontalOptions="End"
-                                        Source="plus.png"
-                                        WidthRequest="20" />
+                                    <StackLayout HeightRequest="30" WidthRequest="30">
+                                        <ImageButton
+                                            Padding="7"
+                                            BackgroundColor="White"
+                                            Command="{Binding BtnPlus}"
+                                            CommandParameter="KhoangLaiPlus"
+                                            Source="plus.png"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
                                 </StackLayout>
                             </Frame>
                             <Frame
@@ -883,69 +938,71 @@
                             <!--  frame gia dieu kien  -->
                             <Frame
                                 Grid.Row="1"
-                                Padding="0"
+                                Padding="1"
                                 BorderColor="LightGray"
                                 HasShadow="False">
-                                <StackLayout Orientation="Horizontal" Spacing="10">
-                                    <ImageButton
-                                        Margin="10"
-                                        BackgroundColor="White"
-                                        Command="{Binding BtnMinus}"
-                                        CommandParameter="GiaDKMinus"
-                                        HeightRequest="20"
-                                        HorizontalOptions="Start"
-                                        Source="minus.png"
-                                        WidthRequest="20" />
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout HeightRequest="30" WidthRequest="30">
+                                        <ImageButton
+                                            Padding="7"
+                                            BackgroundColor="White"
+                                            Command="{Binding BtnMinus}"
+                                            CommandParameter="GiaDKMinus"
+                                            Source="minus.png"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
                                     <custom:CustomEntry
-                                        FontSize="13"
+                                        FontSize="12"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
                                         Keyboard="Numeric"
                                         Text="{Binding EntryGiaDK}" />
-                                    <ImageButton
-                                        Margin="10"
-                                        BackgroundColor="White"
-                                        Command="{Binding BtnPlus}"
-                                        CommandParameter="GiaDKPlus"
-                                        HeightRequest="20"
-                                        HorizontalOptions="End"
-                                        Source="plus.png"
-                                        WidthRequest="20" />
+                                    <StackLayout HeightRequest="30" WidthRequest="30">
+                                        <ImageButton
+                                            Padding="7"
+                                            BackgroundColor="White"
+                                            Command="{Binding BtnPlus}"
+                                            CommandParameter="GiaDKPlus"
+                                            Source="plus.png"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
+
                                 </StackLayout>
                             </Frame>
                             <!--  frame bien truot  -->
                             <Frame
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                Padding="0"
+                                Padding="1"
                                 BorderColor="LightGray"
                                 HasShadow="False">
                                 <StackLayout Orientation="Horizontal" Spacing="10">
-                                    <ImageButton
-                                        Margin="10"
-                                        BackgroundColor="White"
-                                        Command="{Binding BtnMinus}"
-                                        CommandParameter="BientruotMinnus"
-                                        HeightRequest="20"
-                                        HorizontalOptions="Start"
-                                        Source="minus.png"
-                                        WidthRequest="20" />
+                                    <StackLayout HeightRequest="30" WidthRequest="30">
+                                        <ImageButton
+                                            Padding="7"
+                                            BackgroundColor="White"
+                                            Command="{Binding BtnMinus}"
+                                            CommandParameter="BientruotMinnus"
+                                            Source="minus.png"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
+
                                     <custom:CustomEntry
-                                        FontSize="13"
+                                        FontSize="12"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="Center"
                                         IsReadOnly="True"
                                         Keyboard="Numeric"
                                         Text="{Binding EntryBienTruot}" />
-                                    <ImageButton
-                                        Margin="10"
-                                        BackgroundColor="White"
-                                        Command="{Binding BtnPlus}"
-                                        CommandParameter="BientruotPlus"
-                                        HeightRequest="20"
-                                        HorizontalOptions="End"
-                                        Source="plus.png"
-                                        WidthRequest="20" />
+                                    <StackLayout HeightRequest="30" WidthRequest="30">
+                                        <ImageButton
+                                            Padding="7"
+                                            BackgroundColor="White"
+                                            Command="{Binding BtnPlus}"
+                                            CommandParameter="BientruotPlus"
+                                            Source="plus.png"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
                                 </StackLayout>
                             </Frame>
                             <Label
@@ -1139,7 +1196,7 @@
                             <StackLayout>
                                 <Label
                                     Padding="10,0,0,0"
-                                    FontSize="16"
+                                    FontSize="15"
                                     Text="{Binding Ma}"
                                     TextColor="Black"
                                     VerticalOptions="CenterAndExpand" />
