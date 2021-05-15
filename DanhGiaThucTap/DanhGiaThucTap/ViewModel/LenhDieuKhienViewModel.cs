@@ -205,7 +205,7 @@ namespace DanhGiaThucTap.ViewModel
             ShowExpander = new Command(OnClickShowExpander);
             ClickGia = new Command<string>(OnClickGia);
         }
-
+        //click giá sàn, giá trần
         private void OnClickGia(string key)
         {
             if (key.Equals("GiaTran"))
@@ -224,7 +224,7 @@ namespace DanhGiaThucTap.ViewModel
             SetValue(EntryGia);
 
         }
-
+        //show expander
         private void OnClickShowExpander()
         {
             if (IsExpand)
@@ -237,7 +237,6 @@ namespace DanhGiaThucTap.ViewModel
             }
 
         }
-
         //hàm bắt sự kiện click vào background để tắt list navigation
         private void OnClickCloseList()
         {

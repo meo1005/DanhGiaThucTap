@@ -1,8 +1,137 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DanhGiaThucTap.App">
+<Application
+    x:Class="DanhGiaThucTap.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:custom="clr-namespace:DanhGiaThucTap.Custom">
     <Application.Resources>
+        <Style x:Key="LabelTabbed" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="Gray" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        </Style>
+        <Style x:Key="MainStackLayout" TargetType="StackLayout">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Spacing" Value="0" />
+        </Style>
+        <Style x:Key="UnderLine" TargetType="BoxView">
+            <Setter Property="BackgroundColor" Value="#39ac31" />
+            <Setter Property="HeightRequest" Value="1.5" />
+            <Setter Property="VerticalOptions" Value="End" />
+        </Style>
+        <Style x:Key="MainScroll" TargetType="ScrollView">
+            <Setter Property="Margin" Value="10,0,10,2" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+        </Style>
+        <Style x:Key="Frame" TargetType="Frame">
+            <Setter Property="Padding" Value="10" />
+        </Style>
+        <Style x:Key="NormalLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+        <Style x:Key="StackTiLe" TargetType="StackLayout">
+            <Setter Property="Padding" Value="0,10,0,0" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
+        <Style x:Key="TiLeMua" TargetType="StackLayout">
+            <Setter Property="BackgroundColor" Value="#50b74b" />
+            <Setter Property="HeightRequest" Value="5" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="TiLeBan" TargetType="StackLayout">
+            <Setter Property="BackgroundColor" Value="#d81a22" />
+            <Setter Property="HeightRequest" Value="5" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="MainGrid" TargetType="Grid">
+            <Setter Property="ColumnSpacing" Value="3" />
+            <Setter Property="RowSpacing" Value="3" />
+        </Style>
+        <Style x:Key="LabelMuaBan" TargetType="Label">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+        <Style x:Key="StackMua" TargetType="StackLayout">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BackgroundColor" Value="#eef8ec" />
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
+        <Style x:Key="FrameMua" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="#50b74b" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="HeightRequest" Value="15" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="WidthRequest" Value="15" />
+        </Style>
+        <Style x:Key="FrameBan" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="#d81a22" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="HeightRequest" Value="15" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="WidthRequest" Value="15" />
+        </Style>
+        <Style x:Key="Labeltrongmuaban" TargetType="Label">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
 
+        <Style x:Key="StackBan" TargetType="StackLayout">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BackgroundColor" Value="#fde8e9" />
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
+        <Style x:Key="ImgExpander" TargetType="Image">
+            <Setter Property="HeightRequest" Value="25" />
+            <Setter Property="WidthRequest" Value="25" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalOptions" Value="Start" />
+        </Style>
+        <Style x:Key="FrameEntry" TargetType="Frame">
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="BorderColor" Value="LightGray" />
+            <Setter Property="HasShadow" Value="False" />
+        </Style>
+
+        <Style x:Key="Btn+/-" TargetType="ImageButton">
+            <Setter Property="Padding" Value="7" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        </Style>
+
+        <Style x:Key="EntryPro" TargetType="custom:CustomEntry">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Keyboard" Value="Numeric" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="frameHienThi" TargetType="Frame">
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="BackgroundColor" Value="#c9c9c9" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style x:Key="BtnXacNhan" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#c9c9c9" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="WidthRequest" Value="160" />
+        </Style>
     </Application.Resources>
 </Application>

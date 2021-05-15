@@ -43,7 +43,7 @@
                             TextColor="White" />
                         <Image
                             HeightRequest="25"
-                            HorizontalOptions="Start"
+                            HorizontalOptions="StartAndExpand"
                             Source="sortdown.png"
                             WidthRequest="25" />
                         <StackLayout.GestureRecognizers>
