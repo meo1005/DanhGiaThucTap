@@ -182,7 +182,7 @@
                             </StackLayout>
                             <Label
                                 Grid.Row="2"
-                                HorizontalOptions="Center"
+                                HorizontalOptions="Start"
                                 Text="-0.2 (-0.02%)"
                                 TextColor="Orange" />
                             <Label
@@ -669,6 +669,7 @@
                     </Grid>
                     <!--  frame chốt lãi  -->
                     <Frame
+                        CornerRadius="5"
                         Padding="7"
                         BorderColor="LightGray"
                         HasShadow="False"
@@ -734,6 +735,7 @@
                         Text="Chốt lãi" />
                     <!--  frame cắt lỗ  -->
                     <Frame
+                        CornerRadius="5"
                         Padding="7"
                         BorderColor="LightGray"
                         HasShadow="False">
