@@ -796,10 +796,7 @@
                                             Source="minus.png"
                                             Style="{StaticResource Btn+/-}" />
                                     </StackLayout>
-                                    <custom:CustomEntry
-                                        IsReadOnly="True"
-                                        Style="{StaticResource EntryPro}"
-                                        Text="{Binding EntryBienTruot}" />
+                                    <custom:CustomEntry Style="{StaticResource EntryPro}" Text="{Binding EntryBienTruot}" />
                                     <StackLayout HeightRequest="30" WidthRequest="30">
                                         <ImageButton
                                             Command="{Binding BtnPlus}"

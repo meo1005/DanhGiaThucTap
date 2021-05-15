@@ -43,7 +43,7 @@ namespace DanhGiaThucTap.ViewModel
         }
 
         private string _temp;
-        public string Temp 
+        public string Temp
         {
             get { return _temp; }
             set { SetProperty(ref _temp, value); }
@@ -187,7 +187,7 @@ namespace DanhGiaThucTap.ViewModel
             FontFmMua = FontAttributes.Bold;
             FontFmBan = FontAttributes.None;
             TextBtnXacNhan = "XÁC NHẬN MUA";
-            ItemGT = new ItemGiaTriModel { GTBannerGia = 1765.5, GTMoCua = 1.196, GTCao = 1.132, GTThap = 128.1, GTTongHD = 20.854, GTKLMo = 27.333, GTDuMua00 = 8, GTDuBan01 = 47, GT01 = 138.2, GT00 = 185.7, GTTran = 152.72, GTTB = 188.8, GTSan = 108.6, TileMua = 10, TileBan = 90, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 1 };
+            ItemGT = new ItemGiaTriModel { GTBannerGia = 1765.5, GTMoCua = 1.196, GTCao = 1.132, GTThap = 128.1, GTTongHD = 20.854, GTKLMo = 27.333, GTDuMua00 = 8, GTDuBan01 = 47, GT01 = 138.2, GT00 = 185.7, GTTran = 152.72, GTTB = 118.8, GTSan = 108.6, TileMua = 10, TileBan = 90, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 1 };
             ItemListNavigation = "VN30F2106";
             EntryGiaDK = ItemGT.GTBannerGia.ToString();
             Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
@@ -248,73 +248,119 @@ namespace DanhGiaThucTap.ViewModel
             // dấu cộng trường Biên trượt
             if (key.Equals("BientruotPlus"))
             {
-                EntryBienTruot = (double.Parse(EntryBienTruot) + 0.1).ToString();
+                if (Checknegative(EntryBienTruot))
+                {
+                    EntryBienTruot = (double.Parse(EntryBienTruot) + 0.1).ToString();
+                }
+                else
+                {
+                    EntryBienTruot = "0";
+                }
             }
             //dấu công trường khoảng lãi
             else if (key.Equals("KhoangLaiPlus"))
             {
-                EntryKhoangLai = (double.Parse(EntryKhoangLai) + 0.1).ToString();
+                if (Checknegative(EntryKhoangLai))
+                {
+                    EntryKhoangLai = (double.Parse(EntryKhoangLai) + 0.1).ToString();
+                }
+                else
+                {
+                    EntryKhoangLai = "0";
+                }
             }
             // dấu cộng trường giá điều kiện
             else if (key.Equals("GiaDKPlus"))
             {
-                if (Index == 0)
+                if (Checknegative(EntryGiaDK))
                 {
-                    EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
-                }
-                else if (Index == 1)
-                {
-                    if (double.Parse(EntryGiaDK) >= ItemGT.GTBannerGia)
-                    {
-                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá thị trường", "OK");
-                    }
-                    else
+                    if (Index == 0)
                     {
                         EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
                     }
-                }
-                //dấu cộng trường giá điều kiện với trường hợp mã OCO
-                else if (Index == 2)
-                {
-                    if (!SumLai.Equals(""))
+                    else if (Index == 1)
                     {
-                        if (double.Parse(EntryGiaDK) >= double.Parse(SumLai) && TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
+                        if (double.Parse(EntryGiaDK) >= ItemGT.GTBannerGia)
                         {
-                            App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá chốt lãi", "OK");
+                            App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá thị trường", "OK");
                         }
                         else
                         {
                             EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
                         }
                     }
+                    //dấu cộng trường giá điều kiện với trường hợp mã OCO
+                    else if (Index == 2)
+                    {
+                        if (!SumLai.Equals(""))
+                        {
+                            if (double.Parse(EntryGiaDK) >= double.Parse(SumLai) && TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
+                            {
+                                App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải nhỏ hơn giá chốt lãi", "OK");
+                            }
+                            else
+                            {
+                                EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
+                    }
                 }
                 else
                 {
-                    EntryGiaDK = (double.Parse(EntryGiaDK) + 0.1).ToString();
+                    if (Index == 0 || Index == 1)
+                    {
+                        EntryGiaDK = ItemGT.GTBannerGia.ToString();
+                    }
+                    else if (Index == 2)
+                    {
+                        EntryGiaDK = EntryGia;
+                    }
+                    else
+                    {
+                        EntryGiaDK = "0";
+                    }
                 }
             }
             //dấu cộng trường khối lượng
             else if (key.Equals("KLPlus"))
             {
-                if (Int32.Parse(KLMax) >= ItemGT.KLMax)
+                if (Checknegative(KLMax))
                 {
-                    App.Current.MainPage.DisplayAlert("Thông báo", "Giá trị không được vượt quá MAX", "OK");
+                    if (Int32.Parse(KLMax) >= ItemGT.KLMax)
+                    {
+                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá trị không được vượt quá MAX", "OK");
+                    }
+                    else
+                    {
+                        KLMax = (Int32.Parse(KLMax) + 1).ToString();
+                    }
                 }
                 else
                 {
-                    KLMax = (Int32.Parse(KLMax) + 1).ToString();
+                    KLMax = "0";
                 }
             }
             // dấu cộng trường Giá
             else if (key.Equals("GiaPlus"))
             {
-                if (double.Parse(EntryGia) >= ItemGT.GTTran)
+                if (Checknegative(EntryGia))
                 {
-                    App.Current.MainPage.DisplayAlert("Thông báo", "Giá không được nhỏ hơn giá trần", "OK");
+                    if (double.Parse(EntryGia) >= ItemGT.GTTran)
+                    {
+                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá không được nhỏ hơn giá trần", "OK");
+                    }
+                    else
+                    {
+                        EntryGia = (double.Parse(EntryGia) + 0.1).ToString();
+                    }
                 }
                 else
                 {
-                    EntryGia = (double.Parse(EntryGia) + 0.1).ToString();
+                    EntryGia = ItemGT.GTTB.ToString();
                 }
             }
             //tính tổng tại trường giá đặt điều chỉnh, trường Giá chốt lãi
@@ -341,95 +387,143 @@ namespace DanhGiaThucTap.ViewModel
             // dấu trừ trường biên trượt
             if (key.Equals("BientruotMinnus"))
             {
-                if (EntryBienTruot.Equals("0"))
+                if (Checknegative(EntryBienTruot))
                 {
-                    EntryBienTruot = "0";
+                    if (EntryBienTruot.Equals("0"))
+                    {
+                        EntryBienTruot = "0";
+                    }
+                    else
+                    {
+                        EntryBienTruot = (double.Parse(EntryBienTruot) - 0.1).ToString();
+                    }
                 }
                 else
                 {
-                    EntryBienTruot = (double.Parse(EntryBienTruot) - 0.1).ToString();
+                    EntryBienTruot = "0";
                 }
 
             }
             //dấu trừ trường khoảng lãi
             else if (key.Equals("KhoangLaiMinus"))
             {
-                if (EntryKhoangLai.Equals("0"))
+                if (Checknegative(EntryKhoangLai))
                 {
-                    EntryKhoangLai = "0";
+                    if (EntryKhoangLai.Equals("0"))
+                    {
+                        EntryKhoangLai = "0";
+                    }
+                    else
+                    {
+                        EntryKhoangLai = (double.Parse(EntryKhoangLai) - 0.1).ToString();
+                    }
                 }
                 else
                 {
-                    EntryKhoangLai = (double.Parse(EntryKhoangLai) - 0.1).ToString();
+                    EntryKhoangLai = "0";
                 }
             }
             //dấu trừ trường giá điều kiện
             else if (key.Equals("GiaDKMinus"))
             {
-                if (EntryGiaDK.Equals("0"))
+                if (Checknegative(EntryGiaDK))
                 {
-                    EntryGiaDK = "0";
-                }
-                else
-                {
-                    if (Index == 1)
+
+
+                    if (EntryGiaDK.Equals("0"))
                     {
-                        EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
+                        EntryGiaDK = "0";
                     }
-                    else if (Index == 0)
+                    else
                     {
-                        if (double.Parse(EntryGiaDK) <= ItemGT.GTBannerGia)
-                        {
-                            App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá thị trường", "OK");
-                        }
-                        else
+                        if (Index == 1)
                         {
                             EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
                         }
-                    }
-                    // dấu trừ trường giá điều kiện khi lệnh OCO 
-                    else if (Index == 2)
-                    {
-                        if (!SumLai.Equals(""))
+                        else if (Index == 0)
                         {
-                            if (double.Parse(EntryGiaDK) <= double.Parse(SumLai) && TextBtnXacNhan.Equals("XÁC NHẬN MUA"))
+                            if (double.Parse(EntryGiaDK) <= ItemGT.GTBannerGia)
                             {
-                                App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá chốt lãi", "OK");
+                                App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá thị trường", "OK");
                             }
                             else
                             {
                                 EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
                             }
                         }
+                        // dấu trừ trường giá điều kiện khi lệnh OCO 
+                        else if (Index == 2)
+                        {
+                            if (!SumLai.Equals(""))
+                            {
+                                if (double.Parse(EntryGiaDK) <= double.Parse(SumLai) && TextBtnXacNhan.Equals("XÁC NHẬN MUA"))
+                                {
+                                    App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện phải lớn hơn giá chốt lãi", "OK");
+                                }
+                                else
+                                {
+                                    EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    if (Index == 0 || Index == 1)
+                    {
+                        EntryGiaDK = ItemGT.GTBannerGia.ToString();
+                    }
+                    else if (Index == 2)
+                    {
+                        EntryGiaDK = EntryGia;
                     }
                     else
                     {
-                        EntryGiaDK = (double.Parse(EntryGiaDK) - 0.1).ToString();
+                        EntryGiaDK = "0";
                     }
                 }
             }
             //dấu trừ trường Khối lượng
             else if (key.Equals("KLMinus"))
             {
-                if (KLMax.Equals("0"))
+                if (Checknegative(KLMax))
                 {
-                    KLMax = "0";
+                    if (KLMax.Equals("0"))
+                    {
+                        KLMax = "0";
+                    }
+                    else
+                    {
+                        KLMax = (Int32.Parse(KLMax) - 1).ToString();
+                    }
                 }
                 else
                 {
-                    KLMax = (Int32.Parse(KLMax) - 1).ToString();
+                    KLMax = "0";
                 }
             }
             // dấu trừ trường giá
             else if (key.Equals("GiaMinus"))
             {
-                if (double.Parse(EntryGia) <= ItemGT.GTSan)
+                if (Checknegative(EntryGia))
                 {
-                    App.Current.MainPage.DisplayAlert("Thông báo", "Giá phải có giá trị lớn hơn giá sàn", "OK");
+                    if (double.Parse(EntryGia) <= ItemGT.GTSan)
+                    {
+                        App.Current.MainPage.DisplayAlert("Thông báo", "Giá phải có giá trị lớn hơn giá sàn", "OK");
+                    }
+                    else
+                    {
+                        EntryGia = (double.Parse(EntryGia) - 0.1).ToString();
+                    }
                 }
                 else
                 {
-                    EntryGia = (double.Parse(EntryGia) - 0.1).ToString();
+                    EntryGia = ItemGT.GTTB.ToString();
                 }
 
             }
@@ -457,19 +551,19 @@ namespace DanhGiaThucTap.ViewModel
             ListOnNavigationIsVisible = false;
             if (item.ID == 0)
             {
-                ItemGT = new ItemGiaTriModel { GTBannerGia = 1358.5, GTMoCua = 1.191, GTCao = 1.192, GTThap = 1188.2, GTTongHD = 20.82, GTKLMo = 27.33, GTDuMua00 = 12, GTDuBan01 = 30, GT01 = 181.9, GT00 = 118.8, GTTran = 172.32, GTTB = 115.18, GTSan = 115.6, TileMua = 23, TileBan = 77, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 2 };
+                ItemGT = new ItemGiaTriModel { GTBannerGia = 1358.5, GTMoCua = 1.191, GTCao = 1.192, GTThap = 1188.2, GTTongHD = 20.82, GTKLMo = 27.33, GTDuMua00 = 12, GTDuBan01 = 30, GT01 = 181.9, GT00 = 118.8, GTTran = 172.32, GTTB = 125.18, GTSan = 105.6, TileMua = 23, TileBan = 77, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 2 };
             }
             else if (item.ID == 1)
             {
-                ItemGT = new ItemGiaTriModel { GTBannerGia = 1399.1, GTMoCua = 1.131, GTCao = 1191, GTThap = 1128.3, GTTongHD = 20.242, GTKLMo = 27.313, GTDuMua00 = 7, GTDuBan01 = 21, GT01 = 188.3, GT00 = 138.6, GTTran = 147.93, GTTB = 118.88, GTSan = 135.6, TileMua = 50, TileBan = 50, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 3 };
+                ItemGT = new ItemGiaTriModel { GTBannerGia = 1399.1, GTMoCua = 1.131, GTCao = 1191, GTThap = 1128.3, GTTongHD = 20.242, GTKLMo = 27.313, GTDuMua00 = 7, GTDuBan01 = 21, GT01 = 188.3, GT00 = 138.6, GTTran = 147.93, GTTB = 128.88, GTSan = 115.6, TileMua = 50, TileBan = 50, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 3 };
             }
             else if (item.ID == 2)
             {
-                ItemGT = new ItemGiaTriModel { GTBannerGia = 1354.9, GTMoCua = 1.191, GTCao = 1.196, GTThap = 1178.7, GTTongHD = 20.832, GTKLMo = 27.383, GTDuMua00 = 3, GTDuBan01 = 17, GT01 = 118.8, GT00 = 168.7, GTTran = 111.214, GTTB = 188.8, GTSan = 106.6, TileMua = 59.26, TileBan = 40.74, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 4 };
+                ItemGT = new ItemGiaTriModel { GTBannerGia = 1354.9, GTMoCua = 1.191, GTCao = 1.196, GTThap = 1178.7, GTTongHD = 20.832, GTKLMo = 27.383, GTDuMua00 = 3, GTDuBan01 = 17, GT01 = 118.8, GT00 = 168.7, GTTran = 111.214, GTTB = 108.8, GTSan = 96.6, TileMua = 59.26, TileBan = 40.74, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 4 };
             }
             else
             {
-                ItemGT = new ItemGiaTriModel { GTBannerGia = 1765.5, GTMoCua = 1.196, GTCao = 1.132, GTThap = 128.1, GTTongHD = 20.854, GTKLMo = 27.333, GTDuMua00 = 8, GTDuBan01 = 47, GT01 = 138.2, GT00 = 185.7, GTTran = 152.72, GTTB = 188.8, GTSan = 108.6, TileMua = 10, TileBan = 90, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 5 };
+                ItemGT = new ItemGiaTriModel { GTBannerGia = 1765.5, GTMoCua = 1.196, GTCao = 1.132, GTThap = 128.1, GTTongHD = 20.854, GTKLMo = 27.333, GTDuMua00 = 8, GTDuBan01 = 47, GT01 = 138.2, GT00 = 185.7, GTTran = 152.72, GTTB = 148.8, GTSan = 108.6, TileMua = 10, TileBan = 90, GT10 = 132.64, GT11 = 137.72, GT20 = 188.123, GT21 = 135.32, GTDuBan11 = 2, GTDuBan21 = 23, GTDuMua10 = 12, GTDuMua20 = 34, KLMax = 5 };
             }
             if (Index == 0 || Index == 1)
             {
@@ -478,19 +572,7 @@ namespace DanhGiaThucTap.ViewModel
             if (Index == 2 || Index == 3)
             {
                 EntryGia = ItemGT.GTTB.ToString();
-                if (TextBtnXacNhan.Equals("XÁC NHẬN BÁN"))
-                {
-                    EntryGiaDK = (ItemGT.GTTB - 0.1).ToString();
-                }
-                else
-                {
-                    EntryGiaDK = (ItemGT.GTTB + 0.1).ToString();
-                }
-            }
-            if (Index == 3)
-            {
-                EntryGia = ItemGT.GTTB.ToString();
-
+                SetValue(EntryGia);
             }
             Sum = "";
             SumLai = "";
@@ -722,6 +804,17 @@ namespace DanhGiaThucTap.ViewModel
             ListOnNavigation.Add(new ItemListNavigationModel { ID = 5, Ma = "GB05F2109" });
             ListOnNavigation.Add(new ItemListNavigationModel { ID = 6, Ma = "GB10F2109" });
             ListOnNavigation.Add(new ItemListNavigationModel { ID = 7, Ma = "GB10F2106" });
+        }
+        private bool Checknegative(string n)
+        {
+            if (double.Parse(n) < 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
