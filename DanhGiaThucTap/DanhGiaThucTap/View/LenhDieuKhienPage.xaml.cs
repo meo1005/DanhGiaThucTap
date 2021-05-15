@@ -33,7 +33,7 @@ namespace DanhGiaThucTap.View
         private async void TapSideMua(object sender, EventArgs e)
         {
             flicker(sender, e);
-            Color color = Color.FromHex("#c9c9c9");
+            Color color = Color.DarkGray;
             Color actuacolor = TabBan.BackgroundColor;
             await TabBan.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
             await TabBan.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
@@ -46,6 +46,10 @@ namespace DanhGiaThucTap.View
             await TabMua.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
             await TabMua.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
         }
+        private void TapGia(object sender, EventArgs e)
+        {
+            flicker(sender, e);
+        }
         private async void flicker(object sender, EventArgs e)
         {
             var x = sender as StackLayout;
@@ -54,5 +58,7 @@ namespace DanhGiaThucTap.View
             await x.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
             await x.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
         }
+
+        
     }
 }

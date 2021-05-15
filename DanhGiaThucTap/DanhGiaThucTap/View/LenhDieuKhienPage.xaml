@@ -582,10 +582,11 @@
                         <!--  Giá  -->
                         <Label
                             Grid.Row="3"
+                            Style="{StaticResource NormalLabel}"
                             Text="Giá"
-                            TextColor="Black"
                             VerticalOptions="Center" />
                         <Frame
+                            x:Name="flick"
                             Grid.Row="3"
                             Grid.Column="1"
                             Style="{StaticResource FrameEntry}">
@@ -598,7 +599,16 @@
                                         Command="{Binding BtnMinus}"
                                         CommandParameter="GiaMinus"
                                         Source="minus.png"
-                                        Style="{StaticResource Btn+/-}" />
+                                        Style="{StaticResource Btn+/-}">
+                                        <ImageButton.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding Source={x:Reference flick}, Path=BackgroundColor}"
+                                                TargetType="ImageButton"
+                                                Value="#c9c9c9">
+                                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                            </DataTrigger>
+                                        </ImageButton.Triggers>
+                                    </ImageButton>
                                 </StackLayout>
                                 <custom:CustomEntry Style="{StaticResource EntryPro}" Text="{Binding EntryGia}" />
                                 <StackLayout HeightRequest="30" WidthRequest="30">
@@ -606,7 +616,16 @@
                                         Command="{Binding BtnPlus}"
                                         CommandParameter="GiaPlus"
                                         Source="plus.png"
-                                        Style="{StaticResource Btn+/-}" />
+                                        Style="{StaticResource Btn+/-}">
+                                        <ImageButton.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding Source={x:Reference flick}, Path=BackgroundColor}"
+                                                TargetType="ImageButton"
+                                                Value="#c9c9c9">
+                                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                            </DataTrigger>
+                                        </ImageButton.Triggers>
+                                    </ImageButton>
                                 </StackLayout>
                             </StackLayout>
                             <Frame.Triggers>
@@ -628,6 +647,24 @@
                                     Value="#c9c9c9">
                                     <Setter Property="BackgroundColor" Value="#c9c9c9" />
                                 </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference GiaSan}, Path=BackgroundColor}"
+                                    TargetType="Frame"
+                                    Value="#c9c9c9">
+                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference GiaTB}, Path=BackgroundColor}"
+                                    TargetType="Frame"
+                                    Value="#c9c9c9">
+                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference GiaTran}, Path=BackgroundColor}"
+                                    TargetType="Frame"
+                                    Value="#c9c9c9">
+                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                </DataTrigger>
                             </Frame.Triggers>
                         </Frame>
                         <!--  dong giá sàn  -->
@@ -636,42 +673,51 @@
                             Grid.Column="1"
                             Padding="0,0,0,5"
                             Orientation="Horizontal">
-                            <StackLayout HorizontalOptions="Start">
+                            <StackLayout x:Name="GiaTran" HorizontalOptions="Start">
                                 <Label
                                     FontSize="13"
                                     Text="{Binding ItemGT.GTTran}"
                                     TextColor="#e441ac" />
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ClickGia}" CommandParameter="GiaTran" />
+                                    <TapGestureRecognizer
+                                        Command="{Binding ClickGia}"
+                                        CommandParameter="GiaTran"
+                                        Tapped="TapGia" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
-                            <StackLayout HorizontalOptions="CenterAndExpand">
+                            <StackLayout x:Name="GiaTB" HorizontalOptions="CenterAndExpand">
                                 <Label
                                     Grid.Column="1"
                                     FontSize="13"
                                     Text="{Binding ItemGT.GTTB}"
                                     TextColor="#f17220" />
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ClickGia}" CommandParameter="GiaTB" />
+                                    <TapGestureRecognizer
+                                        Command="{Binding ClickGia}"
+                                        CommandParameter="GiaTB"
+                                        Tapped="TapGia" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
-                            <StackLayout HorizontalOptions="End">
+                            <StackLayout x:Name="GiaSan" HorizontalOptions="End">
                                 <Label
                                     Grid.Column="2"
                                     FontSize="13"
                                     Text="{Binding ItemGT.GTSan}"
                                     TextColor="#11b4e4" />
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ClickGia}" CommandParameter="GiaSan" />
+                                    <TapGestureRecognizer
+                                        Command="{Binding ClickGia}"
+                                        CommandParameter="GiaSan"
+                                        Tapped="TapGia" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </StackLayout>
                     </Grid>
                     <!--  frame chốt lãi  -->
                     <Frame
-                        CornerRadius="5"
                         Padding="7"
                         BorderColor="LightGray"
+                        CornerRadius="5"
                         HasShadow="False"
                         IsVisible="{Binding GiaIsVisible}">
                         <Grid RowSpacing="5">
@@ -726,7 +772,7 @@
                         </Grid>
                     </Frame>
                     <Label
-                        Margin="25,-83,0,90"
+                        Margin="25,-83,0,83"
                         Padding="0"
                         BackgroundColor="White"
                         HorizontalOptions="Start"
@@ -735,9 +781,9 @@
                         Text="Chốt lãi" />
                     <!--  frame cắt lỗ  -->
                     <Frame
-                        CornerRadius="5"
                         Padding="7"
                         BorderColor="LightGray"
+                        CornerRadius="5"
                         HasShadow="False">
                         <Grid RowSpacing="5">
                             <Grid.RowDefinitions>
