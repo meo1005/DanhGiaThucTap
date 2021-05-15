@@ -11,7 +11,7 @@ namespace DanhGiaThucTap
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new EzMobileMainPage());
+            MainPage = new NavigationPage(new HomePage());
         }
 
         protected override void OnStart()

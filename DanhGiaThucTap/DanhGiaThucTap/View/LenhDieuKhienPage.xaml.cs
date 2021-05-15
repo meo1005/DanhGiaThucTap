@@ -13,15 +13,15 @@ namespace DanhGiaThucTap.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LenhDieuKhienPage : ContentPage
     {
-        public LenhDieuKhienPageViewModel viewModel
+        public LenhDieuKhienViewModel viewModel
         {
-            get { return BindingContext as LenhDieuKhienPageViewModel; }
+            get { return BindingContext as LenhDieuKhienViewModel; }
             set { BindingContext = value; }
         }
         public LenhDieuKhienPage()
         {
             InitializeComponent();
-            viewModel = new LenhDieuKhienPageViewModel();
+            viewModel = new LenhDieuKhienViewModel();
             dropdown.SelectedIndex = 0;
             dropdown.ItemSelected += OnDropdownSelected;
         }

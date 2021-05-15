@@ -6,7 +6,7 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 namespace DanhGiaThucTap.ViewModel
 {
-    public class LenhDieuKhienPageViewModel : BaseViewModel
+    public class LenhDieuKhienViewModel : BaseViewModel
     {
         public Command<string> ClickTranfer { get; }
         public Command ClickShowPass { get; }
@@ -173,7 +173,7 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _kLMax, value); }
         }
 
-        public LenhDieuKhienPageViewModel()
+        public LenhDieuKhienViewModel()
         {
             Temp = "Tab2";
             EntryBienTruot = "0";
@@ -573,7 +573,6 @@ namespace DanhGiaThucTap.ViewModel
                 SetValue(EntryGia);
             }
         }
-
         private void SetValue(string a)
         {
             if (Index == 2)
