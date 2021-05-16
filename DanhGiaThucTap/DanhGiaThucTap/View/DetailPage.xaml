@@ -59,7 +59,7 @@
         BarBackgroundColor="#51b749"
         IconImageSource="iconseditfile.png">
         <x:Arguments>
-            <local:TempPage Title="Hủy/Sửa" />
+            <local:TempPage Title="Hủy/Sửa"/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage

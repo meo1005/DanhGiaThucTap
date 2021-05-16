@@ -29,36 +29,43 @@ namespace DanhGiaThucTap.View
         {
             viewModel.ItemSelect(e.SelectedIndex);
         }
-
-        private async void TapSideMua(object sender, EventArgs e)
+        //hiệu ứng nháy
+        private void TapSideMua(object sender, EventArgs e)
         {
-            flicker(sender, e);
-            Color color = Color.DarkGray;
-            Color actuacolor = TabBan.BackgroundColor;
-            await TabBan.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
-            await TabBan.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
+            flicker(sender);
+            Giaflicker(FrameGia);
+            Giaflicker(TabBan);
         }
-        private async void TapSideBan(object sender, EventArgs e)
+        private void TapSideBan(object sender, EventArgs e)
         {
-            flicker(sender, e);
-            Color color = Color.FromHex("#c9c9c9");
-            Color actuacolor = TabMua.BackgroundColor;
-            await TabMua.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
-            await TabMua.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
+            flicker(sender);
+            Giaflicker(FrameGia);
+            Giaflicker(TabMua);                  
         }
         private void TapGia(object sender, EventArgs e)
         {
-            flicker(sender, e);
+            flicker(sender);
+            Giaflicker(FrameGia);           
         }
-        private async void flicker(object sender, EventArgs e)
+        private void TapKLMax(object sender, EventArgs e)
         {
+            flicker(sender);
+            Giaflicker(StackKLMax);
+        }
+        private async void flicker(object sender)
+        {            
             var x = sender as StackLayout;
             Color color = Color.FromHex("#c9c9c9");
             Color actuacolor = x.BackgroundColor;
-            await x.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
-            await x.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
+            await x.ChangeBackgroundColorTo(color,100, Easing.CubicOut);
+            await x.ChangeBackgroundColorTo(actuacolor,100, Easing.CubicOut);
         }
-
-        
+        private async void Giaflicker(StackLayout stackLayout)
+        {           
+            Color color = Color.FromHex("#c9c9c9");
+            Color actuacolor = stackLayout.BackgroundColor;
+            await stackLayout.ChangeBackgroundColorTo(color, 100, Easing.CubicOut);
+            await stackLayout.ChangeBackgroundColorTo(actuacolor, 100, Easing.CubicOut);
+        }
     }
 }

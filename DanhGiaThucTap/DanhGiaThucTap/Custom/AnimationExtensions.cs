@@ -8,7 +8,7 @@ namespace DanhGiaThucTap.Custom
 {
     public static class AnimationExtensions
     {
-        public static Task<bool> ChangeBackgroundColorTo(this StackLayout self, Color newColor, uint length = 100, Easing easing = null)
+        public static Task<bool> ChangeBackgroundColorTo(this StackLayout self, Color newColor, uint length = 0, Easing easing = null)
         {
             Task<bool> ret = new Task<bool>(() => false);
 
@@ -26,7 +26,7 @@ namespace DanhGiaThucTap.Custom
 
                     ret = TransmuteColorAnimation(self, nameof(ChangeBackgroundColorTo), transform, length, easing);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // to supress animation overlapping errors 
                     self.BackgroundColor = fromColor;
@@ -35,7 +35,6 @@ namespace DanhGiaThucTap.Custom
 
             return ret;
         }
-
         private static Task<bool> TransmuteColorAnimation(StackLayout button, string name, Func<double, Color> transform, uint length, Easing easing)
         {
             easing = easing ?? Easing.Linear;

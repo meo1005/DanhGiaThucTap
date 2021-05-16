@@ -613,7 +613,7 @@ namespace DanhGiaThucTap.ViewModel
             {
 
                 FontFmMua = FontAttributes.None;
-                FontFmBan = FontAttributes.Bold;
+                FontFmBan = FontAttributes.Bold;    
                 TextBtnXacNhan = "XÁC NHẬN BÁN";
             }
             if (key.Equals("01") || key.Equals("11") || key.Equals("21"))

@@ -534,37 +534,54 @@
                         <StackLayout Grid.Row="2" Orientation="Horizontal">
                             <Label
                                 HorizontalOptions="Start"
+                                Style="{StaticResource NormalLabel}"
                                 Text="Khối lượng"
-                                TextColor="Black"
                                 VerticalOptions="Center" />
-                            <Frame
-                                Margin="3"
-                                Padding="5"
+                            <StackLayout
+                                Padding="4"
                                 BackgroundColor="#818181"
-                                HasShadow="False">
-                                <StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label
-                                        Text="max"
-                                        TextColor="White"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        Text="{Binding ItemGT.KLMax}"
-                                        TextColor="White"
-                                        VerticalOptions="Center" />
-                                </StackLayout>
-                            </Frame>
+                                HorizontalOptions="Start"
+                                Orientation="Horizontal"
+                                Spacing="3"
+                                VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Text="max"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Text="{Binding ItemGT.KLMax}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapKLMax" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
                         </StackLayout>
                         <Frame
                             Grid.Row="2"
                             Grid.Column="1"
                             Style="{StaticResource FrameEntry}">
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout
+                                x:Name="StackKLMax"
+                                BackgroundColor="White"
+                                Orientation="Horizontal">
                                 <StackLayout HeightRequest="30" WidthRequest="30">
                                     <ImageButton
+                                        BackgroundColor="White"
                                         Command="{Binding BtnMinus}"
                                         CommandParameter="KLMinus"
                                         Source="minus.png"
-                                        Style="{StaticResource Btn+/-}" />
+                                        Style="{StaticResource Btn+/-}">
+                                        <ImageButton.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding Source={x:Reference StackKLMax}, Path=BackgroundColor}"
+                                                TargetType="ImageButton"
+                                                Value="#c9c9c9">
+                                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                            </DataTrigger>
+                                        </ImageButton.Triggers>
+                                    </ImageButton>
                                 </StackLayout>
                                 <custom:CustomEntry
                                     x:Name="EntryKL"
@@ -575,10 +592,21 @@
                                         Command="{Binding BtnPlus}"
                                         CommandParameter="KLPlus"
                                         Source="plus.png"
-                                        Style="{StaticResource Btn+/-}" />
+                                        Style="{StaticResource Btn+/-}">
+                                        <ImageButton.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding Source={x:Reference StackKLMax}, Path=BackgroundColor}"
+                                                TargetType="ImageButton"
+                                                Value="#c9c9c9">
+                                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                            </DataTrigger>
+                                        </ImageButton.Triggers>
+                                    </ImageButton>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
+
+
                         <!--  Giá  -->
                         <Label
                             Grid.Row="3"
@@ -586,7 +614,6 @@
                             Text="Giá"
                             VerticalOptions="Center" />
                         <Frame
-                            x:Name="flick"
                             Grid.Row="3"
                             Grid.Column="1"
                             Style="{StaticResource FrameEntry}">
@@ -602,10 +629,10 @@
                                         Style="{StaticResource Btn+/-}">
                                         <ImageButton.Triggers>
                                             <DataTrigger
-                                                Binding="{Binding Source={x:Reference flick}, Path=BackgroundColor}"
+                                                Binding="{Binding Source={x:Reference FrameGia}, Path=BackgroundColor}"
                                                 TargetType="ImageButton"
                                                 Value="#c9c9c9">
-                                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                                <Setter Property="IsVisible" Value="False" />
                                             </DataTrigger>
                                         </ImageButton.Triggers>
                                     </ImageButton>
@@ -619,10 +646,10 @@
                                         Style="{StaticResource Btn+/-}">
                                         <ImageButton.Triggers>
                                             <DataTrigger
-                                                Binding="{Binding Source={x:Reference flick}, Path=BackgroundColor}"
+                                                Binding="{Binding Source={x:Reference FrameGia}, Path=BackgroundColor}"
                                                 TargetType="ImageButton"
                                                 Value="#c9c9c9">
-                                                <Setter Property="BackgroundColor" Value="#c9c9c9" />
+                                                <Setter Property="IsVisible" Value="False" />
                                             </DataTrigger>
                                         </ImageButton.Triggers>
                                     </ImageButton>
@@ -633,36 +660,6 @@
                                     Binding="{Binding Source={x:Reference FrameGia}, Path=IsVisible}"
                                     TargetType="Frame"
                                     Value="False">
-                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
-                                </DataTrigger>
-                                <DataTrigger
-                                    Binding="{Binding Source={x:Reference TabBan}, Path=BackgroundColor}"
-                                    TargetType="Frame"
-                                    Value="#c9c9c9">
-                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
-                                </DataTrigger>
-                                <DataTrigger
-                                    Binding="{Binding Source={x:Reference TabMua}, Path=BackgroundColor}"
-                                    TargetType="Frame"
-                                    Value="#c9c9c9">
-                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
-                                </DataTrigger>
-                                <DataTrigger
-                                    Binding="{Binding Source={x:Reference GiaSan}, Path=BackgroundColor}"
-                                    TargetType="Frame"
-                                    Value="#c9c9c9">
-                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
-                                </DataTrigger>
-                                <DataTrigger
-                                    Binding="{Binding Source={x:Reference GiaTB}, Path=BackgroundColor}"
-                                    TargetType="Frame"
-                                    Value="#c9c9c9">
-                                    <Setter Property="BackgroundColor" Value="#c9c9c9" />
-                                </DataTrigger>
-                                <DataTrigger
-                                    Binding="{Binding Source={x:Reference GiaTran}, Path=BackgroundColor}"
-                                    TargetType="Frame"
-                                    Value="#c9c9c9">
                                     <Setter Property="BackgroundColor" Value="#c9c9c9" />
                                 </DataTrigger>
                             </Frame.Triggers>
