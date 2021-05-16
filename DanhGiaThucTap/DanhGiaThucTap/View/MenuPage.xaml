@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DanhGiaThucTap.View.MenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:DanhGiaThucTap.MyDataTemplateSelector"
+    Title="flyout">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="MenuTemplate">
+                <ViewCell>
+                    <StackLayout HeightRequest="30" BackgroundColor="#eaeaea" Padding="10">
+                        <Label
+                            FontSize="15"
+                            HorizontalOptions="Start"
+                            IsEnabled="False"
+                            Text="{Binding Title}"
+                            TextColor="Black"
+                            VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="ItemTemplate">
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Image
+                            HeightRequest="30"
+                            HorizontalOptions="Start"
+                            Source="{Binding Img}"
+                            WidthRequest="30" />
+                        <Label
+                            FontSize="17"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Title}"
+                            TextColor="Black"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <local:MenuDataTemplateSelector
+                x:Key="myMenuDataTemplateSelector"
+                ItemTemplate="{StaticResource ItemTemplate}"
+                MenuTemplate="{StaticResource MenuTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Spacing="0">
+        <Frame
+            Padding="10"
+            BackgroundColor="#51b749"
+            HasShadow="False">
+            <Grid ColumnSpacing="15" RowDefinitions="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    HeightRequest="50"
+                    Source="user.png"
+                    WidthRequest="50" />
+                <StackLayout Grid.Column="1">
+                    <Label
+                        FontSize="15"
+                        Text="058C111764"
+                        TextColor="White" />
+                    <Label
+                        FontSize="17"
+                        Text="NGUYEN HUNG HA"
+                        TextColor="White" />
+                </StackLayout>
+                <ImageButton
+                    Grid.Column="2"
+                    BackgroundColor="#51b749"
+                    HeightRequest="15"
+                    Source="setting.png"
+                    WidthRequest="15" />
+                <ImageButton
+                    Grid.Column="3"
+                    BackgroundColor="#51b749"
+                    HeightRequest="20"
+                    Source="power.png"
+                    WidthRequest="20" />
+            </Grid>
+        </Frame>
+        <ListView
+            ItemTemplate="{StaticResource myMenuDataTemplateSelector}"
+            ItemsSource="{Binding ListMenuItem}"
+            SelectionMode="None"
+            RowHeight="37"
+            SeparatorColor="Transparent"
+            VerticalScrollBarVisibility="Never" />
+    </StackLayout>
+</ContentPage>

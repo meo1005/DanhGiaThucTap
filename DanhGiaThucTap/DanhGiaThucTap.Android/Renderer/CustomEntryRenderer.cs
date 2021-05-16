@@ -13,7 +13,9 @@ using System.Text;
 using DanhGiaThucTap.Custom;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+#pragma warning disable CS0612 // Type or member is obsolete
 [assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
+#pragma warning restore CS0612 // Type or member is obsolete
 namespace DanhGiaThucTap.Droid
 {
     [Obsolete]

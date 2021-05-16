@@ -7,7 +7,7 @@
     Title="Flyout"
     NavigationPage.HasNavigationBar="False">
     <FlyoutPage.Flyout>
-        <local:FlyOutPage />
+        <local:MenuPage />
     </FlyoutPage.Flyout>
     <FlyoutPage.Detail>
         <NavigationPage>

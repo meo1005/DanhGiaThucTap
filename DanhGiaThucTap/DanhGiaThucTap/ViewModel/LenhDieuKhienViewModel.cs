@@ -77,7 +77,7 @@ namespace DanhGiaThucTap.ViewModel
             set { SetProperty(ref _index, value); }
         }
 
-        public List<string> ListDK { get; set; }
+        public List<string> ListDK {get; set; }
 
         private bool _giaIsVisible;
         public bool GiaIsVisible

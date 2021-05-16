@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DanhGiaThucTap.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace DanhGiaThucTap.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FlyOutPage : ContentPage
+    public partial class MenuPage : ContentPage
     {
-        public FlyOutPage()
+        public MenuPage()
         {
             InitializeComponent();
+            BindingContext = new MenuViewModel();
         }
     }
 }
