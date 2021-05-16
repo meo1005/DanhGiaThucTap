@@ -613,7 +613,7 @@ namespace DanhGiaThucTap.ViewModel
             {
 
                 FontFmMua = FontAttributes.None;
-                FontFmBan = FontAttributes.Bold;    
+                FontFmBan = FontAttributes.Bold;
                 TextBtnXacNhan = "XÁC NHẬN BÁN";
             }
             if (key.Equals("01") || key.Equals("11") || key.Equals("21"))
@@ -807,13 +807,20 @@ namespace DanhGiaThucTap.ViewModel
         }
         private bool Checknegative(string n)
         {
-            if (double.Parse(n) < 0)
+            if (n == "")
             {
                 return false;
             }
             else
             {
-                return true;
+                if (double.Parse(n) < 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
     }
