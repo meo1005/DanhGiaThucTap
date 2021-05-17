@@ -396,20 +396,30 @@ namespace DanhGiaThucTap.ViewModel
                 }
             }
             //tính tổng tại trường giá đặt điều chỉnh, trường Giá chốt lãi
+
             if (Index == 3)
             {
-                FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
-                Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
-                SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+                if (Checknegative(EntryGiaDK) && Checknegative(EntryBienTruot) && Checknegative(EntryKhoangLai) && Checknegative(EntryGia))
+                {
+                    FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
+                    Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                    SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+                }
             }
             else if (Index == 2)
             {
-                SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
-                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                if (Checknegative(EntryGiaDK) && Checknegative(EntryBienTruot) && Checknegative(EntryKhoangLai) && Checknegative(EntryGia))
+                {
+                    SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+                    Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                }
             }
             else
             {
-                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                if (Checknegative(EntryGiaDK) && Checknegative(EntryBienTruot))
+                {
+                    Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                }
             }
 
         }
@@ -468,7 +478,7 @@ namespace DanhGiaThucTap.ViewModel
                     {
                         if (Index == 1)
                         {
-                            if(double.Parse(EntryGiaDK)>ItemGT.GTTran|| double.Parse(EntryGiaDK) < ItemGT.GTSan)
+                            if (double.Parse(EntryGiaDK) > ItemGT.GTTran || double.Parse(EntryGiaDK) < ItemGT.GTSan)
                             {
                                 App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện không được nằm ngoài biên độ trần sàn", "OK");
                                 EntryGiaDK = ItemGT.GTBannerGia.ToString();
@@ -500,7 +510,7 @@ namespace DanhGiaThucTap.ViewModel
                         // dấu trừ trường giá điều kiện khi lệnh OCO 
                         else if (Index == 2)
                         {
-                            if(double.Parse(EntryGiaDK)>ItemGT.GTTran|| double.Parse(EntryGiaDK) < ItemGT.GTSan)
+                            if (double.Parse(EntryGiaDK) > ItemGT.GTTran || double.Parse(EntryGiaDK) < ItemGT.GTSan)
                             {
                                 App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện không được nằm ngoài biên độ trần sàn", "OK");
                                 EntryGiaDK = ItemGT.GTTB.ToString();
@@ -592,18 +602,27 @@ namespace DanhGiaThucTap.ViewModel
             // tính tổng ở trường giá đặt điều chỉnh, giá chốt lãi
             if (Index == 3)
             {
-                FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
-                Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
-                SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+                if (Checknegative(EntryGiaDK) && Checknegative(EntryBienTruot) && Checknegative(EntryKhoangLai) && Checknegative(EntryGia))
+                {
+                    FrameGiaDK = (double.Parse(EntryGia) - double.Parse(EntryGiaDK)).ToString();
+                    Sum = (double.Parse(FrameGiaDK) - double.Parse(EntryBienTruot)).ToString();
+                    SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+                }
             }
             else if (Index == 2)
             {
-                SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
-                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                if (Checknegative(EntryGiaDK) && Checknegative(EntryBienTruot) && Checknegative(EntryKhoangLai) && Checknegative(EntryGia))
+                {
+                    SumLai = (double.Parse(EntryKhoangLai) + double.Parse(EntryGia)).ToString();
+                    Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                }
             }
             else
             {
-                Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                if (Checknegative(EntryGiaDK) && Checknegative(EntryBienTruot))
+                {
+                    Sum = (double.Parse(EntryGiaDK) + double.Parse(EntryBienTruot)).ToString();
+                }
             }
         }
         // hàm bắt sự kiện click vào item của list trên navigation, xét các giá trị
@@ -884,19 +903,6 @@ namespace DanhGiaThucTap.ViewModel
                 {
                     return true;
                 }
-            }
-        }
-        //check khoang giá trị
-        private bool CheckValue(string n)
-        {
-            if (double.Parse(n) > ItemGT.GTTran || double.Parse(n) < ItemGT.GTSan)
-            {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Giá điều kiện không được nằm ngoài biên độ trần sàn", "OK");
-                return false;
-            }
-            else
-            {
-                return true;
             }
         }
     }
